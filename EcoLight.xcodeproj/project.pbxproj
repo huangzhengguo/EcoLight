@@ -1,0 +1,1374 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BDF2ADF2A10831CBD152E16 /* Pods_EcoLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B568DF0573168D0523988A /* Pods_EcoLight.framework */; };
+		8F2AAF2A1F97339F002A176D /* ManualCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2AAF291F97339F002A176D /* ManualCircleView.swift */; };
+		8F435C9D1FA9AF4B00A45E4C /* CommonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F435C9C1FA9AF4B00A45E4C /* CommonData.swift */; };
+		8F4C886A1FA1AB5700C8D37D /* SystemInfoTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C88691FA1AA5500C8D37D /* SystemInfoTools.swift */; };
+		8F66B5FD1F7DE8550086E350 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66B5FC1F7DE8550086E350 /* DeviceModel.swift */; };
+		8F66B5FF1F7DEE990086E350 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F66B5FE1F7DEE990086E350 /* CoreBluetooth.framework */; };
+		8F6C77331F8DDF3100E0A22D /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C77311F8DDF3100E0A22D /* DeviceTableViewCell.swift */; };
+		8F6C77341F8DDF3100E0A22D /* DeviceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C77321F8DDF3100E0A22D /* DeviceTableViewCell.xib */; };
+		8F74C8A21F91AAAC00032C06 /* BlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74C8A11F91AAAC00032C06 /* BlueToothManager.swift */; };
+		8F74C8A51F91F01900032C06 /* StringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74C8A41F91F01900032C06 /* StringManager.swift */; };
+		8F7B78101F95AEA600DF4048 /* ColorSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B780E1F95AEA600DF4048 /* ColorSettingViewController.swift */; };
+		8F7B78111F95AEA600DF4048 /* ColorSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F7B780F1F95AEA600DF4048 /* ColorSettingViewController.xib */; };
+		8F7B78131F95B04300DF4048 /* DeviceParameterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7B78121F95B04300DF4048 /* DeviceParameterModel.swift */; };
+		8F83C6401FEA3E5C007BF388 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F83C63F1FEA3E5C007BF388 /* ViewExtensions.swift */; };
+		8F8AB62E1FA175140049D7F1 /* ManualAutoSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8AB62D1FA175140049D7F1 /* ManualAutoSwitchView.swift */; };
+		8F8C8B3A1F6CBDB7006F0461 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8C8B391F6CBDB7006F0461 /* DeviceViewController.swift */; };
+		8F8C8B3D1F6CD3C5006F0461 /* ScanDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8C8B3B1F6CD3C5006F0461 /* ScanDeviceViewController.swift */; };
+		8F8C8B3E1F6CD3C5006F0461 /* ScanDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F8C8B3C1F6CD3C5006F0461 /* ScanDeviceViewController.xib */; };
+		8F8C8B451F6CD403006F0461 /* ScanDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8C8B431F6CD403006F0461 /* ScanDeviceTableViewCell.swift */; };
+		8F8C8B461F6CD403006F0461 /* ScanDeviceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F8C8B441F6CD403006F0461 /* ScanDeviceTableViewCell.xib */; };
+		8F8CA5F51F5D05A100922993 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8CA5F41F5D05A100922993 /* BaseViewController.swift */; };
+		8F943C4C1FE78E76003FA09D /* SortManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F943C4B1FE78E76003FA09D /* SortManager.swift */; };
+		8F9766271FA81D7600EA5F2D /* ParameterModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9766261FA81D7600EA5F2D /* ParameterModelHelper.swift */; };
+		8F9766291FA8485C00EA5F2D /* OldParameterModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9766281FA8485C00EA5F2D /* OldParameterModelHelper.swift */; };
+		8F9952EE1F9064ED00155C82 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9952ED1F9064ED00155C82 /* SettingViewController.swift */; };
+		8F9952F51F9082C000155C82 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9952F31F9082C000155C82 /* LanguageViewController.swift */; };
+		8F9952F61F9082C000155C82 /* LanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9952F41F9082C000155C82 /* LanguageViewController.xib */; };
+		8F9952FD1F9090EC00155C82 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9952FB1F9090EC00155C82 /* LanguageTableViewCell.swift */; };
+		8F9952FE1F9090EC00155C82 /* LanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9952FC1F9090EC00155C82 /* LanguageTableViewCell.xib */; };
+		8F9D906E1F8F45CC00AAC57F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F9D90701F8F45CC00AAC57F /* Localizable.strings */; };
+		8F9D90761F8F481300AAC57F /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D90751F8F481300AAC57F /* LanguageManager.swift */; };
+		8F9F8B491FA2DC9C006E562D /* AutoColorChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F8B481FA2DC9C006E562D /* AutoColorChartView.swift */; };
+		8F9F8B4D1FA33CE3006E562D /* LayoutTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F8B4C1FA33CE3006E562D /* LayoutTools.swift */; };
+		8F9F8B541FA34767006E562D /* AutoColorEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F8B521FA34767006E562D /* AutoColorEditViewController.swift */; };
+		8F9F8B551FA34767006E562D /* AutoColorEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F9F8B531FA34767006E562D /* AutoColorEditViewController.xib */; };
+		8F9F8B571FA34D0C006E562D /* ManualSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F8B561FA34D0C006E562D /* ManualSliderView.swift */; };
+		8FA1C1AA1FA47FC200DBD42B /* TimePointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA1C1A81FA47FC200DBD42B /* TimePointTableViewCell.swift */; };
+		8FA1C1AB1FA47FC200DBD42B /* TimePointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FA1C1A91FA47FC200DBD42B /* TimePointTableViewCell.xib */; };
+		8FB649171FCF91E400AA0617 /* launch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FB649141FCF91E300AA0617 /* launch1.png */; };
+		8FB649181FCF91E400AA0617 /* launch2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FB649151FCF91E300AA0617 /* launch2.png */; };
+		8FB649191FCF91E400AA0617 /* launch3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8FB649161FCF91E300AA0617 /* launch3.png */; };
+		8FB994C21F8CB643008C6ACF /* DeviceDataCoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB994C11F8CB643008C6ACF /* DeviceDataCoreManager.swift */; };
+		8FB994EA1F8CC14E008C6ACF /* BleDevice+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB994E41F8CC14E008C6ACF /* BleDevice+CoreDataClass.swift */; };
+		8FB994EB1F8CC14E008C6ACF /* BleDevice+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB994E51F8CC14E008C6ACF /* BleDevice+CoreDataProperties.swift */; };
+		8FB994EC1F8CC14E008C6ACF /* BleBrand+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB994E61F8CC14E008C6ACF /* BleBrand+CoreDataClass.swift */; };
+		8FB994ED1F8CC14E008C6ACF /* BleBrand+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB994E71F8CC14E008C6ACF /* BleBrand+CoreDataProperties.swift */; };
+		8FB994EE1F8CC14E008C6ACF /* BleGroup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB994E81F8CC14E008C6ACF /* BleGroup+CoreDataClass.swift */; };
+		8FB994EF1F8CC14E008C6ACF /* BleGroup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB994E91F8CC14E008C6ACF /* BleGroup+CoreDataProperties.swift */; };
+		8FBD22EE1F970350006B73C9 /* DeviceTypeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD22ED1F970350006B73C9 /* DeviceTypeData.swift */; };
+		8FBD22F01F971C7B006B73C9 /* DeviceCodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD22EF1F971C7B006B73C9 /* DeviceCodeInfo.swift */; };
+		8FC6D67E1F7D0A9E00C2B64B /* libBLEManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC6D67B1F7D085E00C2B64B /* libBLEManager.a */; };
+		8FE41AD91F7F753B00825501 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FE41AD81F7F753B00825501 /* CoreData.framework */; };
+		8FE41ADD1F7F75BF00825501 /* DeviceModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8FE41ADB1F7F75BF00825501 /* DeviceModel.xcdatamodeld */; };
+		8FE76F151F2EB09100FC9634 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE76F141F2EB09100FC9634 /* AppDelegate.swift */; };
+		8FE76F1A1F2EB09100FC9634 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE76F181F2EB09100FC9634 /* Main.storyboard */; };
+		8FE76F1C1F2EB09100FC9634 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FE76F1B1F2EB09100FC9634 /* Assets.xcassets */; };
+		8FE76F1F1F2EB09100FC9634 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE76F1D1F2EB09100FC9634 /* LaunchScreen.storyboard */; };
+		8FE76F2A1F2EB09100FC9634 /* EcoLightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE76F291F2EB09100FC9634 /* EcoLightTests.swift */; };
+		8FE76F351F2EB09100FC9634 /* EcoLightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE76F341F2EB09100FC9634 /* EcoLightUITests.swift */; };
+		92AFAB069800334E0F1548E9 /* Pods_EcoLightUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B596BEB8093554619222F321 /* Pods_EcoLightUITests.framework */; };
+		FAFDCE123CC3734FAB56F713 /* Pods_EcoLightTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B570C04BDFC125356B346 /* Pods_EcoLightTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8FE76F261F2EB09100FC9634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FE76F091F2EB09000FC9634 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FE76F101F2EB09000FC9634;
+			remoteInfo = EcoLight;
+		};
+		8FE76F311F2EB09100FC9634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FE76F091F2EB09000FC9634 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FE76F101F2EB09000FC9634;
+			remoteInfo = EcoLight;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		14581AAF101D984F3E79DE92 /* Pods-EcoLightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EcoLightUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EcoLightUITests/Pods-EcoLightUITests.release.xcconfig"; sourceTree = "<group>"; };
+		39B568DF0573168D0523988A /* Pods_EcoLight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EcoLight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E2B570C04BDFC125356B346 /* Pods_EcoLightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EcoLightTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C0891B0AF528E46D4A84E16 /* Pods-EcoLight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EcoLight.release.xcconfig"; path = "Pods/Target Support Files/Pods-EcoLight/Pods-EcoLight.release.xcconfig"; sourceTree = "<group>"; };
+		5F4E474273CA165558F46D96 /* Pods-EcoLight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EcoLight.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EcoLight/Pods-EcoLight.debug.xcconfig"; sourceTree = "<group>"; };
+		8F2AAF291F97339F002A176D /* ManualCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualCircleView.swift; sourceTree = "<group>"; };
+		8F435C9C1FA9AF4B00A45E4C /* CommonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonData.swift; sourceTree = "<group>"; };
+		8F4C88691FA1AA5500C8D37D /* SystemInfoTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoTools.swift; sourceTree = "<group>"; };
+		8F66B5FC1F7DE8550086E350 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
+		8F66B5FE1F7DEE990086E350 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		8F6C77311F8DDF3100E0A22D /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
+		8F6C77321F8DDF3100E0A22D /* DeviceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceTableViewCell.xib; sourceTree = "<group>"; };
+		8F74C8A11F91AAAC00032C06 /* BlueToothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueToothManager.swift; sourceTree = "<group>"; };
+		8F74C8A41F91F01900032C06 /* StringManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringManager.swift; sourceTree = "<group>"; };
+		8F7B780E1F95AEA600DF4048 /* ColorSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSettingViewController.swift; sourceTree = "<group>"; };
+		8F7B780F1F95AEA600DF4048 /* ColorSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSettingViewController.xib; sourceTree = "<group>"; };
+		8F7B78121F95B04300DF4048 /* DeviceParameterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceParameterModel.swift; sourceTree = "<group>"; };
+		8F83C63F1FEA3E5C007BF388 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		8F8AB62D1FA175140049D7F1 /* ManualAutoSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualAutoSwitchView.swift; sourceTree = "<group>"; };
+		8F8C8B391F6CBDB7006F0461 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
+		8F8C8B3B1F6CD3C5006F0461 /* ScanDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanDeviceViewController.swift; sourceTree = "<group>"; };
+		8F8C8B3C1F6CD3C5006F0461 /* ScanDeviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanDeviceViewController.xib; sourceTree = "<group>"; };
+		8F8C8B431F6CD403006F0461 /* ScanDeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanDeviceTableViewCell.swift; sourceTree = "<group>"; };
+		8F8C8B441F6CD403006F0461 /* ScanDeviceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanDeviceTableViewCell.xib; sourceTree = "<group>"; };
+		8F8CA5F41F5D05A100922993 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8F943C4B1FE78E76003FA09D /* SortManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortManager.swift; sourceTree = "<group>"; };
+		8F9766261FA81D7600EA5F2D /* ParameterModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterModelHelper.swift; sourceTree = "<group>"; };
+		8F9766281FA8485C00EA5F2D /* OldParameterModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldParameterModelHelper.swift; sourceTree = "<group>"; };
+		8F9952ED1F9064ED00155C82 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8F9952F31F9082C000155C82 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		8F9952F41F9082C000155C82 /* LanguageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageViewController.xib; sourceTree = "<group>"; };
+		8F9952FB1F9090EC00155C82 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
+		8F9952FC1F9090EC00155C82 /* LanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageTableViewCell.xib; sourceTree = "<group>"; };
+		8F9952FF1F90BC6900155C82 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8F9D906F1F8F45CC00AAC57F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F9D90711F8F45E100AAC57F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F9D90751F8F481300AAC57F /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		8F9F8B481FA2DC9C006E562D /* AutoColorChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoColorChartView.swift; sourceTree = "<group>"; };
+		8F9F8B4C1FA33CE3006E562D /* LayoutTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutTools.swift; sourceTree = "<group>"; };
+		8F9F8B521FA34767006E562D /* AutoColorEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoColorEditViewController.swift; sourceTree = "<group>"; };
+		8F9F8B531FA34767006E562D /* AutoColorEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AutoColorEditViewController.xib; sourceTree = "<group>"; };
+		8F9F8B561FA34D0C006E562D /* ManualSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualSliderView.swift; sourceTree = "<group>"; };
+		8FA1C1A81FA47FC200DBD42B /* TimePointTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePointTableViewCell.swift; sourceTree = "<group>"; };
+		8FA1C1A91FA47FC200DBD42B /* TimePointTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimePointTableViewCell.xib; sourceTree = "<group>"; };
+		8FB649141FCF91E300AA0617 /* launch1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch1.png; sourceTree = "<group>"; };
+		8FB649151FCF91E300AA0617 /* launch2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch2.png; sourceTree = "<group>"; };
+		8FB649161FCF91E300AA0617 /* launch3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch3.png; sourceTree = "<group>"; };
+		8FB994C11F8CB643008C6ACF /* DeviceDataCoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataCoreManager.swift; sourceTree = "<group>"; };
+		8FB994E41F8CC14E008C6ACF /* BleDevice+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BleDevice+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8FB994E51F8CC14E008C6ACF /* BleDevice+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BleDevice+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8FB994E61F8CC14E008C6ACF /* BleBrand+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BleBrand+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8FB994E71F8CC14E008C6ACF /* BleBrand+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BleBrand+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8FB994E81F8CC14E008C6ACF /* BleGroup+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BleGroup+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8FB994E91F8CC14E008C6ACF /* BleGroup+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BleGroup+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8FBD22ED1F970350006B73C9 /* DeviceTypeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTypeData.swift; sourceTree = "<group>"; };
+		8FBD22EF1F971C7B006B73C9 /* DeviceCodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCodeInfo.swift; sourceTree = "<group>"; };
+		8FC2A3C11F8B686500BEAE90 /* EcoLight-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EcoLight-Bridging-Header.h"; sourceTree = "<group>"; };
+		8FC6D6781F7D085E00C2B64B /* BLEManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEManager.h; sourceTree = "<group>"; };
+		8FC6D6791F7D085E00C2B64B /* DeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
+		8FC6D67A1F7D085E00C2B64B /* DeviceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
+		8FC6D67B1F7D085E00C2B64B /* libBLEManager.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBLEManager.a; sourceTree = "<group>"; };
+		8FC6D67C1F7D085E00C2B64B /* oad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oad.h; sourceTree = "<group>"; };
+		8FE41AD81F7F753B00825501 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8FE41ADC1F7F75BF00825501 /* DeviceModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeviceModel.xcdatamodel; sourceTree = "<group>"; };
+		8FE76F111F2EB09100FC9634 /* EcoLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcoLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE76F141F2EB09100FC9634 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8FE76F191F2EB09100FC9634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8FE76F1B1F2EB09100FC9634 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8FE76F1E1F2EB09100FC9634 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8FE76F201F2EB09100FC9634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FE76F251F2EB09100FC9634 /* EcoLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcoLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE76F291F2EB09100FC9634 /* EcoLightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoLightTests.swift; sourceTree = "<group>"; };
+		8FE76F2B1F2EB09100FC9634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FE76F301F2EB09100FC9634 /* EcoLightUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcoLightUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE76F341F2EB09100FC9634 /* EcoLightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EcoLightUITests.swift; sourceTree = "<group>"; };
+		8FE76F361F2EB09100FC9634 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9408CE88DE89B757C79B2502 /* Pods-EcoLightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EcoLightTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EcoLightTests/Pods-EcoLightTests.debug.xcconfig"; sourceTree = "<group>"; };
+		94A9E8755F48213F8AE93A51 /* Pods-EcoLightUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EcoLightUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EcoLightUITests/Pods-EcoLightUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B596BEB8093554619222F321 /* Pods_EcoLightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EcoLightUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8DAB8136F03D28BE0E0CBCC /* Pods-EcoLightTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EcoLightTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EcoLightTests/Pods-EcoLightTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8FE76F0E1F2EB09000FC9634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE41AD91F7F753B00825501 /* CoreData.framework in Frameworks */,
+				8F66B5FF1F7DEE990086E350 /* CoreBluetooth.framework in Frameworks */,
+				8FC6D67E1F7D0A9E00C2B64B /* libBLEManager.a in Frameworks */,
+				0BDF2ADF2A10831CBD152E16 /* Pods_EcoLight.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE76F221F2EB09100FC9634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAFDCE123CC3734FAB56F713 /* Pods_EcoLightTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE76F2D1F2EB09100FC9634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92AFAB069800334E0F1548E9 /* Pods_EcoLightUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12EB8F7164E0D114B372866D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8FE41AD81F7F753B00825501 /* CoreData.framework */,
+				8F66B5FE1F7DEE990086E350 /* CoreBluetooth.framework */,
+				39B568DF0573168D0523988A /* Pods_EcoLight.framework */,
+				3E2B570C04BDFC125356B346 /* Pods_EcoLightTests.framework */,
+				B596BEB8093554619222F321 /* Pods_EcoLightUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		17F1109B32A56998DF7F5AC5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F4E474273CA165558F46D96 /* Pods-EcoLight.debug.xcconfig */,
+				5C0891B0AF528E46D4A84E16 /* Pods-EcoLight.release.xcconfig */,
+				9408CE88DE89B757C79B2502 /* Pods-EcoLightTests.debug.xcconfig */,
+				C8DAB8136F03D28BE0E0CBCC /* Pods-EcoLightTests.release.xcconfig */,
+				94A9E8755F48213F8AE93A51 /* Pods-EcoLightUITests.debug.xcconfig */,
+				14581AAF101D984F3E79DE92 /* Pods-EcoLightUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8F15C45D1F5F821800E29570 /* ScanDevice */ = {
+			isa = PBXGroup;
+			children = (
+				8F15C45E1F5F823600E29570 /* Controller */,
+				8F15C45F1F5F823600E29570 /* Model */,
+				8F15C4601F5F823600E29570 /* View */,
+			);
+			path = ScanDevice;
+			sourceTree = "<group>";
+		};
+		8F15C45E1F5F823600E29570 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F8C8B3B1F6CD3C5006F0461 /* ScanDeviceViewController.swift */,
+				8F8C8B3C1F6CD3C5006F0461 /* ScanDeviceViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F15C45F1F5F823600E29570 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F15C4601F5F823600E29570 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F8C8B431F6CD403006F0461 /* ScanDeviceTableViewCell.swift */,
+				8F8C8B441F6CD403006F0461 /* ScanDeviceTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F2AAF281F9732D8002A176D /* GlobalViews */ = {
+			isa = PBXGroup;
+			children = (
+				8F2AAF291F97339F002A176D /* ManualCircleView.swift */,
+				8F8AB62D1FA175140049D7F1 /* ManualAutoSwitchView.swift */,
+				8F9F8B481FA2DC9C006E562D /* AutoColorChartView.swift */,
+				8F9F8B561FA34D0C006E562D /* ManualSliderView.swift */,
+			);
+			name = GlobalViews;
+			path = EcoLight/GlobalViews;
+			sourceTree = SOURCE_ROOT;
+		};
+		8F4C88681FA1AA4D00C8D37D /* SystemInfoTools */ = {
+			isa = PBXGroup;
+			children = (
+				8F4C88691FA1AA5500C8D37D /* SystemInfoTools.swift */,
+			);
+			path = SystemInfoTools;
+			sourceTree = "<group>";
+		};
+		8F66B5FB1F7DE8350086E350 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8F66B5FC1F7DE8550086E350 /* DeviceModel.swift */,
+				8F7B78121F95B04300DF4048 /* DeviceParameterModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8F74C8A01F91AA7B00032C06 /* BleManager */ = {
+			isa = PBXGroup;
+			children = (
+				8F74C8A11F91AAAC00032C06 /* BlueToothManager.swift */,
+			);
+			path = BleManager;
+			sourceTree = "<group>";
+		};
+		8F74C8A31F91EF8300032C06 /* StringManager */ = {
+			isa = PBXGroup;
+			children = (
+				8F74C8A41F91F01900032C06 /* StringManager.swift */,
+			);
+			name = StringManager;
+			path = EcoLight/StringManager;
+			sourceTree = SOURCE_ROOT;
+		};
+		8F7B780A1F95AE7A00DF4048 /* ColorSetting */ = {
+			isa = PBXGroup;
+			children = (
+				8F7B780B1F95AE7A00DF4048 /* Controller */,
+				8F7B780C1F95AE7A00DF4048 /* Model */,
+				8F7B780D1F95AE7A00DF4048 /* View */,
+			);
+			path = ColorSetting;
+			sourceTree = "<group>";
+		};
+		8F7B780B1F95AE7A00DF4048 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F7B780E1F95AEA600DF4048 /* ColorSettingViewController.swift */,
+				8F7B780F1F95AEA600DF4048 /* ColorSettingViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F7B780C1F95AE7A00DF4048 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F7B780D1F95AE7A00DF4048 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F83C63E1FEA3E1E007BF388 /* SystemExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				8F83C63F1FEA3E5C007BF388 /* ViewExtensions.swift */,
+			);
+			path = SystemExtensions;
+			sourceTree = "<group>";
+		};
+		8F8C8B351F6CBD62006F0461 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				8F8C8B361F6CBD62006F0461 /* Controller */,
+				8F8C8B371F6CBD62006F0461 /* Model */,
+				8F8C8B381F6CBD62006F0461 /* View */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		8F8C8B361F6CBD62006F0461 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F8C8B391F6CBDB7006F0461 /* DeviceViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F8C8B371F6CBD62006F0461 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F8C8B381F6CBD62006F0461 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F6C77311F8DDF3100E0A22D /* DeviceTableViewCell.swift */,
+				8F6C77321F8DDF3100E0A22D /* DeviceTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F8CA5F31F5D056300922993 /* BaseClass */ = {
+			isa = PBXGroup;
+			children = (
+				8F8CA5F41F5D05A100922993 /* BaseViewController.swift */,
+			);
+			path = BaseClass;
+			sourceTree = "<group>";
+		};
+		8F943C4A1FE78E63003FA09D /* SortManager */ = {
+			isa = PBXGroup;
+			children = (
+				8F943C4B1FE78E76003FA09D /* SortManager.swift */,
+			);
+			path = SortManager;
+			sourceTree = "<group>";
+		};
+		8F9766251FA81D2500EA5F2D /* ParameterModelHelper */ = {
+			isa = PBXGroup;
+			children = (
+				8F9766261FA81D7600EA5F2D /* ParameterModelHelper.swift */,
+				8F9766281FA8485C00EA5F2D /* OldParameterModelHelper.swift */,
+			);
+			path = ParameterModelHelper;
+			sourceTree = "<group>";
+		};
+		8F9952E71F90645800155C82 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				8F9952E81F90645800155C82 /* Controller */,
+				8F9952E91F90645800155C82 /* Model */,
+				8F9952EA1F90645800155C82 /* View */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		8F9952E81F90645800155C82 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F9952ED1F9064ED00155C82 /* SettingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F9952E91F90645800155C82 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F9952EA1F90645800155C82 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F9952EF1F9071AF00155C82 /* LanguageSetting */ = {
+			isa = PBXGroup;
+			children = (
+				8F9952F01F9071AF00155C82 /* Controller */,
+				8F9952F11F9071AF00155C82 /* Model */,
+				8F9952F21F9071AF00155C82 /* View */,
+			);
+			path = LanguageSetting;
+			sourceTree = "<group>";
+		};
+		8F9952F01F9071AF00155C82 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F9952F31F9082C000155C82 /* LanguageViewController.swift */,
+				8F9952F41F9082C000155C82 /* LanguageViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F9952F11F9071AF00155C82 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F9952F21F9071AF00155C82 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F9952FB1F9090EC00155C82 /* LanguageTableViewCell.swift */,
+				8F9952FC1F9090EC00155C82 /* LanguageTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F9D90721F8F46BA00AAC57F /* LanguageManager */ = {
+			isa = PBXGroup;
+			children = (
+				8F9D90751F8F481300AAC57F /* LanguageManager.swift */,
+			);
+			path = LanguageManager;
+			sourceTree = "<group>";
+		};
+		8F9F8B4B1FA33CCF006E562D /* LayoutTools */ = {
+			isa = PBXGroup;
+			children = (
+				8F9F8B4C1FA33CE3006E562D /* LayoutTools.swift */,
+			);
+			path = LayoutTools;
+			sourceTree = "<group>";
+		};
+		8F9F8B4E1FA34739006E562D /* AutoColorEdit */ = {
+			isa = PBXGroup;
+			children = (
+				8F9F8B4F1FA34745006E562D /* Controller */,
+				8F9F8B501FA34746006E562D /* Model */,
+				8F9F8B511FA34746006E562D /* View */,
+			);
+			path = AutoColorEdit;
+			sourceTree = "<group>";
+		};
+		8F9F8B4F1FA34745006E562D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F9F8B521FA34767006E562D /* AutoColorEditViewController.swift */,
+				8F9F8B531FA34767006E562D /* AutoColorEditViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8F9F8B501FA34746006E562D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F9F8B511FA34746006E562D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8FA1C1A81FA47FC200DBD42B /* TimePointTableViewCell.swift */,
+				8FA1C1A91FA47FC200DBD42B /* TimePointTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8FB994D71F8CC093008C6ACF /* DeviceDataCore1 */ = {
+			isa = PBXGroup;
+			children = (
+				8FB994E41F8CC14E008C6ACF /* BleDevice+CoreDataClass.swift */,
+				8FB994E51F8CC14E008C6ACF /* BleDevice+CoreDataProperties.swift */,
+				8FB994E61F8CC14E008C6ACF /* BleBrand+CoreDataClass.swift */,
+				8FB994E71F8CC14E008C6ACF /* BleBrand+CoreDataProperties.swift */,
+				8FB994E81F8CC14E008C6ACF /* BleGroup+CoreDataClass.swift */,
+				8FB994E91F8CC14E008C6ACF /* BleGroup+CoreDataProperties.swift */,
+			);
+			path = DeviceDataCore1;
+			sourceTree = "<group>";
+		};
+		8FBD22EC1F970331006B73C9 /* DeviceTypeData */ = {
+			isa = PBXGroup;
+			children = (
+				8FBD22ED1F970350006B73C9 /* DeviceTypeData.swift */,
+				8FBD22EF1F971C7B006B73C9 /* DeviceCodeInfo.swift */,
+			);
+			name = DeviceTypeData;
+			path = EcoLight/DeviceTypeData;
+			sourceTree = SOURCE_ROOT;
+		};
+		8FC2A3B41F8B5FCB00BEAE90 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				8FB994D71F8CC093008C6ACF /* DeviceDataCore1 */,
+				8FB994C11F8CB643008C6ACF /* DeviceDataCoreManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		8FC6D6771F7D085E00C2B64B /* BleSdk */ = {
+			isa = PBXGroup;
+			children = (
+				8FC6D6781F7D085E00C2B64B /* BLEManager.h */,
+				8FC6D6791F7D085E00C2B64B /* DeviceInfo.h */,
+				8FC6D67A1F7D085E00C2B64B /* DeviceInfo.m */,
+				8FC6D67B1F7D085E00C2B64B /* libBLEManager.a */,
+				8FC6D67C1F7D085E00C2B64B /* oad.h */,
+			);
+			path = BleSdk;
+			sourceTree = "<group>";
+		};
+		8FE2C4C91F31DF24000DE7E8 /* CodeClass */ = {
+			isa = PBXGroup;
+			children = (
+				8F9F8B4E1FA34739006E562D /* AutoColorEdit */,
+				8F7B780A1F95AE7A00DF4048 /* ColorSetting */,
+				8F9952EF1F9071AF00155C82 /* LanguageSetting */,
+				8F9952E71F90645800155C82 /* Setting */,
+				8F66B5FB1F7DE8350086E350 /* Models */,
+				8F8C8B351F6CBD62006F0461 /* Device */,
+				8F15C45D1F5F821800E29570 /* ScanDevice */,
+			);
+			path = CodeClass;
+			sourceTree = "<group>";
+		};
+		8FE41AD61F7F6BCD00825501 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				8FB649141FCF91E300AA0617 /* launch1.png */,
+				8FB649151FCF91E300AA0617 /* launch2.png */,
+				8FB649161FCF91E300AA0617 /* launch3.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		8FE41ADA1F7F756300825501 /* DeviceData */ = {
+			isa = PBXGroup;
+			children = (
+				8FE41ADB1F7F75BF00825501 /* DeviceModel.xcdatamodeld */,
+			);
+			name = DeviceData;
+			path = EcoLight/DeviceData;
+			sourceTree = SOURCE_ROOT;
+		};
+		8FE76F081F2EB09000FC9634 = {
+			isa = PBXGroup;
+			children = (
+				8FE76F131F2EB09100FC9634 /* EcoLight */,
+				8FE76F281F2EB09100FC9634 /* EcoLightTests */,
+				8FE76F331F2EB09100FC9634 /* EcoLightUITests */,
+				8FE76F121F2EB09100FC9634 /* Products */,
+				17F1109B32A56998DF7F5AC5 /* Pods */,
+				12EB8F7164E0D114B372866D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8FE76F121F2EB09100FC9634 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FE76F111F2EB09100FC9634 /* EcoLight.app */,
+				8FE76F251F2EB09100FC9634 /* EcoLightTests.xctest */,
+				8FE76F301F2EB09100FC9634 /* EcoLightUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FE76F131F2EB09100FC9634 /* EcoLight */ = {
+			isa = PBXGroup;
+			children = (
+				8FE76F141F2EB09100FC9634 /* AppDelegate.swift */,
+				8FE76F181F2EB09100FC9634 /* Main.storyboard */,
+				8FE76F1B1F2EB09100FC9634 /* Assets.xcassets */,
+				8FE76F1D1F2EB09100FC9634 /* LaunchScreen.storyboard */,
+				8FE76F201F2EB09100FC9634 /* Info.plist */,
+				8F8CA5F31F5D056300922993 /* BaseClass */,
+				8FE2C4C91F31DF24000DE7E8 /* CodeClass */,
+				8FE76F421F2EB1CB00FC9634 /* Tools */,
+				8FE41AD61F7F6BCD00825501 /* Images */,
+				8FE41ADA1F7F756300825501 /* DeviceData */,
+			);
+			path = EcoLight;
+			sourceTree = "<group>";
+		};
+		8FE76F281F2EB09100FC9634 /* EcoLightTests */ = {
+			isa = PBXGroup;
+			children = (
+				8FE76F291F2EB09100FC9634 /* EcoLightTests.swift */,
+				8FE76F2B1F2EB09100FC9634 /* Info.plist */,
+			);
+			path = EcoLightTests;
+			sourceTree = "<group>";
+		};
+		8FE76F331F2EB09100FC9634 /* EcoLightUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8FE76F341F2EB09100FC9634 /* EcoLightUITests.swift */,
+				8FE76F361F2EB09100FC9634 /* Info.plist */,
+			);
+			path = EcoLightUITests;
+			sourceTree = "<group>";
+		};
+		8FE76F421F2EB1CB00FC9634 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				8FC2A3C11F8B686500BEAE90 /* EcoLight-Bridging-Header.h */,
+				8F83C63E1FEA3E1E007BF388 /* SystemExtensions */,
+				8F943C4A1FE78E63003FA09D /* SortManager */,
+				8F9766251FA81D2500EA5F2D /* ParameterModelHelper */,
+				8F9F8B4B1FA33CCF006E562D /* LayoutTools */,
+				8F4C88681FA1AA4D00C8D37D /* SystemInfoTools */,
+				8F2AAF281F9732D8002A176D /* GlobalViews */,
+				8FBD22EC1F970331006B73C9 /* DeviceTypeData */,
+				8F74C8A31F91EF8300032C06 /* StringManager */,
+				8F74C8A01F91AA7B00032C06 /* BleManager */,
+				8F9D90721F8F46BA00AAC57F /* LanguageManager */,
+				8FC2A3B41F8B5FCB00BEAE90 /* DataManager */,
+				8FC6D6771F7D085E00C2B64B /* BleSdk */,
+				8F9D90701F8F45CC00AAC57F /* Localizable.strings */,
+				8F435C9C1FA9AF4B00A45E4C /* CommonData.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8FE76F101F2EB09000FC9634 /* EcoLight */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE76F391F2EB09100FC9634 /* Build configuration list for PBXNativeTarget "EcoLight" */;
+			buildPhases = (
+				3C810D5549653BAB205C40EE /* [CP] Check Pods Manifest.lock */,
+				8FE76F0D1F2EB09000FC9634 /* Sources */,
+				8FE76F0E1F2EB09000FC9634 /* Frameworks */,
+				8FE76F0F1F2EB09000FC9634 /* Resources */,
+				AA74888D51E1010BD92B99FB /* [CP] Embed Pods Frameworks */,
+				C3057D0B5BE8C00B19008143 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EcoLight;
+			productName = EcoLight;
+			productReference = 8FE76F111F2EB09100FC9634 /* EcoLight.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8FE76F241F2EB09100FC9634 /* EcoLightTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE76F3C1F2EB09100FC9634 /* Build configuration list for PBXNativeTarget "EcoLightTests" */;
+			buildPhases = (
+				C408609C8DAE637316FC1D96 /* [CP] Check Pods Manifest.lock */,
+				8FE76F211F2EB09100FC9634 /* Sources */,
+				8FE76F221F2EB09100FC9634 /* Frameworks */,
+				8FE76F231F2EB09100FC9634 /* Resources */,
+				179754D2A29243D941B941B9 /* [CP] Embed Pods Frameworks */,
+				716EE94A65CA1181705E7FB9 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8FE76F271F2EB09100FC9634 /* PBXTargetDependency */,
+			);
+			name = EcoLightTests;
+			productName = EcoLightTests;
+			productReference = 8FE76F251F2EB09100FC9634 /* EcoLightTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8FE76F2F1F2EB09100FC9634 /* EcoLightUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE76F3F1F2EB09100FC9634 /* Build configuration list for PBXNativeTarget "EcoLightUITests" */;
+			buildPhases = (
+				8D59E523BE88E127A4D56532 /* [CP] Check Pods Manifest.lock */,
+				8FE76F2C1F2EB09100FC9634 /* Sources */,
+				8FE76F2D1F2EB09100FC9634 /* Frameworks */,
+				8FE76F2E1F2EB09100FC9634 /* Resources */,
+				59982995E3B0F42CA20B21A0 /* [CP] Copy Pods Resources */,
+				63CEEEBDAACF3D343BA26051 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8FE76F321F2EB09100FC9634 /* PBXTargetDependency */,
+			);
+			name = EcoLightUITests;
+			productName = EcoLightUITests;
+			productReference = 8FE76F301F2EB09100FC9634 /* EcoLightUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8FE76F091F2EB09000FC9634 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "huang zhengguo";
+				TargetAttributes = {
+					8FE76F101F2EB09000FC9634 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = VS9QL3ZC89;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					8FE76F241F2EB09100FC9634 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = VS9QL3ZC89;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8FE76F101F2EB09000FC9634;
+					};
+					8FE76F2F1F2EB09100FC9634 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = TP2XCH35TP;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8FE76F101F2EB09000FC9634;
+					};
+				};
+			};
+			buildConfigurationList = 8FE76F0C1F2EB09000FC9634 /* Build configuration list for PBXProject "EcoLight" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				fr,
+				"zh-Hans",
+			);
+			mainGroup = 8FE76F081F2EB09000FC9634;
+			productRefGroup = 8FE76F121F2EB09100FC9634 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FE76F101F2EB09000FC9634 /* EcoLight */,
+				8FE76F241F2EB09100FC9634 /* EcoLightTests */,
+				8FE76F2F1F2EB09100FC9634 /* EcoLightUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8FE76F0F1F2EB09000FC9634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FB649171FCF91E400AA0617 /* launch1.png in Resources */,
+				8FE76F1F1F2EB09100FC9634 /* LaunchScreen.storyboard in Resources */,
+				8F6C77341F8DDF3100E0A22D /* DeviceTableViewCell.xib in Resources */,
+				8F8C8B3E1F6CD3C5006F0461 /* ScanDeviceViewController.xib in Resources */,
+				8F9D906E1F8F45CC00AAC57F /* Localizable.strings in Resources */,
+				8F8C8B461F6CD403006F0461 /* ScanDeviceTableViewCell.xib in Resources */,
+				8F7B78111F95AEA600DF4048 /* ColorSettingViewController.xib in Resources */,
+				8F9952FE1F9090EC00155C82 /* LanguageTableViewCell.xib in Resources */,
+				8FA1C1AB1FA47FC200DBD42B /* TimePointTableViewCell.xib in Resources */,
+				8FE76F1C1F2EB09100FC9634 /* Assets.xcassets in Resources */,
+				8F9F8B551FA34767006E562D /* AutoColorEditViewController.xib in Resources */,
+				8F9952F61F9082C000155C82 /* LanguageViewController.xib in Resources */,
+				8FB649191FCF91E400AA0617 /* launch3.png in Resources */,
+				8FB649181FCF91E400AA0617 /* launch2.png in Resources */,
+				8FE76F1A1F2EB09100FC9634 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE76F231F2EB09100FC9634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE76F2E1F2EB09100FC9634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		179754D2A29243D941B941B9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EcoLightTests/Pods-EcoLightTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C810D5549653BAB205C40EE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EcoLight-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59982995E3B0F42CA20B21A0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EcoLightUITests/Pods-EcoLightUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63CEEEBDAACF3D343BA26051 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EcoLightUITests/Pods-EcoLightUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		716EE94A65CA1181705E7FB9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EcoLightTests/Pods-EcoLightTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D59E523BE88E127A4D56532 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EcoLightUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA74888D51E1010BD92B99FB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-EcoLight/Pods-EcoLight-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/HGCircularSlider/HGCircularSlider.framework",
+				"${BUILT_PRODUCTS_DIR}/LGAlertView/LGAlertView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGCircularSlider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGAlertView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EcoLight/Pods-EcoLight-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3057D0B5BE8C00B19008143 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EcoLight/Pods-EcoLight-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C408609C8DAE637316FC1D96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EcoLightTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8FE76F0D1F2EB09000FC9634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F4C886A1FA1AB5700C8D37D /* SystemInfoTools.swift in Sources */,
+				8F7B78101F95AEA600DF4048 /* ColorSettingViewController.swift in Sources */,
+				8FE41ADD1F7F75BF00825501 /* DeviceModel.xcdatamodeld in Sources */,
+				8F9F8B4D1FA33CE3006E562D /* LayoutTools.swift in Sources */,
+				8FB994EB1F8CC14E008C6ACF /* BleDevice+CoreDataProperties.swift in Sources */,
+				8FBD22EE1F970350006B73C9 /* DeviceTypeData.swift in Sources */,
+				8F2AAF2A1F97339F002A176D /* ManualCircleView.swift in Sources */,
+				8F435C9D1FA9AF4B00A45E4C /* CommonData.swift in Sources */,
+				8F9952F51F9082C000155C82 /* LanguageViewController.swift in Sources */,
+				8F9766291FA8485C00EA5F2D /* OldParameterModelHelper.swift in Sources */,
+				8F8C8B3D1F6CD3C5006F0461 /* ScanDeviceViewController.swift in Sources */,
+				8F8AB62E1FA175140049D7F1 /* ManualAutoSwitchView.swift in Sources */,
+				8F7B78131F95B04300DF4048 /* DeviceParameterModel.swift in Sources */,
+				8FB994C21F8CB643008C6ACF /* DeviceDataCoreManager.swift in Sources */,
+				8FB994EC1F8CC14E008C6ACF /* BleBrand+CoreDataClass.swift in Sources */,
+				8F9F8B571FA34D0C006E562D /* ManualSliderView.swift in Sources */,
+				8F74C8A21F91AAAC00032C06 /* BlueToothManager.swift in Sources */,
+				8F9766271FA81D7600EA5F2D /* ParameterModelHelper.swift in Sources */,
+				8F9952EE1F9064ED00155C82 /* SettingViewController.swift in Sources */,
+				8FB994EF1F8CC14E008C6ACF /* BleGroup+CoreDataProperties.swift in Sources */,
+				8FB994EE1F8CC14E008C6ACF /* BleGroup+CoreDataClass.swift in Sources */,
+				8F8CA5F51F5D05A100922993 /* BaseViewController.swift in Sources */,
+				8F8C8B3A1F6CBDB7006F0461 /* DeviceViewController.swift in Sources */,
+				8FB994ED1F8CC14E008C6ACF /* BleBrand+CoreDataProperties.swift in Sources */,
+				8F9F8B491FA2DC9C006E562D /* AutoColorChartView.swift in Sources */,
+				8F6C77331F8DDF3100E0A22D /* DeviceTableViewCell.swift in Sources */,
+				8FB994EA1F8CC14E008C6ACF /* BleDevice+CoreDataClass.swift in Sources */,
+				8F8C8B451F6CD403006F0461 /* ScanDeviceTableViewCell.swift in Sources */,
+				8FA1C1AA1FA47FC200DBD42B /* TimePointTableViewCell.swift in Sources */,
+				8FBD22F01F971C7B006B73C9 /* DeviceCodeInfo.swift in Sources */,
+				8F83C6401FEA3E5C007BF388 /* ViewExtensions.swift in Sources */,
+				8F9952FD1F9090EC00155C82 /* LanguageTableViewCell.swift in Sources */,
+				8FE76F151F2EB09100FC9634 /* AppDelegate.swift in Sources */,
+				8F943C4C1FE78E76003FA09D /* SortManager.swift in Sources */,
+				8F74C8A51F91F01900032C06 /* StringManager.swift in Sources */,
+				8F66B5FD1F7DE8550086E350 /* DeviceModel.swift in Sources */,
+				8F9F8B541FA34767006E562D /* AutoColorEditViewController.swift in Sources */,
+				8F9D90761F8F481300AAC57F /* LanguageManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE76F211F2EB09100FC9634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE76F2A1F2EB09100FC9634 /* EcoLightTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE76F2C1F2EB09100FC9634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE76F351F2EB09100FC9634 /* EcoLightUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8FE76F271F2EB09100FC9634 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FE76F101F2EB09000FC9634 /* EcoLight */;
+			targetProxy = 8FE76F261F2EB09100FC9634 /* PBXContainerItemProxy */;
+		};
+		8FE76F321F2EB09100FC9634 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FE76F101F2EB09000FC9634 /* EcoLight */;
+			targetProxy = 8FE76F311F2EB09100FC9634 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8F9D90701F8F45CC00AAC57F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F9D906F1F8F45CC00AAC57F /* en */,
+				8F9D90711F8F45E100AAC57F /* fr */,
+				8F9952FF1F90BC6900155C82 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8FE76F181F2EB09100FC9634 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FE76F191F2EB09100FC9634 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8FE76F1D1F2EB09100FC9634 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FE76F1E1F2EB09100FC9634 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8FE76F371F2EB09100FC9634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8FE76F381F2EB09100FC9634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8FE76F3A1F2EB09100FC9634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F4E474273CA165558F46D96 /* Pods-EcoLight.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = VS9QL3ZC89;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = EcoLight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EcoLight/Tools/BleSDK",
+					"$(PROJECT_DIR)/EcoLight/Tools/BleSdk",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.inledco.eco;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "EcoLight/Tools/EcoLight-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8FE76F3B1F2EB09100FC9634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C0891B0AF528E46D4A84E16 /* Pods-EcoLight.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = VS9QL3ZC89;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = EcoLight/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/EcoLight/Tools/BleSDK",
+					"$(PROJECT_DIR)/EcoLight/Tools/BleSdk",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.inledco.eco;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "EcoLight/Tools/EcoLight-Bridging-Header.h";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8FE76F3D1F2EB09100FC9634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9408CE88DE89B757C79B2502 /* Pods-EcoLightTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = VS9QL3ZC89;
+				INFOPLIST_FILE = EcoLightTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ledinpro.EcoLightTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EcoLight.app/EcoLight";
+			};
+			name = Debug;
+		};
+		8FE76F3E1F2EB09100FC9634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8DAB8136F03D28BE0E0CBCC /* Pods-EcoLightTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = VS9QL3ZC89;
+				INFOPLIST_FILE = EcoLightTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ledinpro.EcoLightTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EcoLight.app/EcoLight";
+			};
+			name = Release;
+		};
+		8FE76F401F2EB09100FC9634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94A9E8755F48213F8AE93A51 /* Pods-EcoLightUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = TP2XCH35TP;
+				INFOPLIST_FILE = EcoLightUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ledinpro.EcoLightUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = EcoLight;
+			};
+			name = Debug;
+		};
+		8FE76F411F2EB09100FC9634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14581AAF101D984F3E79DE92 /* Pods-EcoLightUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = TP2XCH35TP;
+				INFOPLIST_FILE = EcoLightUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ledinpro.EcoLightUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = EcoLight;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8FE76F0C1F2EB09000FC9634 /* Build configuration list for PBXProject "EcoLight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE76F371F2EB09100FC9634 /* Debug */,
+				8FE76F381F2EB09100FC9634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE76F391F2EB09100FC9634 /* Build configuration list for PBXNativeTarget "EcoLight" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE76F3A1F2EB09100FC9634 /* Debug */,
+				8FE76F3B1F2EB09100FC9634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE76F3C1F2EB09100FC9634 /* Build configuration list for PBXNativeTarget "EcoLightTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE76F3D1F2EB09100FC9634 /* Debug */,
+				8FE76F3E1F2EB09100FC9634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE76F3F1F2EB09100FC9634 /* Build configuration list for PBXNativeTarget "EcoLightUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE76F401F2EB09100FC9634 /* Debug */,
+				8FE76F411F2EB09100FC9634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8FE41ADB1F7F75BF00825501 /* DeviceModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8FE41ADC1F7F75BF00825501 /* DeviceModel.xcdatamodel */,
+			);
+			currentVersion = 8FE41ADC1F7F75BF00825501 /* DeviceModel.xcdatamodel */;
+			path = DeviceModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8FE76F091F2EB09000FC9634 /* Project object */;
+}
