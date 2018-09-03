@@ -23,6 +23,8 @@ class DeviceParameterModel: NSObject {
     var commandDataByteCount: Int! = 0
     // 通道数量
     var channelNum: Int?
+    // 控制器通道数量
+    var controllerChannelNum: Int?
     // 运行模式
     var runMode: DeviceRunMode?
     // 开关状态
@@ -34,19 +36,22 @@ class DeviceParameterModel: NSObject {
     var timePointNum: Int! = 4
     // 时间点数组
     var timePointArray: [String]! = [String]()
-    // 自动模式时间点对应值
-    var timePointValueDic: [Int: String]! = [Int: String]()
+    // 自动模式时间点对应值：应该使用数组保存自动模式数据
+    var timePointValueArray: [String]! = [String]()
     // 手动模式各路数据
-    var manualModeValueDic: [Int: String]! = [Int: String]()
+    var manualModeValueArray: [String]! = [String]()
     // 用户自定义数据
-    var userDefinedValueDic: [Int: String]! = [Int: String]()
+    var userDefinedValueArray: [String]! = [String]()
     
     func parameterModelCopy(parameterModel: DeviceParameterModel) -> Void {
         parameterModel.typeCode = self.typeCode
         parameterModel.uuid = self.uuid
         parameterModel.commandHeader = self.commandHeader
         parameterModel.commandCode = self.commandCode
+        parameterModel.registerAddr = self.registerAddr
+        parameterModel.commandDataByteCount = self.commandDataByteCount
         parameterModel.channelNum = self.channelNum
+        parameterModel.controllerChannelNum = self.controllerChannelNum
         parameterModel.runMode = self.runMode
         parameterModel.powerState = self.powerState
         parameterModel.dynamicMode = self.dynamicMode
@@ -57,19 +62,19 @@ class DeviceParameterModel: NSObject {
             parameterModel.timePointArray.append(timePoint)
         }
         
-        parameterModel.timePointValueDic.removeAll()
-        for key in self.timePointValueDic.keys {
-            parameterModel.timePointValueDic[key] = self.timePointValueDic[key]
+        parameterModel.timePointValueArray.removeAll()
+        for timePointValue in self.timePointValueArray {
+            parameterModel.timePointValueArray.append(timePointValue)
         }
         
-        parameterModel.manualModeValueDic.removeAll()
-        for key in self.manualModeValueDic.keys {
-            parameterModel.manualModeValueDic[key] = self.manualModeValueDic[key]
+        parameterModel.manualModeValueArray.removeAll()
+        for manualValue in self.manualModeValueArray {
+            parameterModel.manualModeValueArray.append(manualValue)
         }
         
-        parameterModel.userDefinedValueDic.removeAll()
-        for key in self.userDefinedValueDic.keys {
-            parameterModel.userDefinedValueDic[key] = self.userDefinedValueDic[key]
+        parameterModel.userDefinedValueArray.removeAll()
+        for manualValue in self.userDefinedValueArray {
+            parameterModel.userDefinedValueArray.append(manualValue)
         }
     }
 }

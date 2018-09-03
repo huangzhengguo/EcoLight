@@ -12,6 +12,7 @@ import LGAlertView
 class ColorSettingViewController: BaseViewController {
 
     var parameterModel: DeviceParameterModel?
+    // 用来保存修改过的模型
     var editParameterModel: DeviceParameterModel?
     var manualAutoSwitchView: ManualAutoSwitchView?
     var manualModeView: UIView?
@@ -53,7 +54,7 @@ class ColorSettingViewController: BaseViewController {
         deviceInfo = DeviceTypeData.getDeviceInfoWithTypeCode(deviceTypeCode: (parameterModel?.typeCode)!)
         self.blueToothManager.completeReceiveDataCallback = {
             (receivedDataStr, commandType) in
-            self.parameterModel?.parseOldDeviceDataFromReceiveStrToModel(receiveData: receivedDataStr!)
+            self.parameterModel?.parseDeviceDataFromReceiveStrToModel(receiveData: receivedDataStr!)
             
             // 提示保存当前设置成功
             if commandType == CommandType.SETTINGUSERDEFINED_COMMAND {
@@ -61,7 +62,6 @@ class ColorSettingViewController: BaseViewController {
                 self.showMessageWithTitle(title: self.languageManager.getTextForKey(key: "saveUserDefinedSuccessful"), time: 1.5, isShow: true)
             } else if commandType == CommandType.SETTINGAUTOMODE_COMMAND {
                 // 更新数据：发送自动模式数据成功
-                self.parameterModel = self.editParameterModel
                 self.showMessageWithTitle(title: self.languageManager.getTextForKey(key: "runSuccessful"), time: 1.5, isShow: true)
             }
             
@@ -150,6 +150,13 @@ class ColorSettingViewController: BaseViewController {
     }
     
     func setManualAutoViews() -> Void {
+        // 初始化临时模型
+        if self.editParameterModel == nil {
+            self.editParameterModel = DeviceParameterModel()
+            
+            self.parameterModel?.parameterModelCopy(parameterModel: self.editParameterModel!)
+        }
+        
         if parameterModel?.runMode == DeviceRunMode.MANUAL_RUN_MODE {
             print("当前运行模式手动！")
             manualAutoSwitchView?.updateManualAutoSwitchView(index: 0)
@@ -178,32 +185,12 @@ class ColorSettingViewController: BaseViewController {
             manualColorView = ManualCircleView(frame: manualColorViewFrame, channelNum: (parameterModel?.channelNum)!, colorArray: deviceInfo?.channelColorArray, colorPercentArray: manualPercentArray, colorTitleArray: deviceInfo?.channelColorTitleArray)
             manualColorView?.passColorValueCallback = {
                 (colorIndex, colorValue) in
-                    var commandStr = ""
+                let commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02 + colorIndex).appending("01").appendingFormat("%02x", colorValue)
 
-                    for i in 0 ..< (self.parameterModel?.channelNum)! {
-                        if i == colorIndex {
-                            commandStr = commandStr.appendingFormat("%04x", colorValue)
-                        } else {
-                            commandStr.append("FFFF")
-                        }
-                    }
-                
-                var commandHeader = CommandHeader.COMMANDHEAD_FOUR.rawValue
-                switch (self.parameterModel?.typeCode)! {
-                case .LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-                    break
-                default:
-                    commandHeader.append(String.init(format: "%02x", (self.parameterModel?.channelNum)!))
-                    break
-                }
-                
-                commandStr = commandHeader + commandStr
-                // print("colorIndex = \(colorIndex), commandStr = \(commandStr)")
-                
                 self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.UNKNOWN_COMMAND, isXORCommand: true)
                 
                 // 更新模型数据
-                self.parameterModel?.manualModeValueDic[colorIndex] = String.init(format: "%04x", colorValue)
+                self.parameterModel?.manualModeValueArray[colorIndex] = String.init(format: "%02x", colorValue)
             }
             
             manualModeView?.addSubview(manualColorView!)
@@ -213,24 +200,18 @@ class ColorSettingViewController: BaseViewController {
             let userDefineView = LayoutToolsView(viewNum: 3, viewWidth: 80, viewHeight: 50, viewInterval: 8, viewTitleArray: ["M1", "M2", "M3"], frame: userDefineViewFrame)
             userDefineView.buttonActionCallback = {
                 (button, index) in
-                var commandStr = CommandHeader.COMMANDHEAD_FOUR.rawValue
-                let userColorStr = self.parameterModel?.userDefinedValueDic[index]
-                commandStr.append((userColorStr?.convertUserPercentToHexColorValue())!)
+                let commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02).appendingFormat("%02x", (self.parameterModel?.controllerChannelNum)!).appending((self.parameterModel?.userDefinedValueArray[index])!)
                 
-                self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: .UNKNOWN_COMMAND, isXORCommand: true)
-                // 更新模型
-                for i in 0 ..< (self.parameterModel?.channelNum)! {
-                    let colorStr = userColorStr?.convertUserPercentToHexColorValue()
-                    self.parameterModel?.manualModeValueDic[i] = (colorStr! as NSString).substring(with: NSRange.init(location: i * 4, length: 4))
-                }
-                
-                // 更新圆盘
-                self.manualColorView?.updateManualCircleView(colorPercentArray: self.getManualColorPercentArray(parameterModel: self.parameterModel))
+                self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: .SENDUSERDEFINED_COMMAND, isXORCommand: true)
             }
             
             userDefineView.buttonLongPressCallback = {
                 (index) in
-                let commandStr = String.init(format: "%@%02x", CommandHeader.COMMANDHEAD_SIX.rawValue, index)
+                var commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x07 + index * (self.parameterModel?.controllerChannelNum)!).appendingFormat("%02x", (self.parameterModel?.controllerChannelNum)!)
+                
+                for i in 0..<(self.parameterModel?.controllerChannelNum)! {
+                    commandStr = commandStr.appending((self.parameterModel?.manualModeValueArray[i])!)
+                }
                 
                 self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGUSERDEFINED_COMMAND, isXORCommand: true)
             }
@@ -268,8 +249,8 @@ class ColorSettingViewController: BaseViewController {
     func getManualColorPercentArray(parameterModel: DeviceParameterModel!) -> [Int] {
         var manualPercentArray = [Int]()
         
-        for i in 0 ..< (parameterModel?.manualModeValueDic.keys.count)! {
-            manualPercentArray.append((parameterModel?.manualModeValueDic[i]?.hexaToDecimal)!)
+        for colorValue in (parameterModel?.manualModeValueArray)! {
+            manualPercentArray.append(Int(Float(colorValue.hexaToDecimal) / 250.0 * 100))
         }
         
         return manualPercentArray
@@ -302,7 +283,7 @@ class ColorSettingViewController: BaseViewController {
             
             // 1.自动模式曲线图
             let autoColorChartViewFrame = CGRect(x: 0, y: 0, width: (autoModeView?.frame.size.width)!, height: (autoModeView?.frame.size.width)!)
-            autoColorChartView = AutoColorChartView(frame: autoColorChartViewFrame, channelNum: (parameterModel?.channelNum)!, colorArray: deviceInfo?.channelColorArray, colorTitleArray: deviceInfo?.channelColorTitleArray, timePointArray: parameterModel?.timePointArray, timePointValueDic: parameterModel?.timePointValueDic)
+            autoColorChartView = AutoColorChartView(frame: autoColorChartViewFrame, channelNum: (parameterModel?.channelNum)!, colorArray: deviceInfo?.channelColorArray, colorTitleArray: deviceInfo?.channelColorTitleArray, timePointArray: parameterModel?.timePointArray, timePointValueArray: parameterModel?.timePointValueArray)
             
             autoModeView?.addSubview(autoColorChartView!)
             
@@ -345,7 +326,7 @@ class ColorSettingViewController: BaseViewController {
                         
                         autoColorEditViewController.passParameterModelCallback = {
                             (deviceParameterModel) in
-                            self.autoColorChartView?.updateGraph(channelNum: deviceParameterModel.channelNum!, colorArray: self.deviceInfo?.channelColorArray, colorTitleArray: self.deviceInfo?.channelColorTitleArray, timePointArray: deviceParameterModel.timePointArray, timePointValueDic: deviceParameterModel.timePointValueDic)
+                            self.autoColorChartView?.updateGraph(channelNum: deviceParameterModel.channelNum!, colorArray: self.deviceInfo?.channelColorArray, colorTitleArray: self.deviceInfo?.channelColorTitleArray, timePointArray: deviceParameterModel.timePointArray, timePointValueArray: deviceParameterModel.timePointValueArray)
                             
                             self.editParameterModel = deviceParameterModel
                         }
@@ -373,12 +354,6 @@ class ColorSettingViewController: BaseViewController {
     /// - returns: Void
     func beginPreview() -> Void {
         previewCount = 0
-        
-        if self.editParameterModel == nil {
-            self.editParameterModel = DeviceParameterModel()
-            
-            parameterModel?.parameterModelCopy(parameterModel: self.editParameterModel!)
-        }
         
         timeCountArray.removeAll()
         timeCountIntervalArray.removeAll()
@@ -446,23 +421,23 @@ class ColorSettingViewController: BaseViewController {
         for i in 0 ..< timeCountArray.count {
             if previewCount <= timeCountArray[i] {
                 if i == 0 {
-                    previewColorValueStr = self.editParameterModel?.timePointValueDic[timeCountArray.count - 1]
-                    nextColorValueStr = self.editParameterModel?.timePointValueDic[0]
+                    previewColorValueStr = self.editParameterModel?.timePointValueArray[timeCountArray.count - 1]
+                    nextColorValueStr = self.editParameterModel?.timePointValueArray[0]
                     index = i
                     isInFirst = true
                     isInLast = false
                     break
                 } else if i <= (timeCountArray.count - 1) {
-                    previewColorValueStr = self.editParameterModel?.timePointValueDic[i - 1]
-                    nextColorValueStr = self.editParameterModel?.timePointValueDic[i]
+                    previewColorValueStr = self.editParameterModel?.timePointValueArray[i - 1]
+                    nextColorValueStr = self.editParameterModel?.timePointValueArray[i]
                     index = i - 1
                     isInFirst = false
                     isInLast = false
                     break
                 }
             } else if previewCount >= timeCountArray[timeCountArray.count - 1] && previewCount <= 1440 {
-                previewColorValueStr = self.editParameterModel?.timePointValueDic[timeCountArray.count - 1]
-                nextColorValueStr = self.editParameterModel?.timePointValueDic[0]
+                previewColorValueStr = self.editParameterModel?.timePointValueArray[timeCountArray.count - 1]
+                nextColorValueStr = self.editParameterModel?.timePointValueArray[0]
                 index = timeCountArray.count - 1
                 isInFirst = false
                 isInLast = true
@@ -483,7 +458,7 @@ class ColorSettingViewController: BaseViewController {
                 percent = Double((previewCount - timeCountArray[index])) / Double(timeCountIntervalArray[index])
             }
             
-            let colorValue = previewColorDoubleArray![j] / 100.0 * 1000 - ((previewColorDoubleArray![j] - nextColorDoubleArray![j])) / 100.0 * 1000.0 * percent
+            let colorValue = previewColorDoubleArray[j] / 100.0 * 1000 - ((previewColorDoubleArray[j] - nextColorDoubleArray[j])) / 100.0 * 1000.0 * percent
             
             colorValueStr = colorValueStr.appendingFormat("%04x", Int(colorValue))
         }

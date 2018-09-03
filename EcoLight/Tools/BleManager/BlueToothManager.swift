@@ -48,10 +48,11 @@ enum CommandType {
     case POWEROFF_COMMAND
     case FINDDEVICE_COMMAND
     case SETTINGUSERDEFINED_COMMAND
+    case SENDUSERDEFINED_COMMAND
     case SETTINGAUTOMODE_COMMAND
     case READTIME_COMMAND
-    case MANUALMODE_COMMAN
-    case AUTOMODE_COMMAN
+    case MANUALMODE_COMMAND
+    case AUTOMODE_COMMAND
     case UNKNOWN_COMMAND
     
     // 新协议命令类型：特殊命令，即读取自动手动数据命令
@@ -175,17 +176,8 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
         
         // 构建同步时间命令
         var commandStr: String? = ""
-        switch deviceTypeCode {
-        case DeviceTypeCode.LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-            // 旧协议
-            commandStr = String(format: "680E%02x%02x%02x%02x%02x%02x%02x", weekComps.year! % 2000, weekComps.month!, weekComps.day!, weekComps.weekday!, weekComps.hour!, weekComps.minute!, weekComps.second!)
-            break
-        default:
-            // 新协议
-            commandStr = String(format: "680107%02x%02x%02x%02x%02x%02x%02x", weekComps.year! % 2000, weekComps.month!, weekComps.day!, weekComps.weekday!, weekComps.hour!, weekComps.minute!, weekComps.second!)
-            break
-        }
         
+        commandStr = String(format: "6801%02x%02x%02x%02x%02x%02x%02x", weekComps.year! % 2000, weekComps.month!, weekComps.day!, weekComps.weekday!, weekComps.hour!, weekComps.minute!, weekComps.second!)
         self.bleManager.sendData(toDevice1: commandStr! + (commandStr?.calculateXor()!)!, device: device)
     }
     
@@ -194,12 +186,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     ///
     /// - returns: void
     func sendPowerOnCommand(uuid: String!) -> Void {
-        switch self.currentDeviceTypeCode! {
-        case .LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-            sendCommandToDevice(uuid: uuid, commandStr: "680301", commandType: .POWERON_COMMAND, isXORCommand: true)
-        default:
-            sendCommandToDevice(uuid: uuid, commandStr: "680C01", commandType: .POWERON_COMMAND, isXORCommand: true)
-        }
+        sendCommandToDevice(uuid: uuid, commandStr: "6806010101", commandType: .POWERON_COMMAND, isXORCommand: true)
     }
     
     /// 发送关闭开关命令
@@ -207,13 +194,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     ///
     /// - returns: void
     func sendPowerOffCommand(uuid: String) -> Void {
-        switch self.currentDeviceTypeCode! {
-        case .LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-            sendCommandToDevice(uuid: uuid, commandStr: "680300", commandType: .POWEROFF_COMMAND, isXORCommand: true)
-        default:
-            sendCommandToDevice(uuid: uuid, commandStr: "680C00", commandType: .POWEROFF_COMMAND, isXORCommand: true)
-        }
-        
+        sendCommandToDevice(uuid: uuid, commandStr: "6806010100", commandType: .POWEROFF_COMMAND, isXORCommand: true)
     }
     
     /// 发送手动模式命令
@@ -221,12 +202,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     ///
     /// - returns: void
     func sendManualModeCommand(uuid: String) -> Void {
-        switch self.currentDeviceTypeCode! {
-        case .LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-            sendCommandToDevice(uuid: uuid, commandStr: "680200", commandType: .MANUALMODE_COMMAN, isXORCommand: true)
-        default:
-            sendCommandToDevice(uuid: uuid, commandStr: "681000", commandType: .MANUALMODE_COMMAN, isXORCommand: true)
-        }
+        sendCommandToDevice(uuid: uuid, commandStr: "680200", commandType: .MANUALMODE_COMMAND, isXORCommand: true)
     }
     
     /// 发送自动模式命令
@@ -234,12 +210,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     ///
     /// - returns: void
     func sendAutoModeCommand(uuid: String) -> Void {
-        switch self.currentDeviceTypeCode! {
-        case .LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-            sendCommandToDevice(uuid: uuid, commandStr: "680201", commandType: .AUTOMODE_COMMAN, isXORCommand: true)
-        default:
-            sendCommandToDevice(uuid: uuid, commandStr: "681001", commandType: .AUTOMODE_COMMAN, isXORCommand: true)
-        }
+        sendCommandToDevice(uuid: uuid, commandStr: "680201", commandType: .AUTOMODE_COMMAND, isXORCommand: true)
     }
     
     /// 发送读取时间命令
@@ -318,7 +289,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
         }
         
         self.currentCommandType = commandType
-        // print("发送命令:\(commandStr)")
+        print("发送命令:\(commandStr)")
         let device: CBPeripheral = self.bleManager.getDeviceByUUID(uuid)
         self.bleManager.sendData(toDevice1: commandStr, device: device)
         
@@ -327,7 +298,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     
     // 蓝牙回调
     func connectDeviceSuccess(_ device: CBPeripheral!, error: Error!) {
-        print("连接成功:\(String(describing: device.name))")
+        print("连接成功:" + device.name!)
         self.connectTimeCount = 0
         if self.connectTimer != nil {
             self.connectTimer?.invalidate()
@@ -361,16 +332,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
             return
         }
         
-        switch self.currentDeviceTypeCode! {
-        case .LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-            // 旧协议
-            self.processOldProtocolReceiveData()
-            
-            break
-        default:
-            self.processProtocolReceiveData()
-            break
-        }
+        self.processProtocolReceiveData()
     }
     
     /// 新协议数据接收
@@ -378,28 +340,26 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     /// - returns: Void
     func processProtocolReceiveData() -> Void {
         // 两个条件：
-        // 1.返回数据中的Count是否与数据量相同
-        // 2.校验码是否正确
-        let dataCount = (self.receivedData as NSString).substring(with: NSRange.init(location: 6, length: 2)).hexaToDecimal
-        if dataCount == (self.receivedData.count / 2 - 5) && self.receivedData.calculateXor() == "00" {
+        // 1.校验码是否正确
+        // 2.返回数据中的Count是否与数据量相同
+        let dataCount = (self.receivedData as NSString).substring(with: NSRange.init(location: 8, length: 2)).hexaToDecimal
+        if self.receivedData.calculateXor() == "00" && dataCount == ((self.receivedData.count - 6 * 2) / 2) {
             self.isReceiveDataAll = true
             
+            print("收到完整数据:" + self.receivedData)
+            
             // 根据命令类型，处理返回的数据
-            // print("发送的命令：\(self.currentCommandType),receivedData=\(String(self.receivedData))")
-            // 旧协议部分
             switch self.currentCommandType {
-            case .SYNCTIME_COMMAND:
-                if self.writeDataCallback != nil {
-                    self.writeDataCallback!(self.receivedData, self.currentCommandType)
-                }
             case .POWERON_COMMAND,
-                 .POWEROFF_COMMAND,
-                 .MANUALMODE_COMMAN,
-                 .SETTINGAUTOMODE_COMMAND,
-                 .SETTINGUSERDEFINED_COMMAND,
-                 .AUTOMODE_COMMAN:
+                 .POWEROFF_COMMAND:
                     break
-            case .READDEVICEDATA_COMMAND:
+            case .READDEVICEDATA_COMMAND,
+                 .SYNCTIME_COMMAND,
+                 .SENDUSERDEFINED_COMMAND,
+                 .SETTINGUSERDEFINED_COMMAND,
+                 .MANUALMODE_COMMAND,
+                 .AUTOMODE_COMMAND,
+                 .SETTINGAUTOMODE_COMMAND:
                 if self.completeReceiveDataCallback != nil {
                     self.completeReceiveDataCallback!(self.receivedData, self.currentCommandType)
                 }
@@ -433,10 +393,10 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
             case .SYNCTIME_COMMAND,
                  .POWERON_COMMAND,
                  .POWEROFF_COMMAND,
-                 .MANUALMODE_COMMAN,
+                 .MANUALMODE_COMMAND,
                  .SETTINGAUTOMODE_COMMAND,
                  .SETTINGUSERDEFINED_COMMAND,
-                 .AUTOMODE_COMMAN:
+                 .AUTOMODE_COMMAND:
                 if self.completeReceiveDataCallback != nil {
                     self.completeReceiveDataCallback!(self.receivedData, self.currentCommandType)
                 }

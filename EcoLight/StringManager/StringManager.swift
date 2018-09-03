@@ -143,7 +143,7 @@ extension String {
     /// 转换16进制颜色值字符串为Double数组
     ///
     /// - returns: 16进制对应的double数组
-    func convertColorStrToDoubleValue() -> [Double]! {
+    func convertColorStrToDoubleValue() -> [Double] {
         var colorDoubleArray: [Double] = [Double]()
         
         var hexStr: String = ""

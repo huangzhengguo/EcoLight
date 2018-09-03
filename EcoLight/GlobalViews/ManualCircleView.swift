@@ -39,7 +39,7 @@ class ManualCircleView: UIView {
             
             progressView?.tag = 1000 + i
             progressView?.minimumValue = 0.0
-            progressView?.maximumValue = 1000
+            progressView?.maximumValue = 250
             progressView?.layer.zPosition = CGFloat(i)
             progressView?.lineWidth = circleLineWidth
             progressView?.backtrackLineWidth = circleLineWidth
@@ -109,7 +109,7 @@ class ManualCircleView: UIView {
     @objc func colorValueChanged(view: UIView) -> Void {
         let progressView: CircularSlider! = view as! CircularSlider;
     
-        percentLabel.text = String(format: "%.0f%%", progressView.endPointValue / 10.0)
+        percentLabel.text = String(format: "%.0f%%", progressView.endPointValue / 250 * 100)
         if passColorValueCallback != nil {
             passColorValueCallback!(progressView.tag - 1000, Int(progressView.endPointValue))
         }
@@ -117,7 +117,7 @@ class ManualCircleView: UIView {
     
     func updateManualCircleView(colorPercentArray: [Int]!) -> Void {
         for i in 0 ..< colorPercentArray.count {
-            progressViewArray![i].endPointValue = CGFloat(colorPercentArray[i])
+            progressViewArray![i].endPointValue = CGFloat(colorPercentArray[i]) * 250 / 100
         }
     }
     
@@ -126,32 +126,3 @@ class ManualCircleView: UIView {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

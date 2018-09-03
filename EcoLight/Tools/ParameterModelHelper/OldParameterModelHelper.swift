@@ -69,14 +69,14 @@ extension DeviceParameterModel {
                 colorStr?.append(commandCharacters[index])
                 colorStr?.append(commandCharacters[index + 1])
                 
-                self.manualModeValueDic[colorIndex] = colorStr
+                self.manualModeValueArray[colorIndex] = colorStr!
                 
                 colorIndex = colorIndex + 1
                 index = index + 4
             }
             
             // 解析用户自定义数据
-            self.userDefinedValueDic.removeAll()
+            self.userDefinedValueArray.removeAll()
             colorStr = ""
             colorIndex = 0
             for _ in 0 ..< 4 {
@@ -86,14 +86,14 @@ extension DeviceParameterModel {
                     index = index + 1
                 }
                 
-                self.userDefinedValueDic![colorIndex] = colorStr
+                self.userDefinedValueArray![colorIndex] = colorStr!
                 colorIndex = colorIndex + 1
             }
             
         } else if runModeStr == "01" {
             // 自动模式
             self.timePointArray.removeAll()
-            self.timePointValueDic.removeAll()
+            self.timePointValueArray.removeAll()
             
             self.runMode = DeviceRunMode.AUTO_RUN_MODE
             let timePointNum = 2
@@ -123,11 +123,11 @@ extension DeviceParameterModel {
                 }
                 
                 if i == (timePointNum - 1) {
-                    self.timePointValueDic[0] = colorStr
-                    self.timePointValueDic[2 * timePointNum - 1] = colorStr
+                    self.timePointValueArray[0] = colorStr
+                    self.timePointValueArray[2 * timePointNum - 1] = colorStr
                 } else {
-                    self.timePointValueDic[2 * i + 1] = colorStr
-                    self.timePointValueDic[2 * i + 2] = colorStr
+                    self.timePointValueArray[2 * i + 1] = colorStr
+                    self.timePointValueArray[2 * i + 2] = colorStr
                 }
                 
                 timePointStr = ""
@@ -146,15 +146,15 @@ extension DeviceParameterModel {
     func generateOldSetAutoCommand() -> String {
         var commandStr: String! = CommandHeader.COMMANDHEAD_SEVEN.rawValue
         
-        for index in 0 ..< self.timePointValueDic.keys.count / 2 {
+        for index in 0 ..< self.timePointValueArray.count / 2 {
             // 1.拼接时间点
             commandStr.append(self.timePointArray[2 * index])
             commandStr.append(self.timePointArray[2 * index + 1])
             // 2.拼接时间点对应的颜色值
             if index == 0 {
-                commandStr.append(self.timePointValueDic[1]!)
+                commandStr.append(self.timePointValueArray[1])
             } else {
-                commandStr.append(self.timePointValueDic[2 * index + 1]!)
+                commandStr.append(self.timePointValueArray[2 * index + 1])
             }
         }
         

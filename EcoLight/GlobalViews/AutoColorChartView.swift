@@ -21,7 +21,7 @@ class AutoColorChartView: UIView, ChartViewDelegate {
     var lineChart: LineChartView?
     var lineChartEntry = [ChartDataEntry]()
     
-    init(frame: CGRect, channelNum: Int, colorArray: [UIColor]?, colorTitleArray: [String]?, timePointArray: [String]?, timePointValueDic: [Int: String]?) {
+    init(frame: CGRect, channelNum: Int, colorArray: [UIColor]?, colorTitleArray: [String]?, timePointArray: [String]?, timePointValueArray: [String]?) {
         super.init(frame: frame)
         lineChart = LineChartView(frame: frame)
         lineChart?.backgroundColor = UIColor.clear
@@ -48,7 +48,7 @@ class AutoColorChartView: UIView, ChartViewDelegate {
 
         lineChart?.chartDescription = nil
         
-        updateGraph(channelNum: channelNum, colorArray: colorArray, colorTitleArray: colorTitleArray, timePointArray: timePointArray, timePointValueDic: timePointValueDic)
+        updateGraph(channelNum: channelNum, colorArray: colorArray, colorTitleArray: colorTitleArray, timePointArray: timePointArray, timePointValueArray: timePointValueArray)
         
         self.addSubview(lineChart!)
     }
@@ -64,7 +64,7 @@ class AutoColorChartView: UIView, ChartViewDelegate {
     /// - parameter timePointArray: 所有时间点
     /// - parameter timePointValueDic: 所有时间对应的颜色值
     /// - returns: Void
-    func updateGraph(channelNum: Int, colorArray: [UIColor]?, colorTitleArray: [String]?, timePointArray: [String]?, timePointValueDic: [Int: String]?) -> Void {
+    func updateGraph(channelNum: Int, colorArray: [UIColor]?, colorTitleArray: [String]?, timePointArray: [String]?, timePointValueArray: [String]?) -> Void {
         let data = LineChartData()
         var value: ChartDataEntry?
         var line: LineChartDataSet?
@@ -82,10 +82,10 @@ class AutoColorChartView: UIView, ChartViewDelegate {
             
             // 添加0点的点
             xAxis = (self.lineChart?.chartXMin)!
-            firstColorStr = timePointValueDic?[0]
-            lastColorStr = timePointValueDic?[timePointValueDic!.keys.count - 1]
-            yFisrtAxis = Double((firstColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
-            yLastAxis = Double((lastColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
+            firstColorStr = timePointValueArray?[0]
+            lastColorStr = timePointValueArray?[timePointValueArray!.count - 1]
+            yFisrtAxis = Double((firstColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 255.0
+            yLastAxis = Double((lastColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 255.0
             
             let firstTimePoint = timePointArray![0]
             let lastTimePoint = timePointArray![(timePointArray?.count)! - 1]
@@ -101,9 +101,9 @@ class AutoColorChartView: UIView, ChartViewDelegate {
                 let timeStr = timePointArray![index]
                 xAxis = Double(timeStr.converTimeStrToMinute(timeStr: timeStr)!)
                 
-                colorStr = timePointValueDic?[index]
+                colorStr = timePointValueArray?[index]
                 
-                yAxis = Double((colorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
+                yAxis = Double((colorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 255.0
                 
                 value = ChartDataEntry(x: Double(xAxis), y: yAxis!)
                 

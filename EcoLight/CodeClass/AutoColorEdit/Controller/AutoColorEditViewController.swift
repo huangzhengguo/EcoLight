@@ -59,7 +59,7 @@ class AutoColorEditViewController: BaseViewController, UITableViewDelegate, UITa
         let manualSliderViewFrame = CGRect(x: 0, y: 64, width: SystemInfoTools.screenWidth, height: 240.0)
         let timeColorValue = self.editParameterModel.convertColorValue()
         
-        manualSliderView = ManualSliderView(frame: manualSliderViewFrame, colorArray: deviceCodeInfo?.channelColorArray, colorTitleArray: deviceCodeInfo?.channelColorTitleArray, colorPercentArray: timeColorValue[self.selectedTimePointIndex!]!)
+        manualSliderView = ManualSliderView(frame: manualSliderViewFrame, colorArray: deviceCodeInfo?.channelColorArray, colorTitleArray: deviceCodeInfo?.channelColorTitleArray, colorPercentArray: timeColorValue[self.selectedTimePointIndex!])
         
         manualSliderView?.passSliderValueCallback = {
             (index, colorValue) in
@@ -128,12 +128,12 @@ class AutoColorEditViewController: BaseViewController, UITableViewDelegate, UITa
                         self.editParameterModel.timePointArray.insert(self.addTimePoint!, at: insertIndex)
                         self.editParameterModel.timePointNum = self.editParameterModel.timePointNum + 1
                         
-                        for i in (0 ..< self.editParameterModel.timePointValueDic.keys.count).reversed()   {
-                            self.editParameterModel.timePointValueDic[i + 1] = self.editParameterModel.timePointValueDic[i]
+                        for i in (0 ..< self.editParameterModel.timePointValueArray.count).reversed()   {
+                            self.editParameterModel.timePointValueArray[i + 1] = self.editParameterModel.timePointValueArray[i]
                             if i == insertIndex {
-                                self.editParameterModel.timePointValueDic[insertIndex] = ""
+                                self.editParameterModel.timePointValueArray[insertIndex] = ""
                                 for _ in 0 ..< self.editParameterModel.channelNum! * 2 {
-                                    self.editParameterModel.timePointValueDic[insertIndex]?.append("0")
+                                    self.editParameterModel.timePointValueArray[insertIndex].append("0")
                                 }
                                 
                                 break
@@ -157,11 +157,11 @@ class AutoColorEditViewController: BaseViewController, UITableViewDelegate, UITa
                 let confirmAction = UIAlertAction(title: self.languageManager.getTextForKey(key: "confirm"), style: .default, handler: { (action) in
                     self.editParameterModel.timePointNum = self.editParameterModel.timePointNum - 1
                     self.editParameterModel.timePointArray.remove(at: self.selectedTimePointIndex!)
-                    for i in self.selectedTimePointIndex! ..< self.editParameterModel.timePointValueDic.keys.count - 1 {
-                            self.editParameterModel.timePointValueDic[i] = self.editParameterModel.timePointValueDic[i + 1]
+                    for i in self.selectedTimePointIndex! ..< self.editParameterModel.timePointValueArray.count - 1 {
+                            self.editParameterModel.timePointValueArray[i] = self.editParameterModel.timePointValueArray[i + 1]
                     }
                     
-                    self.editParameterModel.timePointValueDic.removeValue(forKey: self.editParameterModel.timePointValueDic.keys.count - 1)
+//                    self.editParameterModel.timePointValueArray.removeValue(forKey: self.editParameterModel.timePointValueArray.keys.count - 1)
                     
                     self.updateSliderColor(index: 0)
                 })
@@ -207,9 +207,9 @@ class AutoColorEditViewController: BaseViewController, UITableViewDelegate, UITa
     func updateSliderColor(index: Int) -> Void {
         self.selectedTimePointIndex = index
         
-        let timeColorValue = self.editParameterModel.timePointValueDic[index]?.convertColorStrToDoubleValue()
+        let timeColorValue = self.editParameterModel.timePointValueArray[index].convertColorStrToDoubleValue()
         
-        self.manualSliderView?.updateManualSliderView(colorPercentArray: timeColorValue!)
+        self.manualSliderView?.updateManualSliderView(colorPercentArray: timeColorValue)
         
         self.timePointSelectTableView.reloadData()
     }
@@ -249,9 +249,9 @@ class AutoColorEditViewController: BaseViewController, UITableViewDelegate, UITa
                 self.selectedTimePointIndex = indexPath.row
                 
                 // 更新滑动条
-                let timeColorValue = self.editParameterModel.timePointValueDic[indexPath.row]?.convertColorStrToDoubleValue()
+                let timeColorValue = self.editParameterModel.timePointValueArray[indexPath.row].convertColorStrToDoubleValue()
                 
-                self.manualSliderView?.updateManualSliderView(colorPercentArray: timeColorValue!)
+                self.manualSliderView?.updateManualSliderView(colorPercentArray: timeColorValue)
             } else {
                 self.selectedTimePointIndex = nil
             }

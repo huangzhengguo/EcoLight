@@ -56,21 +56,8 @@ class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDa
             parameterModel.typeCode = self.deviceCodeInfo?.deviceTypeCode
             parameterModel.uuid = self.selectDeviceModel?.uuidString
             
-            // 这里可以根据设备编码解析调用不同的解析方法
-            switch parameterModel.typeCode! {
-                // 这里列出兼容旧设备
-                case DeviceTypeCode.LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-                    parameterModel.parseOldDeviceDataFromReceiveStrToModel(receiveData: receiveDataStr!)
-                default:
-                    // 默认使用新设备解析数据
-                    parameterModel.parseDeviceDataFromReceiveStrToModel(receiveData: receiveDataStr!)
-            }
-            
-            // 2.同步时间回调
-            self.blueToothManager.writeDataCallback = {
-                (receiveDataStr, commandType) in
-                self.blueToothManager.sendReadDeviceDataCommand(uuid: (self.selectDeviceModel?.uuidString)!)
-            }
+            // 解析数据
+            parameterModel.parseDeviceDataFromReceiveStrToModel(receiveData: receiveDataStr!)
             
             self.connectAlertController?.dismiss(animated: true, completionHandler: nil)
             // 解析设备数据，跳转界面
