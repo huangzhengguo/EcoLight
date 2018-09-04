@@ -6,8 +6,8 @@ target 'EcoLight' do
   use_frameworks!
   pod 'LGAlertView', '~> 2.0.13'
   # Pods for EcoLight
-  pod 'Charts'
   pod 'HGCircularSlider'
+  pod 'PopupDialog'
   
   target 'EcoLightTests' do
     inherit! :search_paths

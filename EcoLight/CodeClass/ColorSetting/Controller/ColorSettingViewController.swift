@@ -24,7 +24,7 @@ class ColorSettingViewController: BaseViewController {
     var quickPreviewTimer: Timer?
     var previewCount: Int! = 0
     var autoModeView: UIView?
-    var autoColorChartView: AutoColorChartView?
+    var plotView: PlotView?
     var timeCountArray: [Int]! = [Int]()
     var timeCountIntervalArray: [Int]! = [Int]()
     var previewButton: UIButton?
@@ -282,14 +282,23 @@ class ColorSettingViewController: BaseViewController {
             autoModeView?.backgroundColor = UIColor.clear
             
             // 1.自动模式曲线图
-            let autoColorChartViewFrame = CGRect(x: 0, y: 0, width: (autoModeView?.frame.size.width)!, height: (autoModeView?.frame.size.width)!)
-            autoColorChartView = AutoColorChartView(frame: autoColorChartViewFrame, channelNum: (parameterModel?.channelNum)!, colorArray: deviceInfo?.channelColorArray, colorTitleArray: deviceInfo?.channelColorTitleArray, timePointArray: parameterModel?.timePointArray, timePointValueArray: parameterModel?.timePointValueArray)
+            let autoColorChartViewFrame = CGRect(x: 0, y: 0, width: (autoModeView?.frame.size.width)!, height: (autoModeView?.frame.size.height)! - 90.0)
             
-            autoModeView?.addSubview(autoColorChartView!)
+            plotView = PlotView(frame: autoColorChartViewFrame)
+            
+            autoModeView?.addSubview(plotView!)
+            
+            plotView?.backgroundColor = UIColor.clear
+            plotView?.lineColorArray = (deviceInfo?.channelColorArray)!
+            plotView?.lineColorTitleArray = (deviceInfo?.channelColorTitleArray)!
+            plotView?.dataPointArray = (self.editParameterModel?.generateLinePoint())!
+            plotView?.yMaxValue = 1.0
+            plotView?.yInterval = 0.25
+            plotView?.drawPlotView()
             
             // 2.底部按钮 预览 运行（发送设置的配置到设备）编辑
             let bottomViewFrame = CGRect(x: 0, y: (autoModeView?.frame.size.height)! - 70, width: SystemInfoTools.screenWidth, height: 70)
-            let bottomView = LayoutToolsView(viewNum: 3, viewWidth: 70, viewHeight: 50, viewInterval: 30, viewTitleArray: [self.languageManager.getTextForKey(key: "preview"), self.languageManager.getTextForKey(key: "run"), self.languageManager.getTextForKey(key: "edit")], frame: bottomViewFrame)
+            let bottomView = LayoutToolsView(viewNum: 2, viewWidth: 70, viewHeight: 50, viewInterval: 30, viewTitleArray: [self.languageManager.getTextForKey(key: "preview"), self.languageManager.getTextForKey(key: "edit")], frame: bottomViewFrame)
             
             // 添加观察者
             previewButton = bottomView.viewWithTag(1001) as? UIButton
@@ -307,36 +316,65 @@ class ColorSettingViewController: BaseViewController {
                         }
                         
                     } else if (index == 1) {
-                        self.cancelPreview()
-                        // 2.发送设置到设备
-                        if self.editParameterModel != nil {
-                            let commandStr = (self.editParameterModel?.generateOldSetAutoCommand())!
-
-                            switch (self.deviceInfo?.deviceTypeCode)! {
-                            case .LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-                                self.blueToothManager.sendCommandToDevice(uuid: (self.editParameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGAUTOMODE_COMMAND, isXORCommand: true)
-                                break
-                            default:
-                                self.blueToothManager.sendCommandToDevice(uuid: (self.editParameterModel?.uuid)!, commandStr: (self.editParameterModel?.generateSetAutoCommand())!, commandType: CommandType.SETTINGAUTOMODE_COMMAND, isXORCommand: true)
-                            }
-                        }
-                    } else {
-                        // 3.跳转到编辑界面
-                        let autoColorEditViewController = AutoColorEditViewController(nibName: "AutoColorEditViewController", bundle: Bundle.main)
+                        // 3.弹出编辑界面
+                        let editAutoModeView = EditAutoModeView(frame: CGRect(x: 0, y: (self.autoModeView?.frame.size.height)!, width: (self.autoModeView?.frame.size.width)!, height: (self.autoModeView?.frame.size.height)! * 0.55), parameterModel: self.editParameterModel!)
+                        self.autoModeView?.addSubview(editAutoModeView)
                         
-                        autoColorEditViewController.passParameterModelCallback = {
-                            (deviceParameterModel) in
-                            self.autoColorChartView?.updateGraph(channelNum: deviceParameterModel.channelNum!, colorArray: self.deviceInfo?.channelColorArray, colorTitleArray: self.deviceInfo?.channelColorTitleArray, timePointArray: deviceParameterModel.timePointArray, timePointValueArray: deviceParameterModel.timePointValueArray)
+                        editAutoModeView.timePointValueChangedBlock = {
+                            () in
+                            self.plotView?.dataPointArray = (self.editParameterModel?.generateLinePoint())!
+                            self.plotView?.refreshPlot()
+                        }
+                        
+                        editAutoModeView.timePointColorValueChangedBlock = {
+                            () in
+                            self.plotView?.dataPointArray = (self.editParameterModel?.generateLinePoint())!
+                            self.plotView?.refreshPlot()
+                        }
+                        
+                        editAutoModeView.addTimePointBlock = {
+                            () in
+                            let addAlertController = UIAlertController.init(title: "请选择时间点", message: "\n\n\n\n\n\n\n", preferredStyle: .alert)
                             
-                            self.editParameterModel = deviceParameterModel
+                            addAlertController.view.frame = CGRect(x: 0, y: 0, width: 100, height: 300)
+                            let confirmAction = UIAlertAction.init(title: "确认", style: .default, handler: nil)
+                            
+                            addAlertController.addAction(confirmAction)
+                            
+                            let datePicker = UIDatePicker.init(frame: CGRect(x: 0, y: 0, width: addAlertController.view.bounds.size.width, height: 300))
+                            
+                            addAlertController.view.addSubview(datePicker)
+                            
+                            self.present(addAlertController, animated: true, completion: nil)
                         }
                         
-                        if self.editParameterModel == nil {
-                            autoColorEditViewController.parameterModel = self.parameterModel
-                        } else {
-                            autoColorEditViewController.parameterModel = self.editParameterModel
+                        editAutoModeView.cancelSaveBlock = {
+                            () in
+                            
+                            self.parameterModel?.parameterModelCopy(parameterModel: self.editParameterModel!)
+                            self.plotView?.dataPointArray = (self.editParameterModel?.generateLinePoint())!
+                            self.plotView?.refreshPlot()
                         }
-                    self.navigationController?.pushViewController(autoColorEditViewController, animated: true)
+                        
+                        editAutoModeView.saveBlock = {
+                            () in
+                            
+                            // 发送设置自动模式数据
+                            var commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appending("20").appendingFormat("%02x", ((self.parameterModel?.controllerChannelNum)! + 2) * (self.editParameterModel?.timePointNum)!).appendingFormat("%02x", (self.editParameterModel?.timePointNum)!);
+                            for i in 0..<(self.editParameterModel?.timePointNum)! {
+                                commandStr = commandStr.appending((self.editParameterModel?.timePointArray[i])!)
+                                commandStr = commandStr.appending((self.editParameterModel?.timePointValueArray[i])!)
+                            }
+
+                            self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGUSERDEFINED_COMMAND, isXORCommand: true)
+                        }
+                        
+                        UIView.beginAnimations(nil, context: nil)
+                        UIView.setAnimationDuration(1.0)
+                        editAutoModeView.frame = CGRect(x: 0, y: (self.autoModeView?.frame.size.height)! * 0.45, width: editAutoModeView.frame.size.width, height: editAutoModeView.frame.size.height)
+                        self.plotView?.frame = CGRect(x: (self.plotView?.frame.origin.x)!, y: 0, width: (self.plotView?.frame.size.width)!, height: (self.autoModeView?.frame.size.height)! * 0.45)
+                        self.plotView?.refreshPlot()
+                        UIView.commitAnimations()
                     }
             }
             
@@ -358,7 +396,7 @@ class ColorSettingViewController: BaseViewController {
         timeCountArray.removeAll()
         timeCountIntervalArray.removeAll()
         for (index, value) in (self.editParameterModel?.timePointArray.enumerated())! {
-            timeCountArray.append(value.converTimeStrToMinute(timeStr: value)!)
+            timeCountArray.append(String.converTimeStrToMinute(timeStr: value)!)
             
             if index ==  ((self.editParameterModel?.timePointArray)!.count - 1) {
                 timeCountIntervalArray.append(timeCountArray[index] - timeCountArray[index - 1])
@@ -393,13 +431,13 @@ class ColorSettingViewController: BaseViewController {
     @objc func sendQuickPreviewCommand(timer: Timer) -> Void {
         var commandStr = String(CommandHeader.COMMANDHEAD_ELEVEN.rawValue)
         
-        self.autoColorChartView?.hightValue(x: Double(previewCount), index: (self.parameterModel?.channelNum)! - 1)
+        // self.autoColorChartView?.hightValue(x: Double(previewCount), index: (self.parameterModel?.channelNum)! - 1)
         
         // 根据 previewCount 计算发送的数值
         commandStr.append((calculateColorValue(previewCount: previewCount)))
         self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.UNKNOWN_COMMAND, isXORCommand: true)
         
-        if Double(previewCount) >= (autoColorChartView?.lineChart?.chartXMax)! {
+        if Double(previewCount) >= 1439.0 {
             cancelPreview()
         }
         

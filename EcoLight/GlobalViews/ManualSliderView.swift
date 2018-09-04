@@ -28,10 +28,11 @@ class ManualSliderView: UIView {
         
         for i in 0 ..< colorArray.count {
             let colorHeight = frame.size.height / CGFloat(colorArray.count)
-            let colorTitleLabelWidth = CGFloat(50)
+            let colorTitleLabelWidth = CGFloat(5)
             let colorPercentTitleWidth = CGFloat(50)
             let colorTitleLabel = UILabel(frame: CGRect(x: 5.0, y: CGFloat(i) * colorHeight, width: colorTitleLabelWidth, height: colorHeight))
             
+            colorTitleLabel.isHidden = true
             colorTitleLabel.tag = 1000 + i
             colorTitleLabel.font = UIFont.boldSystemFont(ofSize: 10)
             colorTitleLabel.text = colorTitleArray[i]
@@ -41,13 +42,13 @@ class ManualSliderView: UIView {
             colorPercentLabel.tag = 3000 + i
             colorColorPercentLabelArray.append(colorPercentLabel)
             
-            let colorSlider = UISlider(frame: CGRect(x: colorTitleLabel.frame.origin.x + colorTitleLabel.frame.size.width, y: CGFloat(i) * colorHeight, width: SystemInfoTools.screenWidth - colorTitleLabel.frame.size.width - colorPercentLabel.frame.size.width, height: colorHeight))
+            let colorSlider = UISlider(frame: CGRect(x: colorTitleLabel.frame.origin.x + colorTitleLabel.frame.size.width, y: CGFloat(i) * colorHeight, width: self.frame.size.width - colorTitleLabel.frame.size.width - colorPercentLabel.frame.size.width, height: colorHeight))
 
             colorSlider.tag = 2000 + i
             colorSlider.tintColor = colorArray[i]
             colorSlider.thumbTintColor = colorArray[i]
             colorSlider.minimumValue = 0.0
-            colorSlider.maximumValue = 1000.0
+            colorSlider.maximumValue = 250.0
             colorSlider.addTarget(self, action: #selector(colorSliderValueChanged(sender:)), for: .valueChanged)
             colorSliderArray.append(colorSlider)
             

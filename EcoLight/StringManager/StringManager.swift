@@ -76,7 +76,7 @@ extension String {
     /// - parameter timeStr: 16进制时间值
     ///
     /// - returns: 转换后的分钟数
-    func converTimeStrToMinute(timeStr: String?) -> Int? {
+    static func converTimeStrToMinute(timeStr: String?) -> Int? {
         if timeStr == nil || timeStr?.count != 4 {
             return nil
         }

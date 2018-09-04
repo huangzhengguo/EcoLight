@@ -1,20 +1,18 @@
 PODS:
-  - Charts (3.0.4):
-    - Charts/Core (= 3.0.4)
-  - Charts/Core (3.0.4)
   - HGCircularSlider (2.0.0)
   - LGAlertView (2.0.13)
+  - PopupDialog (0.6.2)
 
 DEPENDENCIES:
-  - Charts
   - HGCircularSlider
   - LGAlertView (~> 2.0.13)
+  - PopupDialog
 
 SPEC CHECKSUMS:
-  Charts: 0705898046257443f0afbbc3179f4b67507b6e48
   HGCircularSlider: 92e2ee098c814709f455b8f46cd9008147f6a869
   LGAlertView: 9a5dcbf4f81b02b718083539d7f222280adc9547
+  PopupDialog: d4336d7274a6aa3af4cb26d8b6691510eba90cc3
 
-PODFILE CHECKSUM: 423d656129e5e36906be727b0c65c287c853f5af
+PODFILE CHECKSUM: 964cbb937554f3ac53ab80a647bb0eea19b61f23
 
 COCOAPODS: 1.4.0.beta.2

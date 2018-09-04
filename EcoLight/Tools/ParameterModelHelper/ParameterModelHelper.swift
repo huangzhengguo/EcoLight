@@ -182,7 +182,7 @@ extension DeviceParameterModel {
             if cIndex != 2 * colorIndex && cIndex != (2 * colorIndex + 1) {
                 newColorStr.append(c)
             } else if cIndex == 2 * colorIndex {
-                newColorStr = newColorStr.appendingFormat("%02x", Int(colorValue / 1000.0 * 100.0))
+                newColorStr = newColorStr.appendingFormat("%02x", Int(colorValue))
             }
             
             cIndex = cIndex + 1
@@ -236,6 +236,64 @@ extension DeviceParameterModel {
         }
         
         return colorArray
+    }
+    
+    func generateLinePoint() -> [Array<CGPoint>] {
+        var data = [Array<CGPoint>]()
+        var value: CGPoint?
+        var line = [CGPoint]()
+        // x坐标
+        var xAxis: CGFloat = 0.0
+        // y坐标
+        var yAxis: CGFloat?
+        var yFisrtAxis: CGFloat?
+        var yLastAxis: CGFloat?
+        var colorStr: String?
+        var firstColorStr: String?
+        var lastColorStr: String?
+        for i in 0 ..< self.channelNum! {
+            line.removeAll()
+            
+            // 添加0点的点
+            xAxis = 0
+            firstColorStr = timePointValueArray?[0]
+            lastColorStr = timePointValueArray?[timePointValueArray!.count - 1]
+            yFisrtAxis = CGFloat((firstColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 250.0
+            yLastAxis = CGFloat((lastColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 250.0
+            
+            let firstTimePoint = timePointArray![0]
+            let lastTimePoint = timePointArray![(timePointArray?.count)! - 1]
+            let dis = CGFloat(String.converTimeStrToMinute(timeStr: firstTimePoint)!) / (CGFloat(String.converTimeStrToMinute(timeStr: firstTimePoint)!) + 1439.0 - CGFloat(String.converTimeStrToMinute(timeStr: lastTimePoint)!)) * (yFisrtAxis! - yLastAxis!)
+            
+            yFisrtAxis = yFisrtAxis! - dis
+            
+            value = CGPoint(x: xAxis, y: yFisrtAxis!)
+            
+            line.append(value!)
+            
+            for index in 0 ..< timePointArray!.count {
+                let timeStr = timePointArray![index]
+                xAxis = CGFloat(String.converTimeStrToMinute(timeStr: timeStr)!)
+                
+                colorStr = timePointValueArray?[index]
+                
+                yAxis = CGFloat((colorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 250.0
+                
+                value = CGPoint(x: xAxis, y: yAxis!)
+                
+                line.append(value!)
+            }
+            
+            // 添加24点的点
+            xAxis = 1439
+            
+            value = CGPoint(x: xAxis, y: yFisrtAxis!)
+            
+            line.append(value!)
+            
+            data.append(line)
+        }
+        return data
     }
 }
 
