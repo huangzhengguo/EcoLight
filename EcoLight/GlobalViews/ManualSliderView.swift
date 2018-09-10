@@ -37,7 +37,7 @@ class ManualSliderView: UIView {
             colorTitleLabel.font = UIFont.boldSystemFont(ofSize: 10)
             colorTitleLabel.text = colorTitleArray[i]
             
-            let colorPercentLabel = UILabel(frame: CGRect(x: SystemInfoTools.screenWidth - CGFloat(colorPercentTitleWidth) + 5.0, y: CGFloat(i) * colorHeight, width: colorPercentTitleWidth, height: colorHeight))
+            let colorPercentLabel = UILabel(frame: CGRect(x: self.frame.size.width - CGFloat(colorPercentTitleWidth) + 5.0, y: CGFloat(i) * colorHeight, width: colorPercentTitleWidth, height: colorHeight))
             
             colorPercentLabel.tag = 3000 + i
             colorColorPercentLabelArray.append(colorPercentLabel)
@@ -61,7 +61,7 @@ class ManualSliderView: UIView {
     }
     
     @objc func colorSliderValueChanged(sender: UISlider) -> Void {
-        colorColorPercentLabelArray![sender.tag - 2000].text = String.init(format: "%.0f%%", sender.value / 10.0)
+        colorColorPercentLabelArray![sender.tag - 2000].text = String.init(format: "%.0f%%", sender.value / 250.0 * 100.0)
         
         if passSliderValueCallback != nil {
             passSliderValueCallback!(sender.tag - 2000, sender.value)
@@ -70,8 +70,8 @@ class ManualSliderView: UIView {
     
     func updateManualSliderView(colorPercentArray: [Double]) -> Void {
         for i in 0 ..< colorPercentArray.count {
-            colorSliderArray![i].value = Float(colorPercentArray[i] * 10)
-            colorColorPercentLabelArray![i].text = String.init(format: "%.0f%%", colorPercentArray[i])
+            colorSliderArray![i].value = Float(colorPercentArray[i])
+            colorColorPercentLabelArray![i].text = String.init(format: "%.0f%%", colorPercentArray[i] / 250.0 * 100.0)
         }
     }
     

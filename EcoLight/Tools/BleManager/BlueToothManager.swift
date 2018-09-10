@@ -8,7 +8,6 @@
 //
 
 import UIKit
-import LGAlertView
 
 // 设备开关状态
 enum DeviceState {
@@ -53,6 +52,8 @@ enum CommandType {
     case READTIME_COMMAND
     case MANUALMODE_COMMAND
     case AUTOMODE_COMMAND
+    case ENDPREVIEW_COMMAND
+    case MANUALSETTING_COMMAND
     case UNKNOWN_COMMAND
     
     // 新协议命令类型：特殊命令，即读取自动手动数据命令
@@ -74,7 +75,6 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     typealias oneStrParameterType = (_ dataStr: String?, _ commandType: CommandType) -> Void
     var completeReceiveDataCallback: oneStrParameterType?
     var connectFailedCallback: oneStrParameterType?
-    var currentDeviceTypeCode: DeviceTypeCode?
     var writeDataCallback: oneStrParameterType?
     let languageManager: LanguageManager! = LanguageManager.shareInstance()
     
@@ -101,11 +101,6 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     /// - returns: 是否开始连接设备
     func connectDeviceWithUuid(uuid: String!) -> Bool {
         if self.bleManager.centralManager.state != .poweredOn {
-            // 提示打开蓝牙
-            let bluetoothAlert = LGAlertView.init(title: self.languageManager.getTextForKey(key: "bluetoothError"), message: self.languageManager.getTextForKey(key: "blueErrorMessage"), style: .alert, buttonTitles: nil, cancelButtonTitle: self.languageManager.getTextForKey(key: "confirm"), destructiveButtonTitle: nil, delegate: nil)
-            
-            bluetoothAlert?.show(animated: true, completionHandler: nil)
-            
             return false
         } else {
             self.connectTimeCount = 0
@@ -164,7 +159,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     /// - parameter device: 设备
     ///
     /// - returns: Void
-    func sendSynchronizationTimeCommand(device: CBPeripheral, deviceTypeCode: DeviceTypeCode) -> Void {
+    func sendSynchronizationTimeCommand(device: CBPeripheral) -> Void {
         self.isReceiveDataAll = false
         self.receivedData = ""
         self.currentCommandType = .SYNCTIME_COMMAND
@@ -226,13 +221,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     ///
     /// - returns: void
     func sendFindDeviceCommand(uuid: String) -> Void {
-        switch self.currentDeviceTypeCode! {
-        case .LIGHT_CODE_STRIP_III, .ONECHANNEL_LIGHT, .TWOCHANNEL_LIGHT, .THREECHANNEL_LIGHT, .FOURCHANNEL_LIGHT, .FIVECHANNEL_LIGHT, .SIXCHANNEL_LIGHT:
-            sendCommandToDevice(uuid: uuid, commandStr: "680F", commandType: .FINDDEVICE_COMMAND, isXORCommand: true)
-        default:
-            break
-        }
-        
+        sendCommandToDevice(uuid: uuid, commandStr: CommandHeader.COMMANDHEAD_THREE.rawValue, commandType: .FINDDEVICE_COMMAND, isXORCommand: true)
     }
     
     /// 设置设备名称
@@ -306,7 +295,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
         }
         
         // 发送同步时间命令
-        sendSynchronizationTimeCommand(device: device, deviceTypeCode: self.currentDeviceTypeCode!)
+        sendSynchronizationTimeCommand(device: device)
     }
     
     func didDisconnectDevice(_ device: CBPeripheral!, error: Error!) {
@@ -320,7 +309,6 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     
     func receiveDeviceDataSuccess_1(_ data: Data!, device: CBPeripheral!) {
         // 处理OTA
-
         // 处理正常命令返回的数据
         if self.isReceiveDataAll {
             return
@@ -346,7 +334,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
         if self.receivedData.calculateXor() == "00" && dataCount == ((self.receivedData.count - 6 * 2) / 2) {
             self.isReceiveDataAll = true
             
-            print("收到完整数据:" + self.receivedData)
+            print("收到完整数据: " + self.receivedData)
             
             // 根据命令类型，处理返回的数据
             switch self.currentCommandType {
@@ -359,86 +347,16 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
                  .SETTINGUSERDEFINED_COMMAND,
                  .MANUALMODE_COMMAND,
                  .AUTOMODE_COMMAND,
-                 .SETTINGAUTOMODE_COMMAND:
-                if self.completeReceiveDataCallback != nil {
-                    self.completeReceiveDataCallback!(self.receivedData, self.currentCommandType)
-                }
-            default:
-                print("未知命令")
-            }
-            
-            self.receivedData = ""
-        }
-    }
-    
-    /// 旧协议数据接收
-    ///
-    /// - returns: Void
-    func processOldProtocolReceiveData() -> Void {
-        // 数据接收完整性检验
-        // 1.数据长度检验
-        // 2.数据校验码检验
-        if self.currentDeviceTypeCode != nil {
-            if !verifyReceiveDataLength(receiveDataStr: self.receivedData, deviceTypeCode: self.currentDeviceTypeCode!.rawValue) {
-                return
-            }
-        }
-        
-        if self.receivedData.calculateXor() == "00" {
-            self.isReceiveDataAll = true
-            
-            // 根据命令类型，处理返回的数据
-            // print("发送的命令：\(self.currentCommandType),receivedData=\(String(self.receivedData))")
-            switch self.currentCommandType {
-            case .SYNCTIME_COMMAND,
-                 .POWERON_COMMAND,
-                 .POWEROFF_COMMAND,
-                 .MANUALMODE_COMMAND,
                  .SETTINGAUTOMODE_COMMAND,
-                 .SETTINGUSERDEFINED_COMMAND,
-                 .AUTOMODE_COMMAND:
+                 .MANUALSETTING_COMMAND:
                 if self.completeReceiveDataCallback != nil {
                     self.completeReceiveDataCallback!(self.receivedData, self.currentCommandType)
                 }
-                
             default:
                 print("未知命令")
             }
             
             self.receivedData = ""
-        }
-    }
-    
-    /// 验证接收到的数据长度是否完整
-    /// - parameter receiveDataStr: 接收到的数据字符串
-    /// - parameter deviceTypeCode: 设备类型编码
-    ///
-    /// - returns: True:数据完整，False:数据不完整
-    func verifyReceiveDataLength(receiveDataStr: String, deviceTypeCode: String) -> Bool {
-        var dataLength = 0
-        let deviceCodeInfo = DeviceTypeData.getDeviceInfoWithTypeCode(deviceTypeCode: DeviceTypeCode(rawValue: deviceTypeCode)!)
-        let runModeStr: String = (receivedData as NSString).substring(with: NSRange.init(location: 4, length: 2))
-        
-        dataLength = calculateReceiveDataLength(channelNum: deviceCodeInfo.channelNum!, runModeStr: runModeStr)
-        
-        print("receiveDataStr.count = \(receiveDataStr.count),dataLength = \(dataLength)")
-        if receiveDataStr.count == dataLength {
-            return true
-        }
-        
-        return false
-    }
-    
-    /// 根据通道数量及运行模式计算数据长度
-    /// - parameter channelNum: 通道数量
-    /// - parameter runModeStr: 运行模式
-    ///
-    /// - returns:
-    func calculateReceiveDataLength(channelNum: Int, runModeStr: String) -> Int {
-        if runModeStr == "00" {
-            return (5 + channelNum * 2 + channelNum * 4) * 2 + 2
-        } else {
-            return (11 + channelNum * 2) * 2 + 2
         }
     }
 }

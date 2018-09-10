@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import LGAlertView
+import HGCircularSlider
 
-class ColorSettingViewController: BaseViewController {
+class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var parameterModel: DeviceParameterModel?
     // 用来保存修改过的模型
     var editParameterModel: DeviceParameterModel?
     var manualAutoSwitchView: ManualAutoSwitchView?
     var manualModeView: UIView?
-    var manualColorView: ManualCircleView?
+    var singleCircleSlider: CircularSlider?
+    let stepper = UIStepper.init()
+    let currentColorPercentLable = UILabel.init()
     var manualPowerButton: UIButton?
     var manualAutoViewFrame: CGRect?
     var deviceInfo: DeviceCodeInfo?
@@ -29,6 +31,11 @@ class ColorSettingViewController: BaseViewController {
     var timeCountIntervalArray: [Int]! = [Int]()
     var previewButton: UIButton?
     var devcieName: String?
+    let polotHeightRatio: CGFloat = 0.4
+    var colorSegment = UISegmentedControl()
+    // 时间点列表
+    var timePointTableView: UITableView = UITableView()
+    var isReceiveRespon = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,18 +58,40 @@ class ColorSettingViewController: BaseViewController {
     override func prepareData() {
         super.prepareData()
         
-        deviceInfo = DeviceTypeData.getDeviceInfoWithTypeCode(deviceTypeCode: (parameterModel?.typeCode)!)
+        deviceInfo = DeviceTypeData.getLightInfoWithTypeCode(deviceTypeCode: (parameterModel?.typeCode)!, lightTypeCode: (parameterModel?.lightCode)!)
+        
         self.blueToothManager.completeReceiveDataCallback = {
             (receivedDataStr, commandType) in
+            // 收到完整数据后重新解析数据
             self.parameterModel?.parseDeviceDataFromReceiveStrToModel(receiveData: receivedDataStr!)
             
-            // 提示保存当前设置成功
             if commandType == CommandType.SETTINGUSERDEFINED_COMMAND {
-                // 用户自定义数据成功
+                // 把当前设置保存到设备
                 self.showMessageWithTitle(title: self.languageManager.getTextForKey(key: "saveUserDefinedSuccessful"), time: 1.5, isShow: true)
             } else if commandType == CommandType.SETTINGAUTOMODE_COMMAND {
-                // 更新数据：发送自动模式数据成功
+                // 设置自动模式数据
                 self.showMessageWithTitle(title: self.languageManager.getTextForKey(key: "runSuccessful"), time: 1.5, isShow: true)
+            } else if commandType == CommandType.SENDUSERDEFINED_COMMAND {
+                // 把用户保存的设置发送到设备上
+                self.showMessageWithTitle(title: self.languageManager.getTextForKey(key: "runSuccessful"), time: 1.5, isShow: true)
+                
+                // 更新圆盘
+                self.updateCircleSlider(colorIndex: self.colorSegment.selectedSegmentIndex)
+                
+                // 更新中间百分比
+                self.currentColorPercentLable.text = String.init(format: "%.2f%%", (self.singleCircleSlider?.endPointValue)! / 250.0 * 100.0)
+                
+                // 更新微调器值
+                self.stepper.value = Double((self.singleCircleSlider?.endPointValue)!)
+            } else if commandType == CommandType.MANUALSETTING_COMMAND {
+                print("手动设置")
+                self.isReceiveRespon = true
+                
+                // 更新颜色百分比
+                let manualPercentArray = self.getManualColorPercentArray(parameterModel: self.parameterModel)
+                let currentColorPercentStr = String.init(format: "%.2f%%", manualPercentArray[self.colorSegment.selectedSegmentIndex])
+                
+                self.currentColorPercentLable.text = currentColorPercentStr
             }
             
             // 更新界面
@@ -89,7 +118,7 @@ class ColorSettingViewController: BaseViewController {
         self.navigationItem.rightBarButtonItems = [findItem,renameItem];
         
         // 2.手动自动切换按钮
-        let manualAutoSwitchViewFrame = CGRect(x: 0, y: 72, width: 150, height: 75)
+        let manualAutoSwitchViewFrame = CGRect(x: 0, y: 72, width: 100, height: 50)
         manualAutoSwitchView = ManualAutoSwitchView(frame: manualAutoSwitchViewFrame, manualTitle: self.languageManager.getTextForKey(key: "manualMode"), autoTitle: self.languageManager.getTextForKey(key: "autoMode"))
         
         manualAutoSwitchView?.center = CGPoint(x: SystemInfoTools.screenWidth / 2, y: (manualAutoSwitchView?.center.y)!)
@@ -119,43 +148,43 @@ class ColorSettingViewController: BaseViewController {
     
     @objc func renameDeviceAction(sender: UIButton) -> Void {
         self.cancelPreview()
-        let renameDeviceAlert = LGAlertView.init(textFieldsAndTitle: self.languageManager.getTextForKey(key: "rename"), message: "", numberOfTextFields: 1, textFieldsSetupHandler: nil, buttonTitles: [self.languageManager.getTextForKey(key: "cancel"), self.languageManager.getTextForKey(key: "confirm")], cancelButtonTitle: "", destructiveButtonTitle: "")
-        
-        let nameTextField = renameDeviceAlert?.textFieldsArray[0] as! UITextField
-        nameTextField.textAlignment = .center
-        nameTextField.text = self.devcieName!
-        
-        renameDeviceAlert?.actionHandler = {
-            (alertView, title, index) in
-            switch index {
-            case 0:
-                return
-            case 1:
-                let textField = alertView?.textFieldsArray[0] as! UITextField
-                // 1.同步到数据库
-                DeviceDataCoreManager.setDataWithFromTableWithCol(tableName: DeviceDataCoreManager.deviceTableName, colConditionName: DeviceDataCoreManager.deviceTableUuidName, colConditionVal: (self.parameterModel?.uuid)!, colName: DeviceDataCoreManager.deviceTableNameName, newColVal: textField.text!)
-                
-                // 2.同步到设备
-                self.blueToothManager.setDeviceName(uuid: (self.parameterModel?.uuid)!, name: textField.text)
-                
-                // 3.更改标题
-                self.title = textField.text
-                return
-            default:
-                return
-            }
-        }
-        
-        renameDeviceAlert?.show(animated: true, completionHandler: nil)
+//        let renameDeviceAlert = LGAlertView.init(textFieldsAndTitle: self.languageManager.getTextForKey(key: "rename"), message: "", numberOfTextFields: 1, textFieldsSetupHandler: nil, buttonTitles: [self.languageManager.getTextForKey(key: "cancel"), self.languageManager.getTextForKey(key: "confirm")], cancelButtonTitle: "", destructiveButtonTitle: "")
+//
+//        let nameTextField = renameDeviceAlert?.textFieldsArray[0] as! UITextField
+//        nameTextField.textAlignment = .center
+//        nameTextField.text = self.devcieName!
+//
+//        renameDeviceAlert?.actionHandler = {
+//            (alertView, title, index) in
+//            switch index {
+//            case 0:
+//                return
+//            case 1:
+//                let textField = alertView?.textFieldsArray[0] as! UITextField
+//                // 1.同步到数据库
+//                DeviceDataCoreManager.setDataWithFromTableWithCol(tableName: DeviceDataCoreManager.deviceTableName, colConditionName: DeviceDataCoreManager.deviceTableUuidName, colConditionVal: (self.parameterModel?.uuid)!, colName: DeviceDataCoreManager.deviceTableNameName, newColVal: textField.text!)
+//
+//                // 2.同步到设备
+//                self.blueToothManager.setDeviceName(uuid: (self.parameterModel?.uuid)!, name: textField.text)
+//
+//                // 3.更改标题
+//                self.title = textField.text
+//                return
+//            default:
+//                return
+//            }
+//        }
+//
+//        renameDeviceAlert?.show(animated: true, completionHandler: nil)
     }
     
     func setManualAutoViews() -> Void {
         // 初始化临时模型
         if self.editParameterModel == nil {
             self.editParameterModel = DeviceParameterModel()
-            
-            self.parameterModel?.parameterModelCopy(parameterModel: self.editParameterModel!)
         }
+        
+        self.parameterModel?.parameterModelCopy(parameterModel: self.editParameterModel!)
         
         if parameterModel?.runMode == DeviceRunMode.MANUAL_RUN_MODE {
             print("当前运行模式手动！")
@@ -173,31 +202,67 @@ class ColorSettingViewController: BaseViewController {
             // 隐藏自动模式界面
             self.autoModeView?.isHidden = true
         }
-        
-        let manualPercentArray = getManualColorPercentArray(parameterModel: self.parameterModel)
+
         if manualModeView == nil {
             // 创建手动模式视图
             manualModeView = UIView(frame: manualAutoViewFrame!)
             manualModeView?.backgroundColor = UIColor.clear
             
             // 1.圆形调光视图
-            let manualColorViewFrame = CGRect(x: 0, y: 16, width: SystemInfoTools.screenWidth - 50, height: SystemInfoTools.screenWidth - 50)
-            manualColorView = ManualCircleView(frame: manualColorViewFrame, channelNum: (parameterModel?.channelNum)!, colorArray: deviceInfo?.channelColorArray, colorPercentArray: manualPercentArray, colorTitleArray: deviceInfo?.channelColorTitleArray)
-            manualColorView?.passColorValueCallback = {
-                (colorIndex, colorValue) in
-                let commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02 + colorIndex).appending("01").appendingFormat("%02x", colorValue)
-
-                self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.UNKNOWN_COMMAND, isXORCommand: true)
-                
-                // 更新模型数据
-                self.parameterModel?.manualModeValueArray[colorIndex] = String.init(format: "%02x", colorValue)
-            }
+            let manualColorViewFrame = CGRect(x: 0, y: 0, width: SystemInfoTools.screenWidth - 20, height: SystemInfoTools.screenWidth - 20)
             
-            manualModeView?.addSubview(manualColorView!)
+            singleCircleSlider = CircularSlider.init(frame: manualColorViewFrame)
+            
+            manualModeView?.addSubview(singleCircleSlider!)
+            
+            singleCircleSlider?.center = CGPoint(x: (manualModeView?.center.x)!, y: (singleCircleSlider?.center.y)!)
+            singleCircleSlider?.backgroundColor = UIColor.clear
+            singleCircleSlider?.minimumValue = 0
+            singleCircleSlider?.maximumValue = 250.0
+            singleCircleSlider?.lineWidth = 30.0
+            self.updateCircleSlider(colorIndex: 0)
+            
+            singleCircleSlider?.addTarget(self, action: #selector(colorValueChanged(view:)), for: UIControlEvents.valueChanged)
+            
+            let centerLable = UILabel.init(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+            
+            centerLable.center = (singleCircleSlider?.center)!
+            centerLable.isUserInteractionEnabled = true
+            centerLable.backgroundColor = UIColor.lightGray
+            centerLable.layer.cornerRadius = centerLable.frame.size.height / 2.0
+            centerLable.layer.masksToBounds = true
+            
+            manualModeView?.addSubview(centerLable)
+            
+            // 圆环中间添加一个微调器
+            self.stepper.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+            self.stepper.tintColor = UIColor.white
+            self.stepper.center = (singleCircleSlider?.center)!
+            self.stepper.layer.zPosition = 10000
+            self.stepper.maximumValue = Double((singleCircleSlider?.maximumValue)!)
+            self.stepper.minimumValue = Double((singleCircleSlider?.minimumValue)!)
+            self.stepper.value = Double((singleCircleSlider?.endPointValue)!)
+            
+            manualModeView?.addSubview(self.stepper)
+            
+            self.stepper.addTarget(self, action: #selector(stepperValueChanged(sender:)), for: .valueChanged)
+            
+            // 中间显示当前颜色百分比
+            self.currentColorPercentLable.frame = CGRect(x: 0, y: 0, width: (centerLable.frame.size.height - self.stepper.frame.size.height) / 2.0, height: (centerLable.frame.size.height - self.stepper.frame.size.height) / 2.0)
+            self.currentColorPercentLable.font = UIFont.systemFont(ofSize: 13)
+            self.currentColorPercentLable.center = CGPoint(x: self.stepper.center.x, y: centerLable.center.y - self.currentColorPercentLable.frame.size.height / 2.0)
+            self.currentColorPercentLable.layer.cornerRadius = self.currentColorPercentLable.frame.size.height / 2.0
+            self.currentColorPercentLable.layer.masksToBounds = true
+            self.currentColorPercentLable.backgroundColor = UIColor.lightGray
+            self.currentColorPercentLable.textColor = UIColor.white
+            self.currentColorPercentLable.textAlignment = .center
+            self.currentColorPercentLable.text = String.init(format: "%.2f%%", (singleCircleSlider?.endPointValue)! / 250.0 * 100)
+            
+            manualModeView?.addSubview(self.currentColorPercentLable)
             
             // 2.用户自定义按钮
-            let userDefineViewFrame = CGRect(x: 0, y: (manualAutoViewFrame?.height)! - 70, width: SystemInfoTools.screenWidth, height: SystemInfoTools.screenHeight)
-            let userDefineView = LayoutToolsView(viewNum: 3, viewWidth: 80, viewHeight: 50, viewInterval: 8, viewTitleArray: ["M1", "M2", "M3"], frame: userDefineViewFrame)
+            let userDefineViewFrame = CGRect(x: 0, y: (manualAutoViewFrame?.height)! - 50, width: SystemInfoTools.screenWidth, height: SystemInfoTools.screenHeight)
+            let userDefineView = LayoutToolsView(viewNum: 3, viewWidth: 80, viewHeight: 40, viewInterval: 8, viewTitleArray: ["M1", "M2", "M3"], frame: userDefineViewFrame)
             userDefineView.buttonActionCallback = {
                 (button, index) in
                 let commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02).appendingFormat("%02x", (self.parameterModel?.controllerChannelNum)!).appending((self.parameterModel?.userDefinedValueArray[index])!)
@@ -232,12 +297,36 @@ class ColorSettingViewController: BaseViewController {
             }
             
             manualModeView?.addSubview(manualPowerButton!)
+            
+            // 4.颜色选择
+            colorSegment.frame = CGRect(x: 0, y: (manualPowerButton?.frame.origin.y)! - 50, width: (manualModeView?.frame.size.width)! * 2.3 / 3.0, height: 30)
+            colorSegment.center = CGPoint(x: (manualPowerButton?.center.x)!, y: colorSegment.center.y)
+            colorSegment.layer.masksToBounds = true
+            colorSegment.layer.cornerRadius = 5.0
+            colorSegment.tintColor = UIColor.gray.withAlphaComponent(0.8)
+            colorSegment.setTitleTextAttributes([kCTBackgroundColorAttributeName: UIColor.black], for: .normal)
+            colorSegment.addTarget(self, action: #selector(colorSelectedAction(sender:)), for: .valueChanged)
+            
+            let manualPercentArray = getManualColorPercentArray(parameterModel: self.parameterModel)
+            for i in 0..<(self.parameterModel?.channelNum)! {
+                colorSegment.insertSegment(withTitle: String.init(format: "%.2f%%", manualPercentArray[i]), at: i, animated: false)
+                
+                colorSegment.subviews[i].backgroundColor = self.deviceInfo?.channelColorArray[i]
+            }
+        
+            colorSegment.selectedSegmentIndex = 0
+            
+            self.manualModeView?.addSubview(colorSegment)
 
             self.view.addSubview(manualModeView!)
         } else {
             // 更新视图
             manualModeView?.isHidden = false
-            manualColorView?.updateManualCircleView(colorPercentArray: manualPercentArray)
+            // 更新百分比
+            let manualPercentArray = getManualColorPercentArray(parameterModel: self.parameterModel)
+            for i in 0..<manualPercentArray.count {
+                colorSegment.setTitle(String.init(format: "%.2f%%", manualPercentArray[i]), forSegmentAt: i)
+            }
         }
     }
     
@@ -246,11 +335,11 @@ class ColorSettingViewController: BaseViewController {
     /// - parameter two:
     ///
     /// - returns:
-    func getManualColorPercentArray(parameterModel: DeviceParameterModel!) -> [Int] {
-        var manualPercentArray = [Int]()
+    func getManualColorPercentArray(parameterModel: DeviceParameterModel!) -> [Float] {
+        var manualPercentArray = [Float]()
         
         for colorValue in (parameterModel?.manualModeValueArray)! {
-            manualPercentArray.append(Int(Float(colorValue.hexaToDecimal) / 250.0 * 100))
+            manualPercentArray.append(Float(colorValue.hexaToDecimal) / 250.0 * 100.0)
         }
         
         return manualPercentArray
@@ -271,6 +360,76 @@ class ColorSettingViewController: BaseViewController {
         }
     }
     
+    /// 颜色选择
+    /// - parameter one:
+    /// - parameter two:
+    ///
+    /// - returns:
+    @objc func colorSelectedAction(sender: UISegmentedControl) -> Void {
+        print("选择了\(sender.selectedSegmentIndex)")
+        
+        // 更新圆盘
+        self.updateCircleSlider(colorIndex: sender.selectedSegmentIndex)
+        
+        let manualPercentArray = getManualColorPercentArray(parameterModel: self.parameterModel)
+        
+        let currentColorPercentStr = String.init(format: "%.2f%%", manualPercentArray[sender.selectedSegmentIndex])
+        
+        self.currentColorPercentLable.text = currentColorPercentStr
+        
+        // 设置微调当前值
+        self.stepper.value = Double(manualPercentArray[sender.selectedSegmentIndex]) * 250.0 / 100.0
+    }
+    
+    /// 圆环滑动
+    /// - parameter one:
+    /// - parameter two:
+    ///
+    /// - returns:
+    @objc func colorValueChanged(view: UIView) -> Void {
+        let progressView: CircularSlider! = view as! CircularSlider
+
+        self.sendColorValueToDevice(colorIndex: self.self.colorSegment.selectedSegmentIndex, colorValue: Int(progressView.endPointValue))
+        
+        self.stepper.value = Double(progressView.endPointValue)
+    }
+    
+    @objc func stepperValueChanged(sender: UIStepper) -> Void {
+        // 更改当前颜色值
+        self.sendColorValueToDevice(colorIndex: self.self.colorSegment.selectedSegmentIndex, colorValue: Int(sender.value))
+        
+        self.singleCircleSlider?.endPointValue = CGFloat(sender.value)
+    }
+    
+    func sendColorValueToDevice(colorIndex: Int, colorValue: Int) -> Void {
+        if self.isReceiveRespon == false {
+            return
+        }
+        
+        self.isReceiveRespon = false
+        
+        let commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02 + self.colorSegment.selectedSegmentIndex).appending("01").appendingFormat("%02x", colorValue)
+        
+        self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.MANUALSETTING_COMMAND, isXORCommand: true)
+    }
+    
+    func updateCircleSlider(colorIndex: Int) -> Void {
+        let currentColor = (self.deviceInfo?.channelColorArray[colorIndex])!
+        
+        self.singleCircleSlider?.trackFillColor = UIColor.clear
+        self.singleCircleSlider?.trackColor = UIColor.white
+        self.singleCircleSlider?.diskColor = currentColor.withAlphaComponent(0.5)
+        self.singleCircleSlider?.diskFillColor = currentColor
+        self.singleCircleSlider?.trackShadowColor = currentColor.withAlphaComponent(0.5)
+        self.singleCircleSlider?.endThumbStrokeColor = currentColor
+        self.singleCircleSlider?.endThumbTintColor = UIColor.white
+        
+        let manualPercentArray = getManualColorPercentArray(parameterModel: self.parameterModel)
+        
+        self.singleCircleSlider?.endPointValue = CGFloat(manualPercentArray[colorIndex]) * 250.0 / 100.0 + 3.0
+        self.singleCircleSlider?.endPointValue = CGFloat(manualPercentArray[colorIndex]) * 250.0 / 100.0
+    }
+    
     func setAutoModeViews() -> Void {
         if self.manualModeView != nil {
             self.manualModeView?.isHidden = true
@@ -282,7 +441,7 @@ class ColorSettingViewController: BaseViewController {
             autoModeView?.backgroundColor = UIColor.clear
             
             // 1.自动模式曲线图
-            let autoColorChartViewFrame = CGRect(x: 0, y: 0, width: (autoModeView?.frame.size.width)!, height: (autoModeView?.frame.size.height)! - 90.0)
+            let autoColorChartViewFrame = CGRect(x: 0, y: 0, width: (autoModeView?.frame.size.width)!, height: (autoModeView?.frame.size.height)! * self.polotHeightRatio)
             
             plotView = PlotView(frame: autoColorChartViewFrame)
             
@@ -296,9 +455,21 @@ class ColorSettingViewController: BaseViewController {
             plotView?.yInterval = 0.25
             plotView?.drawPlotView()
             
+            // 添加时间点列表
+            self.timePointTableView.frame = CGRect(x: 0, y: (plotView?.frame.size.height)! + 5.0, width: (autoModeView?.frame.size.width)!, height: (autoModeView?.frame.size.height)! - 70 - (plotView?.frame.size.height)!)
+            
+            self.timePointTableView.delegate = self
+            self.timePointTableView.dataSource = self
+            self.timePointTableView.backgroundColor = UIColor.clear
+            self.timePointTableView.isScrollEnabled = false
+            self.timePointTableView.layer.borderWidth = 1.0
+            self.timePointTableView.layer.borderColor = UIColor.lightGray.cgColor
+            
+            autoModeView?.addSubview(self.timePointTableView)
+            
             // 2.底部按钮 预览 运行（发送设置的配置到设备）编辑
-            let bottomViewFrame = CGRect(x: 0, y: (autoModeView?.frame.size.height)! - 70, width: SystemInfoTools.screenWidth, height: 70)
-            let bottomView = LayoutToolsView(viewNum: 2, viewWidth: 70, viewHeight: 50, viewInterval: 30, viewTitleArray: [self.languageManager.getTextForKey(key: "preview"), self.languageManager.getTextForKey(key: "edit")], frame: bottomViewFrame)
+            let bottomViewFrame = CGRect(x: 0, y: (autoModeView?.frame.size.height)! - 50, width: SystemInfoTools.screenWidth, height: 70)
+            let bottomView = LayoutToolsView(viewNum: 4, viewWidth: 70, viewHeight: 40, viewInterval: 10, viewTitleArray: [self.languageManager.getTextForKey(key: "import"), self.languageManager.getTextForKey(key: "export"), self.languageManager.getTextForKey(key: "preview"), self.languageManager.getTextForKey(key: "edit")], frame: bottomViewFrame)
             
             // 添加观察者
             previewButton = bottomView.viewWithTag(1001) as? UIButton
@@ -306,6 +477,27 @@ class ColorSettingViewController: BaseViewController {
             bottomView.buttonActionCallback = {
                 (button, index) -> Void in
                     if (index == 0) {
+                        // 导入
+                    } else if (index == 1) {
+                        // 导出:保存模型到文件中
+                        let alertController = UIAlertController.init(title: "导出文件", message: "导出到", preferredStyle: .alert)
+                        
+                        alertController.addTextField(configurationHandler: { (textField) in
+                            print(textField.text ?? "没有值")
+                        })
+                        
+                        let cancelAction = UIAlertAction.init(title: "取消", style: .default, handler: nil)
+                        let confirmAction = UIAlertAction.init(title: "确认", style: .default, handler: { (alertAction) in
+                            let fileName = alertController.textFields![0].text
+                            
+                            print(ProfileHelper.saveProfile(model: self.parameterModel, fileName: (self.parameterModel?.profileName)!, modelKey:(self.parameterModel?.modelKey)!))
+                        })
+                        
+                        alertController.addAction(cancelAction)
+                        alertController.addAction(confirmAction)
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                    } else if (index == 2) {
                         // 1.预览功能
                         if button.titleLabel?.text == self.languageManager.getTextForKey(key: "preview") {
                             button.setTitle(self.languageManager.getTextForKey(key: "stop"), for: .normal)
@@ -314,10 +506,9 @@ class ColorSettingViewController: BaseViewController {
                             button.setTitle(self.languageManager.getTextForKey(key: "preview"), for: .normal)
                             self.cancelPreview()
                         }
-                        
-                    } else if (index == 1) {
+                    } else if (index == 3) {
                         // 3.弹出编辑界面
-                        let editAutoModeView = EditAutoModeView(frame: CGRect(x: 0, y: (self.autoModeView?.frame.size.height)!, width: (self.autoModeView?.frame.size.width)!, height: (self.autoModeView?.frame.size.height)! * 0.55), parameterModel: self.editParameterModel!)
+                        let editAutoModeView = EditAutoModeView(frame: CGRect(x: 0, y: (self.autoModeView?.frame.size.height)!, width: (self.autoModeView?.frame.size.width)!, height: (self.autoModeView?.frame.size.height)! * (1.0 - self.polotHeightRatio)), parameterModel: self.editParameterModel!)
                         self.autoModeView?.addSubview(editAutoModeView)
                         
                         editAutoModeView.timePointValueChangedBlock = {
@@ -334,18 +525,95 @@ class ColorSettingViewController: BaseViewController {
                         
                         editAutoModeView.addTimePointBlock = {
                             () in
-                            let addAlertController = UIAlertController.init(title: "请选择时间点", message: "\n\n\n\n\n\n\n", preferredStyle: .alert)
+                            if (self.editParameterModel?.timePointNum)! >= 10 {
+                                // 提示时间点已达上限
+                                let maxTimePointAlertController = UIAlertController.init(title: self.languageManager.getTextForKey(key: "warning"), message: self.languageManager.getTextForKey(key: "maxTimePointNumWarn"), preferredStyle: .alert)
+                                
+                                let confirmAction = UIAlertAction.init(title: self.languageManager.getTextForKey(key: "confirm"), style: .default, handler: nil)
+                                
+                                maxTimePointAlertController.addAction(confirmAction)
+                                
+                                self.present(maxTimePointAlertController, animated: true, completion: nil)
+                                
+                                return
+                            }
                             
-                            addAlertController.view.frame = CGRect(x: 0, y: 0, width: 100, height: 300)
-                            let confirmAction = UIAlertAction.init(title: "确认", style: .default, handler: nil)
+                            let datePickerView = DateTimePickerView.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
                             
-                            addAlertController.addAction(confirmAction)
+                            datePickerView.confirmBlock = {
+                                (timeStr: String) in
+                                // 找到指定位置插入时间点，并插入默认颜色值
+                                let timeIndex = String.converTimeStrToMinute(timeStr: String.convertFormatTimeToHexTime(timeStr: timeStr))
+                                var positionIndex = 0
+                                for timePointStr in (self.editParameterModel?.timePointArray)! {
+                                    if timeIndex! > String.converTimeStrToMinute(timeStr: timePointStr)! {
+                                        positionIndex = positionIndex + 1
+                                        continue
+                                    }
+                                }
+                                
+                                self.editParameterModel?.timePointNum = (self.editParameterModel?.timePointNum)! + 1
+                                self.editParameterModel?.timePointArray.insert(String.convertFormatTimeToHexTime(timeStr: timeStr), at: positionIndex)
+                                var defaultColorStr = ""
+                                for _ in 0..<(self.editParameterModel?.channelNum)! {
+                                    defaultColorStr.append("00")
+                                }
+                                
+                                self.editParameterModel?.timePointValueArray.insert(defaultColorStr, at: positionIndex)
+                                
+                                // 刷新曲线图
+                                self.plotView?.dataPointArray = (self.editParameterModel?.generateLinePoint())!
+                                self.plotView?.refreshPlot()
+                                
+                                // 刷新时间点列表
+                                editAutoModeView.currentTimePointIndex = positionIndex
+                                editAutoModeView.timePointTableView.reloadData()
+                            }
                             
-                            let datePicker = UIDatePicker.init(frame: CGRect(x: 0, y: 0, width: addAlertController.view.bounds.size.width, height: 300))
+                            self.view.addSubview(datePickerView)
+                        }
+                        
+                        editAutoModeView.deleteTimePointBlock = {
+                            (timePointIndex: Int) in
+                            if (self.editParameterModel?.timePointNum)! <= 4 {
+                                // 提示时间点已达下限
+                                let maxTimePointAlertController = UIAlertController.init(title: self.languageManager.getTextForKey(key: "warning"), message: self.languageManager.getTextForKey(key: "minTimePointNumWarn"), preferredStyle: .alert)
+                                
+                                let confirmAction = UIAlertAction.init(title: self.languageManager.getTextForKey(key: "confirm"), style: .default, handler: nil)
+                                
+                                maxTimePointAlertController.addAction(confirmAction)
+                                
+                                self.present(maxTimePointAlertController, animated: true, completion: nil)
+                                
+                                return
+                            }
                             
-                            addAlertController.view.addSubview(datePicker)
+                            // 确认删除
+                            let confirmDeleteTimePointAlertController = UIAlertController.init(title: self.languageManager.getTextForKey(key: "deleteTimePointTitle"), message: String.init(format: "%@: %@?", self.languageManager.getTextForKey(key: "confirmdeleteTimePointMessage"), String.convertHexTimeToFormatTime(hexTimeStr: (self.editParameterModel?.timePointArray[timePointIndex])!)), preferredStyle: .alert)
                             
-                            self.present(addAlertController, animated: true, completion: nil)
+                            let cancelDeleteAction = UIAlertAction.init(title: self.languageManager.getTextForKey(key: "cancel"), style: .default, handler: nil)
+                            
+                            let confirmDeleteAction = UIAlertAction.init(title: self.languageManager.getTextForKey(key: "confirm"), style: .default, handler: { (action) in
+                                if timePointIndex == ((self.editParameterModel?.timePointNum)! - 1) {
+                                    editAutoModeView.currentTimePointIndex = timePointIndex - 1
+                                }
+                                
+                                self.editParameterModel?.timePointNum = (self.editParameterModel?.timePointNum)! - 1
+                                self.editParameterModel?.timePointArray.remove(at: timePointIndex)
+                                self.editParameterModel?.timePointValueArray.remove(at: timePointIndex)
+                                
+                                // 刷新曲线图
+                                self.plotView?.dataPointArray = (self.editParameterModel?.generateLinePoint())!
+                                self.plotView?.refreshPlot()
+                                
+                                // 刷新时间点列表
+                                editAutoModeView.timePointTableView.reloadData()
+                            })
+                            
+                            confirmDeleteTimePointAlertController.addAction(cancelDeleteAction)
+                            confirmDeleteTimePointAlertController.addAction(confirmDeleteAction)
+                            
+                            self.present(confirmDeleteTimePointAlertController, animated: true, completion: nil)
                         }
                         
                         editAutoModeView.cancelSaveBlock = {
@@ -366,14 +634,12 @@ class ColorSettingViewController: BaseViewController {
                                 commandStr = commandStr.appending((self.editParameterModel?.timePointValueArray[i])!)
                             }
 
-                            self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGUSERDEFINED_COMMAND, isXORCommand: true)
+                            self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGUSERDEFINED_COMMAND, isXORCommand: true, commandInterval: 2.0)
                         }
                         
                         UIView.beginAnimations(nil, context: nil)
                         UIView.setAnimationDuration(1.0)
-                        editAutoModeView.frame = CGRect(x: 0, y: (self.autoModeView?.frame.size.height)! * 0.45, width: editAutoModeView.frame.size.width, height: editAutoModeView.frame.size.height)
-                        self.plotView?.frame = CGRect(x: (self.plotView?.frame.origin.x)!, y: 0, width: (self.plotView?.frame.size.width)!, height: (self.autoModeView?.frame.size.height)! * 0.45)
-                        self.plotView?.refreshPlot()
+                        editAutoModeView.frame = CGRect(x: 0, y: (self.autoModeView?.frame.size.height)! * self.polotHeightRatio, width: editAutoModeView.frame.size.width, height: editAutoModeView.frame.size.height)
                         UIView.commitAnimations()
                     }
             }
@@ -384,7 +650,40 @@ class ColorSettingViewController: BaseViewController {
         } else {
             // 更新自动模式视图
             autoModeView?.isHidden = false
+            self.timePointTableView.reloadData()
         }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (self.editParameterModel?.timePointNum)!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.frame.size.height / 10.0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil {
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
+        }
+        
+        cell?.backgroundColor = UIColor.clear
+        cell?.textLabel?.textColor = UIColor.white
+        cell?.selectionStyle = .none
+        
+        // 显示时间点及百分比
+        cell?.textLabel?.text = String.init(format: "%ld   %@", indexPath.row + 1, String.convertHexTimeToFormatTime(hexTimeStr: (self.editParameterModel?.timePointArray[indexPath.row])!))
+        for i in 0..<(self.editParameterModel?.channelNum)! {
+            let percent = Float(((self.editParameterModel?.timePointValueArray[indexPath.row])! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexaToDecimal) / 250.0 * 100.0
+            cell?.textLabel?.text = String.init(format: "%10@ %5.0f%%", (cell?.textLabel?.text)!, percent)
+        }
+        
+        return cell!
     }
     
     /// 开始预览功能
@@ -405,7 +704,7 @@ class ColorSettingViewController: BaseViewController {
                 timeCountIntervalArray.append(timeCountArray[index] - timeCountArray[index - 1])
             }
         }
-
+        
         quickPreviewTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(sendQuickPreviewCommand(timer:)), userInfo: nil, repeats: true)
     }
     
@@ -413,11 +712,12 @@ class ColorSettingViewController: BaseViewController {
     ///
     /// - returns: Void
     func cancelPreview() -> Void {
+        self.plotView?.indicatorLabel.isHidden = true
         if quickPreviewTimer != nil {
             quickPreviewTimer?.invalidate()
             quickPreviewTimer = nil
             
-            self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: CommandHeader.COMMANDHEAD_TWELVE.rawValue, commandType: CommandType.UNKNOWN_COMMAND, isXORCommand: true)
+            self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: CommandHeader.COMMANDHEAD_FIVE.rawValue, commandType: CommandType.ENDPREVIEW_COMMAND, isXORCommand: true)
         }
 
         // 设置按钮文本
@@ -429,9 +729,10 @@ class ColorSettingViewController: BaseViewController {
     ///
     /// - returns: Void
     @objc func sendQuickPreviewCommand(timer: Timer) -> Void {
-        var commandStr = String(CommandHeader.COMMANDHEAD_ELEVEN.rawValue)
+        var commandStr = String(CommandHeader.COMMANDHEAD_FOUR.rawValue)
         
-        // self.autoColorChartView?.hightValue(x: Double(previewCount), index: (self.parameterModel?.channelNum)! - 1)
+        // 更改指示器位置
+        self.plotView?.changeIndicatorLabelPositionWithIndex(xIndex: previewCount)
         
         // 根据 previewCount 计算发送的数值
         commandStr.append((calculateColorValue(previewCount: previewCount)))
@@ -496,7 +797,8 @@ class ColorSettingViewController: BaseViewController {
                 percent = Double((previewCount - timeCountArray[index])) / Double(timeCountIntervalArray[index])
             }
             
-            let colorValue = previewColorDoubleArray[j] / 100.0 * 1000 - ((previewColorDoubleArray[j] - nextColorDoubleArray[j])) / 100.0 * 1000.0 * percent
+            let colorValue = previewColorDoubleArray[j] - ((previewColorDoubleArray[j] - nextColorDoubleArray[j])) * percent
+            // print("colorValue = \(colorValue)")
             
             colorValueStr = colorValueStr.appendingFormat("%04x", Int(colorValue))
         }

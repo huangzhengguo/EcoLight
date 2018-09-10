@@ -11,6 +11,5 @@
 
 #import "BLEManager.h"
 #import "DeviceInfo.h"
-#import "LGAlertView/LGAlertView.h"
 
 #endif /* EcoLight_Bridging_Header_h */

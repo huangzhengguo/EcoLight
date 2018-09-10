@@ -19,6 +19,8 @@ class DeviceModel: NSObject {
     var deviceName: String?
     // 设备类型编码
     var typeCode: String?
+    // 灯具编码
+    var lightCode: String?
     // 设备
     var device: CBPeripheral?
     // MAC地址

@@ -22,7 +22,7 @@ rename = "Rename";
 connect = "Connect";
 connecting = "Connecting";
 connectFailed = "Connect Failed!";
-manualMode = "Manual";
+manualMode = "Man";
 autoMode = "Auto";
 add = "Add";
 save = "Save";
@@ -43,6 +43,15 @@ defaultGroup = "Default Group";
 confirmDelete = "Confirm delete ";
 bluetoothError = "BlueTooth Error";
 blueErrorMessage = "Please open the bluetooth!";
+warning = "warning";
+maxTimePointNumWarn = "Up to 10 time points!";
+minTimePointNumWarn = "At least 4 time points!";
+deleteTimePointTitle = "Delete point";
+confirmdeleteTimePointMessage = "Confirm deletion time point";
+choseTimePoint="Please select a time point";
+import="Import";
+export="Export";
+
 
 
 

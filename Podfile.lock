@@ -1,18 +1,12 @@
 PODS:
   - HGCircularSlider (2.0.0)
-  - LGAlertView (2.0.13)
-  - PopupDialog (0.6.2)
 
 DEPENDENCIES:
   - HGCircularSlider
-  - LGAlertView (~> 2.0.13)
-  - PopupDialog
 
 SPEC CHECKSUMS:
   HGCircularSlider: 92e2ee098c814709f455b8f46cd9008147f6a869
-  LGAlertView: 9a5dcbf4f81b02b718083539d7f222280adc9547
-  PopupDialog: d4336d7274a6aa3af4cb26d8b6691510eba90cc3
 
-PODFILE CHECKSUM: 964cbb937554f3ac53ab80a647bb0eea19b61f23
+PODFILE CHECKSUM: 0151b90d24ce19d3670260af118a07e483e26b55
 
 COCOAPODS: 1.4.0.beta.2

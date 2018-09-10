@@ -100,14 +100,39 @@ extension String {
         return Int(minuteCount)
     }
     
+    /// 转化分钟值为指定格式的时间字符串
+    /// - parameter one:
+    /// - parameter two:
+    ///
+    /// - returns:
+    static func convertMinuteToFormatTimeStr(minutes: Int) -> String {
+        let houtInt = minutes / 60
+        let minuteInt = minutes % 60
+        
+        return String.init(format: "%02ld:%02ld", houtInt, minuteInt)
+    }
+    
+    /// 转化日期值为指定格式的字符串
+    /// - parameter one:
+    /// - parameter two:
+    ///
+    /// - returns:
+    static func convertDateToFormatStr(date: Date, formatStr: String) -> String {
+        let formatter = DateFormatter.init()
+        
+        formatter.dateFormat = formatStr;
+        
+        return formatter.string(from: date)
+    }
+    
     /// 16进制时间字符串格式化 1100 -> 17:00  1212 -> 18:18
     ///
     /// - returns:
-    func convertHexTimeToFormatTime() -> String {
+    static func convertHexTimeToFormatTime(hexTimeStr: String) -> String {
         var index = 0
         var hourStr = ""
         var minuteStr = ""
-        for c in self {
+        for c in hexTimeStr {
             if index < 2 {
                 hourStr.append(c)
             } else {
@@ -123,11 +148,11 @@ extension String {
     /// 16进制时间字符串格式化  17:00 -> 1100 18:18 -> 1212
     ///
     /// - returns:
-    func convertFormatTimeToHexTime() -> String {
+    static func convertFormatTimeToHexTime(timeStr: String) -> String {
         var index = 0
         var hourStr = ""
         var minuteStr = ""
-        for c in self {
+        for c in timeStr {
             if index < 2 {
                 hourStr.append(c)
             } else if index > 2 {
@@ -177,4 +202,11 @@ extension String {
 
         return hexColorStr
     }
+    
+    static func getStringSize(str: NSString, font: UIFont, maxSize: CGSize) -> CGSize {
+        let attrs = [kCTFontAttributeName: font]
+        
+        return str.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: attrs as [NSAttributedStringKey : Any], context: nil).size
+    }
+    
 }

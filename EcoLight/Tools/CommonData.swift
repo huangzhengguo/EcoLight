@@ -14,7 +14,19 @@ enum InledcoNotification: String {
 // 所有类型编码
 enum DeviceTypeCode: String {
     // 旧协议设备类型编码
-    case LIGHT_CODE_STRIP_III = "0111"
+    case ONECHANNEL_CONTROLLER = "0001"
+    case TWOCHANNEL_CONTROLLER = "0002"
+    case THREECHANNEL_CONTROLLER = "0003"
+    case FOURCHANNEL_CONTROLLER = "0004"
+    case FIVECHANNEL_CONTROLLER = "0005"
+    case SIXCHANNEL_CONTROLLER = "0006"
+    
+    // 新类型编码
+    case NEW_DEVICE_CONTROLLER = "9999"
+}
+
+// 灯具类型
+enum LightTypeCode: String {
     case ONECHANNEL_LIGHT = "0001"
     case TWOCHANNEL_LIGHT = "0002"
     case THREECHANNEL_LIGHT = "0003"
@@ -22,6 +34,5 @@ enum DeviceTypeCode: String {
     case FIVECHANNEL_LIGHT = "0005"
     case SIXCHANNEL_LIGHT = "0006"
     
-    // 新类型编码
     case NEW_DEVICE_LIGHT = "9999"
 }

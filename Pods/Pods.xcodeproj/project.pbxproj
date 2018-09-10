@@ -7,191 +7,91 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B2FF1B2137C40C5CFAE179DB790933D /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D322B93528E3B5918BB2CB7A371D59F /* PopupDialogDefaultViewController.swift */; };
-		1030F54E719FBB943CE0A1E32DFC95B6 /* LGAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 079F4E75F554C4738AFB326D54A1124A /* LGAlertView.m */; };
 		11E9400DBC31E7D41DF12E42425C8960 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		124D8257E0D5323494DED29D2BB14FBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		12AB5254C947F809B09ACEDF3D3D3006 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0168759E2F10B5728D60DD60F91EC7 /* TransitionAnimations.swift */; };
-		1550C6C361FBA7208F0B738512FBCCC3 /* HGCircularSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DA88FE9D3B38138CAB834E9E01D6C1E /* HGCircularSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1B114863B20A9893526901CFE2856CFC /* CircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A94B6F93A15B2B03B4A69365C449735 /* CircularSlider.swift */; };
-		1B90546A5D09FE6AC13EC45A670C5702 /* LGAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = 58A6E3F6457551FE735F63376B3D5493 /* LGAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29ED563EE814FE9321092AD24C45CF02 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43E50216E7C78CB24B5108D22FDA7C79 /* FXBlurView.m */; };
-		3743FB755E739B3763927A0B8A251A40 /* PopupDialog+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FA5154B42D9A4FDC1CBF93DE66D7D2 /* PopupDialog+Keyboard.swift */; };
-		40500AD3864E2718C9B28C693DB38AC0 /* LGAlertViewWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B33B3536018C5960B25B6CB1DFFE6B26 /* LGAlertViewWindow.m */; };
-		4AE3689D4BE2F584E094D13609FCA750 /* PopupDialog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C297F6E9D926E64610275BC1F757C9 /* PopupDialog-dummy.m */; };
-		4D93B291AF85EAEDDD3DCFB4754F361C /* LGAlertViewButtonProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 54E650E92068F39E454F568F0538EB2F /* LGAlertViewButtonProperties.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		587B88994DCA98C37A3C42ECE73D6FB6 /* LGAlertViewButtonProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D31182B3106D739061421C53893DA11A /* LGAlertViewButtonProperties.m */; };
-		5A5339633A8C3D007EB306F3C8075397 /* PopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B682D3D2EF6D773B72F00D0D25156E3B /* PopupDialogContainerView.swift */; };
-		5B87677AEB203EC9BB4B8F4DE81CCB0B /* Pods-EcoLight-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2402C7156B1841552E98959EB8EDDB3 /* Pods-EcoLight-dummy.m */; };
-		5D86A3390527DE9804B1EB21B419756A /* LGAlertViewTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CD2AB975700B935EB7E39EB6889BAF /* LGAlertViewTextField.m */; };
+		1550C6C361FBA7208F0B738512FBCCC3 /* HGCircularSlider-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9515F1D4635905B16C0C7AF9DB864136 /* HGCircularSlider-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1B114863B20A9893526901CFE2856CFC /* CircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970EF2977353005EF2E7A8664D47CB2 /* CircularSlider.swift */; };
+		51F8FB86BB2704446C0B7227A4D898D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		5F6FD15685211854FF7B71A59017018D /* Pods-EcoLightUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D5AAB963A04AE7301BC127966117D85 /* Pods-EcoLightUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		611BF5E28D2D7D4E5E55683749C110CF /* LGAlertViewShared.h in Headers */ = {isa = PBXBuildFile; fileRef = BFF18E2466E83900EB12845DA29C811C /* LGAlertViewShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61435528183C4D0DA2721A2A999A20AF /* LGAlertViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = E44846C557C37A98F9D029BE263A5B43 /* LGAlertViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62D21C62E1431A95955B4D4717427111 /* PopupDialog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 902BB776C4EBC7698C71DEE525966F46 /* PopupDialog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65858F1110663D16571A8D09DA44D083 /* RangeCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAC72DC3B88821771FEE0B46EB2B2DE /* RangeCircularSlider.swift */; };
-		6BE505927395C429187B2583F886B7DA /* MidPointCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05916665AB6230754CCF1EBE81D72B13 /* MidPointCircularSlider.swift */; };
-		7570C99550AAEBECC05A711EBE1F485F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		7748BCC0A5B3107D026E9FC1131F81B6 /* LGAlertViewTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 58297620730A3CBCE7232E022EC3EC66 /* LGAlertViewTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		80553B7A7B94570CAB3F4EE891125BCA /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D687FE7818DF9F924C1550D5E59D9665 /* PopupDialog.swift */; };
-		823B75EEA5A24F3F14820082CC0D592C /* LGAlertViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C64CEC3C4AD74AA28E12671FD451D935 /* LGAlertViewCell.m */; };
-		88306CDC00A64BA06ADD733273ABDB63 /* CircularSliderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD7EC5F5F40D14EA4E19E189F37A2C8 /* CircularSliderHelper.swift */; };
+		65858F1110663D16571A8D09DA44D083 /* RangeCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85479D1B8237FCF057B16E87609E0A33 /* RangeCircularSlider.swift */; };
+		6BE505927395C429187B2583F886B7DA /* MidPointCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A489361CBC1A264C98912BE4BA8138 /* MidPointCircularSlider.swift */; };
+		73F5A7BD809CFAB63E869F4E24DD7BE8 /* Pods-EcoLight-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2402C7156B1841552E98959EB8EDDB3 /* Pods-EcoLight-dummy.m */; };
+		88306CDC00A64BA06ADD733273ABDB63 /* CircularSliderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2F80D8409C9B3C5133D26EB2E17E75 /* CircularSliderHelper.swift */; };
 		903F8B3E46245DDABAAB43DCC92810CB /* Pods-EcoLightUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8844B4514883819FC4FE78881A9A1D /* Pods-EcoLightUITests-dummy.m */; };
-		919B7258DAD88CC07EC874E1C1446EE4 /* LGAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D8C331DC0AC566F95862AA6E879A5E /* LGAlertViewController.m */; };
-		9DC477E6A7EBF290D9F479CE067860DB /* LGAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99B6629A5C10AB82A565EDE24A319374 /* LGAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9DC55328F8A1E058C750001F4183FF31 /* HGCircularSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D8DE6783C34939EB3EA1CE694487D2 /* HGCircularSlider-dummy.m */; };
-		A565862E8A65944B12477F8695F7BF57 /* UIWindow+LGAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A61ABB150A7B27632F4129510CBB754 /* UIWindow+LGAlertView.m */; };
+		9DC55328F8A1E058C750001F4183FF31 /* HGCircularSlider-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E69663721F03E0FC6CEE11919ACF487D /* HGCircularSlider-dummy.m */; };
 		A8603FDACBA80410E54E5B1EDDBBF253 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		A93A2FFD97195046177482E0809732CB /* UIImageView+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9CED7FD5DB5F15745EB1FCDB8CBCEF /* UIImageView+Calculations.swift */; };
 		ACDBE1B7CCB3A5C8CADFF68EC230C67E /* Pods-EcoLightTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE694BDFA1DDE2034B2CA6BF40935278 /* Pods-EcoLightTests-dummy.m */; };
-		AEEC365701B15DA635C22EC45EFF5B92 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD09B2BA299D6129A4FB087F35E83B7 /* InteractiveTransition.swift */; };
-		AF4C33AB752DEBD1073DA801D606668D /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F9D6705621F6B2E79908E6255B308B /* UIView+Animations.swift */; };
-		B30004333B1226A024FCB15014661885 /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D75EEACEFD6FE80664DCE40D66F0B8 /* PresentationManager.swift */; };
-		B4C0F7ACC7FDB9D5E3C281C80A0AF2D6 /* PopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F535A7F35A3FDA9675DC8C24C5FE680 /* PopupDialogButton.swift */; };
-		B5DF3C396D929423E440B567FD006AFE /* LGAlertViewWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA7F9B14C5208078E0FBD50F37890FD /* LGAlertViewWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C745784F84BF0F4B78AD91778BCCED70 /* LGAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 62AEFAEA84C130636219882FD205D944 /* LGAlertView-dummy.m */; };
-		C8CC1A6EF4D6ECF7A269C52864FCA0D4 /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A5CD9798D6E97B0C1206DF9F442032 /* UIViewController+Visibility.swift */; };
-		CA20B72EE98B773FA29D8369A247AF26 /* LGAlertViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4812F89E82B6C162289509010A74B8DF /* LGAlertViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CCC4EAE31A95B93050A18F6D9DB970B3 /* Pods-EcoLightTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D16CB3DED50EA3516A7E707E384E8AC2 /* Pods-EcoLightTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D39ECE89A35B360AC4D2C62F83FF4B51 /* PopupDialogDefaultButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96429E007A4096EADE74ADA1F5514BA /* PopupDialogDefaultButtons.swift */; };
-		E6284DA4CB6F29034086E66F7CA2A8B5 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162E65C86C839FCB49FC454C77C95AD9 /* PresentationController.swift */; };
-		E8724BE4FA66077932C52D1FB3972B38 /* PopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEBC59C6A27D236DC3F65D4E3BE687C /* PopupDialogOverlayView.swift */; };
-		E8849847BFAD612B90C207E52CFD1478 /* CircularSlider+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CD6041200FA77F847D6A8D0AE50AE6 /* CircularSlider+Draw.swift */; };
-		EA6DFC65CBAF9B3B2B8551FC296FC8B7 /* FXBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E829007EACC7DCA1A38A6D16C29ECD1 /* FXBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EBBBCCF2B8AF803098D9173FB27098BE /* Pods-EcoLight-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E8AD58EFBCFCED65085CC39B57F3DF /* Pods-EcoLight-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ED2C2A2B32C1E87FBAFDDABD555B52CC /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA45AC8217935DCC02C7A8A6AEEE8C96 /* TransitionAnimator.swift */; };
-		F263F843D433C47942B23CF8FD00A4F5 /* UIWindow+LGAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BCBFEF0A340587E78206EA551C4B940 /* UIWindow+LGAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F48BFFC9A9C1C9D385D8862FC9BBFE72 /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D9BDA5BB2819B68B3FCF03E6EB6D48 /* PopupDialogDefaultView.swift */; };
+		E8849847BFAD612B90C207E52CFD1478 /* CircularSlider+Draw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A3CEA9CC9BDD1BFEF331D5EBB60E0 /* CircularSlider+Draw.swift */; };
 		F9C59CBA1AF073727CE23EF7C453AA03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		FB997EFE72A0C94F633F989696B16BE8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		FBD406C1B553C2DD14C59091CCC3044C /* Pods-EcoLight-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E8AD58EFBCFCED65085CC39B57F3DF /* Pods-EcoLight-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		405AAF50DBFB763C00656B5B78D1106E /* PBXContainerItemProxy */ = {
+		3CE2BA9CC804AB5B26203441125FAC0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 01E9FE51F89215D0FFFCF2A90DD7B4B8;
 			remoteInfo = HGCircularSlider;
 		};
-		50CC13B5D681AB177E2E0D47C8C1D756 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 48D674E62A82365C13721DAE2917EA33;
-			remoteInfo = LGAlertView;
-		};
-		89B378E3FD065892706DC0E8CE20C39D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D8DE138D03EF9BD718221F0BBD4F2B9B;
-			remoteInfo = PopupDialog;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05916665AB6230754CCF1EBE81D72B13 /* MidPointCircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MidPointCircularSlider.swift; path = HGCircularSlider/Classes/MidPointCircularSlider.swift; sourceTree = "<group>"; };
-		079F4E75F554C4738AFB326D54A1124A /* LGAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGAlertView.m; path = LGAlertView/LGAlertView.m; sourceTree = "<group>"; };
 		0A782C091D0153E112D17917E70F1177 /* Pods-EcoLight.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-EcoLight.modulemap"; sourceTree = "<group>"; };
 		0B4BD5025F07DC00CF0FACEBB085D3BB /* Pods-EcoLightUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EcoLightUITests.release.xcconfig"; sourceTree = "<group>"; };
-		0F535A7F35A3FDA9675DC8C24C5FE680 /* PopupDialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogButton.swift; path = PopupDialog/Classes/PopupDialogButton.swift; sourceTree = "<group>"; };
 		104EEE70635FED39DE66EB4462E91788 /* Pods-EcoLightUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EcoLightUITests-frameworks.sh"; sourceTree = "<group>"; };
 		1506502A7E13A19A54CF527099A15B83 /* Pods-EcoLight-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EcoLight-frameworks.sh"; sourceTree = "<group>"; };
-		162E65C86C839FCB49FC454C77C95AD9 /* PresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationController.swift; path = PopupDialog/Classes/PresentationController.swift; sourceTree = "<group>"; };
-		191A79E67C51E8B9BC51F89FC34B7EFE /* PopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PopupDialog.framework; path = PopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		191F1371254DC1DE9EC6ACBF66E4FF33 /* LGAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = LGAlertView.modulemap; sourceTree = "<group>"; };
 		1B776EF4268626158250D556E93F8FC2 /* Pods-EcoLightTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EcoLightTests-frameworks.sh"; sourceTree = "<group>"; };
 		1D5AAB963A04AE7301BC127966117D85 /* Pods-EcoLightUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EcoLightUITests-umbrella.h"; sourceTree = "<group>"; };
-		1DA88FE9D3B38138CAB834E9E01D6C1E /* HGCircularSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HGCircularSlider-umbrella.h"; sourceTree = "<group>"; };
-		20621EF595F98D100B1C861E349D50AF /* Pods_EcoLightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EcoLightTests.framework; path = "Pods-EcoLightTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		23084E9CD0B7FA7B60A5DE4C398B1F5F /* PopupDialog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-prefix.pch"; sourceTree = "<group>"; };
-		23E5D415D3B23EDB74AA4832219E88AC /* HGCircularSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HGCircularSlider.framework; path = HGCircularSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		25950F2D9EE6E0D653AA3AD8B4235901 /* LGAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LGAlertView-prefix.pch"; sourceTree = "<group>"; };
-		26CD2AB975700B935EB7E39EB6889BAF /* LGAlertViewTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGAlertViewTextField.m; path = LGAlertView/LGAlertViewTextField.m; sourceTree = "<group>"; };
-		2BCBFEF0A340587E78206EA551C4B940 /* UIWindow+LGAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIWindow+LGAlertView.h"; path = "LGAlertView/UIWindow+LGAlertView.h"; sourceTree = "<group>"; };
-		32C297F6E9D926E64610275BC1F757C9 /* PopupDialog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopupDialog-dummy.m"; sourceTree = "<group>"; };
-		3A61ABB150A7B27632F4129510CBB754 /* UIWindow+LGAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWindow+LGAlertView.m"; path = "LGAlertView/UIWindow+LGAlertView.m"; sourceTree = "<group>"; };
+		23F0CAEB6C469CE87850BC2B2F6DAC50 /* HGCircularSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = HGCircularSlider.modulemap; sourceTree = "<group>"; };
+		254DF51F70C7AC32AB98CC491686C604 /* HGCircularSlider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HGCircularSlider.xcconfig; sourceTree = "<group>"; };
 		3C3ACDB75B09AFC09AEF5B4B45311E93 /* Pods-EcoLight-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EcoLight-acknowledgements.plist"; sourceTree = "<group>"; };
 		3F9EC4AD472F4CAD406A144DB9BE0B44 /* Pods-EcoLightTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EcoLightTests-resources.sh"; sourceTree = "<group>"; };
-		43CD6041200FA77F847D6A8D0AE50AE6 /* CircularSlider+Draw.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CircularSlider+Draw.swift"; path = "HGCircularSlider/Classes/CircularSlider+Draw.swift"; sourceTree = "<group>"; };
-		43E50216E7C78CB24B5108D22FDA7C79 /* FXBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FXBlurView.m; path = PopupDialog/Classes/FXBlurView.m; sourceTree = "<group>"; };
-		47B0321DDD4BC682E387A6558CFD2212 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4812F89E82B6C162289509010A74B8DF /* LGAlertViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGAlertViewController.h; path = LGAlertView/LGAlertViewController.h; sourceTree = "<group>"; };
+		471008D0805586845C56053A82776EBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A7E056A77372A668E90FB412FF9ED62 /* HGCircularSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HGCircularSlider-prefix.pch"; sourceTree = "<group>"; };
 		4B8844B4514883819FC4FE78881A9A1D /* Pods-EcoLightUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EcoLightUITests-dummy.m"; sourceTree = "<group>"; };
 		5059E170A311429FF0BCDC9901C8CC48 /* Pods-EcoLightUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EcoLightUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		54E650E92068F39E454F568F0538EB2F /* LGAlertViewButtonProperties.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGAlertViewButtonProperties.h; path = LGAlertView/LGAlertViewButtonProperties.h; sourceTree = "<group>"; };
-		57D8DE6783C34939EB3EA1CE694487D2 /* HGCircularSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HGCircularSlider-dummy.m"; sourceTree = "<group>"; };
-		58297620730A3CBCE7232E022EC3EC66 /* LGAlertViewTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGAlertViewTextField.h; path = LGAlertView/LGAlertViewTextField.h; sourceTree = "<group>"; };
-		58A6E3F6457551FE735F63376B3D5493 /* LGAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGAlertView.h; path = LGAlertView/LGAlertView.h; sourceTree = "<group>"; };
-		59F9D6705621F6B2E79908E6255B308B /* UIView+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "PopupDialog/Classes/UIView+Animations.swift"; sourceTree = "<group>"; };
-		5A94B6F93A15B2B03B4A69365C449735 /* CircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularSlider.swift; path = HGCircularSlider/Classes/CircularSlider.swift; sourceTree = "<group>"; };
-		5C334A1E5FA123C8B7642C71DB8A2D67 /* LGAlertView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LGAlertView.xcconfig; sourceTree = "<group>"; };
+		5A2F80D8409C9B3C5133D26EB2E17E75 /* CircularSliderHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularSliderHelper.swift; path = HGCircularSlider/Classes/CircularSliderHelper.swift; sourceTree = "<group>"; };
 		61C54CC0BED128EBA0C51521A5AB229C /* Pods-EcoLight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EcoLight.release.xcconfig"; sourceTree = "<group>"; };
-		62AEFAEA84C130636219882FD205D944 /* LGAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LGAlertView-dummy.m"; sourceTree = "<group>"; };
 		656E0088C900E5772F467B50AD64CFDF /* Pods-EcoLightUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EcoLightUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6D0168759E2F10B5728D60DD60F91EC7 /* TransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimations.swift; path = PopupDialog/Classes/TransitionAnimations.swift; sourceTree = "<group>"; };
 		6DD3B4CF61468ED8A91AD7781E83FD42 /* Pods-EcoLightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EcoLightTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6EAC72DC3B88821771FEE0B46EB2B2DE /* RangeCircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeCircularSlider.swift; path = HGCircularSlider/Classes/RangeCircularSlider.swift; sourceTree = "<group>"; };
 		78AF4132F2F2EB43DE985546B14BF18A /* Pods-EcoLightUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EcoLightUITests-resources.sh"; sourceTree = "<group>"; };
-		7D322B93528E3B5918BB2CB7A371D59F /* PopupDialogDefaultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultViewController.swift; path = PopupDialog/Classes/PopupDialogDefaultViewController.swift; sourceTree = "<group>"; };
-		7D957BEC7DB70B8AA6FF96E5E787ED96 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7EA7F9B14C5208078E0FBD50F37890FD /* LGAlertViewWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGAlertViewWindow.h; path = LGAlertView/LGAlertViewWindow.h; sourceTree = "<group>"; };
+		790A3CEA9CC9BDD1BFEF331D5EBB60E0 /* CircularSlider+Draw.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CircularSlider+Draw.swift"; path = "HGCircularSlider/Classes/CircularSlider+Draw.swift"; sourceTree = "<group>"; };
+		7BE093B964545C4FD2A023B8AADD31AF /* HGCircularSlider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HGCircularSlider.framework; path = HGCircularSlider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8411A35569F20ACE30F21F3B31269684 /* Pods_EcoLightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EcoLightUITests.framework; path = "Pods-EcoLightUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8492B89F7AAC0450A38BFE9530B0AD31 /* Pods-EcoLightUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-EcoLightUITests.modulemap"; sourceTree = "<group>"; };
+		85479D1B8237FCF057B16E87609E0A33 /* RangeCircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RangeCircularSlider.swift; path = HGCircularSlider/Classes/RangeCircularSlider.swift; sourceTree = "<group>"; };
 		8571AEC143A760FB4C7E3D1E9ED8EA94 /* Pods-EcoLight-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EcoLight-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8572B8F70E20D18334D6AF6E29F787CE /* LGAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LGAlertView.framework; path = LGAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85AFD399B5A745F35F5649E849C9AD9F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87E8AD58EFBCFCED65085CC39B57F3DF /* Pods-EcoLight-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EcoLight-umbrella.h"; sourceTree = "<group>"; };
+		89DD125AAD86403DA1157A9F41BE6ADF /* Pods_EcoLight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EcoLight.framework; path = "Pods-EcoLight.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C3610631BEF1DD17C3619913979F3DC /* Pods-EcoLightTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-EcoLightTests.modulemap"; sourceTree = "<group>"; };
-		8E829007EACC7DCA1A38A6D16C29ECD1 /* FXBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FXBlurView.h; path = PopupDialog/Classes/FXBlurView.h; sourceTree = "<group>"; };
-		8F4FCAE8E723E0075C15BEE4B705EB96 /* HGCircularSlider-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HGCircularSlider-prefix.pch"; sourceTree = "<group>"; };
-		8FEBC59C6A27D236DC3F65D4E3BE687C /* PopupDialogOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogOverlayView.swift; path = PopupDialog/Classes/PopupDialogOverlayView.swift; sourceTree = "<group>"; };
-		902BB776C4EBC7698C71DEE525966F46 /* PopupDialog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-umbrella.h"; sourceTree = "<group>"; };
-		90D8C331DC0AC566F95862AA6E879A5E /* LGAlertViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGAlertViewController.m; path = LGAlertView/LGAlertViewController.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9515F1D4635905B16C0C7AF9DB864136 /* HGCircularSlider-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HGCircularSlider-umbrella.h"; sourceTree = "<group>"; };
 		962FDD0AA2F9DD45812B5B7A4830A8CF /* Pods-EcoLightUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EcoLightUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		99B6629A5C10AB82A565EDE24A319374 /* LGAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LGAlertView-umbrella.h"; sourceTree = "<group>"; };
 		A2402C7156B1841552E98959EB8EDDB3 /* Pods-EcoLight-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EcoLight-dummy.m"; sourceTree = "<group>"; };
 		A3DAEFF65BBC2219BB865DC1D8815AF3 /* Pods-EcoLightTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-EcoLightTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A638D151289C3CFF7C919D7BD050010D /* Pods-EcoLightTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EcoLightTests.release.xcconfig"; sourceTree = "<group>"; };
-		A9D9BDA5BB2819B68B3FCF03E6EB6D48 /* PopupDialogDefaultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultView.swift; path = PopupDialog/Classes/PopupDialogDefaultView.swift; sourceTree = "<group>"; };
-		AA45AC8217935DCC02C7A8A6AEEE8C96 /* TransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimator.swift; path = PopupDialog/Classes/TransitionAnimator.swift; sourceTree = "<group>"; };
-		AF4F99D188E3F675049E51425C610422 /* HGCircularSlider.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HGCircularSlider.xcconfig; sourceTree = "<group>"; };
-		AFD7EC5F5F40D14EA4E19E189F37A2C8 /* CircularSliderHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularSliderHelper.swift; path = HGCircularSlider/Classes/CircularSliderHelper.swift; sourceTree = "<group>"; };
-		B33B3536018C5960B25B6CB1DFFE6B26 /* LGAlertViewWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGAlertViewWindow.m; path = LGAlertView/LGAlertViewWindow.m; sourceTree = "<group>"; };
-		B5FA5154B42D9A4FDC1CBF93DE66D7D2 /* PopupDialog+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PopupDialog+Keyboard.swift"; path = "PopupDialog/Classes/PopupDialog+Keyboard.swift"; sourceTree = "<group>"; };
-		B682D3D2EF6D773B72F00D0D25156E3B /* PopupDialogContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogContainerView.swift; path = PopupDialog/Classes/PopupDialogContainerView.swift; sourceTree = "<group>"; };
-		B7D75EEACEFD6FE80664DCE40D66F0B8 /* PresentationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationManager.swift; path = PopupDialog/Classes/PresentationManager.swift; sourceTree = "<group>"; };
-		BFF18E2466E83900EB12845DA29C811C /* LGAlertViewShared.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGAlertViewShared.h; path = LGAlertView/LGAlertViewShared.h; sourceTree = "<group>"; };
-		C64CEC3C4AD74AA28E12671FD451D935 /* LGAlertViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGAlertViewCell.m; path = LGAlertView/LGAlertViewCell.m; sourceTree = "<group>"; };
-		C753709A944282B148D6B74E7BDE310B /* PopupDialog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PopupDialog.modulemap; sourceTree = "<group>"; };
+		C2A489361CBC1A264C98912BE4BA8138 /* MidPointCircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MidPointCircularSlider.swift; path = HGCircularSlider/Classes/MidPointCircularSlider.swift; sourceTree = "<group>"; };
 		C7D31DA9E4D08B5927A0A2BF5DCFC2F8 /* Pods-EcoLight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-EcoLight.debug.xcconfig"; sourceTree = "<group>"; };
-		C96429E007A4096EADE74ADA1F5514BA /* PopupDialogDefaultButtons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultButtons.swift; path = PopupDialog/Classes/PopupDialogDefaultButtons.swift; sourceTree = "<group>"; };
-		CFD09B2BA299D6129A4FB087F35E83B7 /* InteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InteractiveTransition.swift; path = PopupDialog/Classes/InteractiveTransition.swift; sourceTree = "<group>"; };
+		C970EF2977353005EF2E7A8664D47CB2 /* CircularSlider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircularSlider.swift; path = HGCircularSlider/Classes/CircularSlider.swift; sourceTree = "<group>"; };
 		D16CB3DED50EA3516A7E707E384E8AC2 /* Pods-EcoLightTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-EcoLightTests-umbrella.h"; sourceTree = "<group>"; };
-		D31182B3106D739061421C53893DA11A /* LGAlertViewButtonProperties.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LGAlertViewButtonProperties.m; path = LGAlertView/LGAlertViewButtonProperties.m; sourceTree = "<group>"; };
 		D55CE5986C22AA3FE97BC1E3B7DAED21 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D687FE7818DF9F924C1550D5E59D9665 /* PopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialog.swift; path = PopupDialog/Classes/PopupDialog.swift; sourceTree = "<group>"; };
 		DD407205CC89FF6329027E338510B431 /* Pods-EcoLight-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-EcoLight-resources.sh"; sourceTree = "<group>"; };
 		E084FFFEB9A7ACB98DA8B1B5A7152028 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E0A5CD9798D6E97B0C1206DF9F442032 /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Visibility.swift"; path = "PopupDialog/Classes/UIViewController+Visibility.swift"; sourceTree = "<group>"; };
 		E26A51C969BEB0F365234CCA97CBA307 /* Pods-EcoLightTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-EcoLightTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		E44846C557C37A98F9D029BE263A5B43 /* LGAlertViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LGAlertViewCell.h; path = LGAlertView/LGAlertViewCell.h; sourceTree = "<group>"; };
-		E5A4CA9C698C4843D943B4CB206B96C2 /* Pods_EcoLight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EcoLight.framework; path = "Pods-EcoLight.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E69663721F03E0FC6CEE11919ACF487D /* HGCircularSlider-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HGCircularSlider-dummy.m"; sourceTree = "<group>"; };
 		EE694BDFA1DDE2034B2CA6BF40935278 /* Pods-EcoLightTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-EcoLightTests-dummy.m"; sourceTree = "<group>"; };
-		EE9CED7FD5DB5F15745EB1FCDB8CBCEF /* UIImageView+Calculations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Calculations.swift"; path = "PopupDialog/Classes/UIImageView+Calculations.swift"; sourceTree = "<group>"; };
-		EF90B3AF5B1D048F7B97618327D177E4 /* PopupDialog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopupDialog.xcconfig; sourceTree = "<group>"; };
-		F62A15B25B357CB2FBB54C20497D220F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F7890442D992078AC472F72AEEA887F6 /* Pods_EcoLightUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EcoLightUITests.framework; path = "Pods-EcoLightUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F96F2E03C55DAA5CEDDDF52C266CFFD6 /* HGCircularSlider.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = HGCircularSlider.modulemap; sourceTree = "<group>"; };
+		FE180E4C1B711A32534E6243E127C03F /* Pods_EcoLightTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_EcoLightTests.framework; path = "Pods-EcoLightTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2B9343C30F8FF316E6C26E0CB37EB515 /* Frameworks */ = {
+		1E81CD8F5D2C85D71600D6AFE8AEAB0E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				124D8257E0D5323494DED29D2BB14FBB /* Foundation.framework in Frameworks */,
+				51F8FB86BB2704446C0B7227A4D898D2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,50 +119,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AA3A9F665D763D1267CAE3E2ED4C8277 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB997EFE72A0C94F633F989696B16BE8 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D49221B9694179E6CF02485AC2DA582D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7570C99550AAEBECC05A711EBE1F485F /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04A51EE1965EE1BA9D1C91EF6E86FD74 /* Products */ = {
+		03A7C02087C1F2EF52400175A432CFB4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				23E5D415D3B23EDB74AA4832219E88AC /* HGCircularSlider.framework */,
-				8572B8F70E20D18334D6AF6E29F787CE /* LGAlertView.framework */,
-				E5A4CA9C698C4843D943B4CB206B96C2 /* Pods_EcoLight.framework */,
-				20621EF595F98D100B1C861E349D50AF /* Pods_EcoLightTests.framework */,
-				F7890442D992078AC472F72AEEA887F6 /* Pods_EcoLightUITests.framework */,
-				191A79E67C51E8B9BC51F89FC34B7EFE /* PopupDialog.framework */,
+				7BE093B964545C4FD2A023B8AADD31AF /* HGCircularSlider.framework */,
+				89DD125AAD86403DA1157A9F41BE6ADF /* Pods_EcoLight.framework */,
+				FE180E4C1B711A32534E6243E127C03F /* Pods_EcoLightTests.framework */,
+				8411A35569F20ACE30F21F3B31269684 /* Pods_EcoLightUITests.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1B888C00DE88FF5536872070FB67271B /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F96F2E03C55DAA5CEDDDF52C266CFFD6 /* HGCircularSlider.modulemap */,
-				AF4F99D188E3F675049E51425C610422 /* HGCircularSlider.xcconfig */,
-				57D8DE6783C34939EB3EA1CE694487D2 /* HGCircularSlider-dummy.m */,
-				8F4FCAE8E723E0075C15BEE4B705EB96 /* HGCircularSlider-prefix.pch */,
-				1DA88FE9D3B38138CAB834E9E01D6C1E /* HGCircularSlider-umbrella.h */,
-				47B0321DDD4BC682E387A6558CFD2212 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/HGCircularSlider";
 			sourceTree = "<group>";
 		};
 		2EB901094B33FE0237094FB31B15FCC2 /* Targets Support Files */ = {
@@ -275,18 +143,12 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		35AE5D70CCF1A6C6932421BF3ADDB8B2 /* Support Files */ = {
+		3322541322DCCC1DB9249064C30DE829 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F62A15B25B357CB2FBB54C20497D220F /* Info.plist */,
-				191F1371254DC1DE9EC6ACBF66E4FF33 /* LGAlertView.modulemap */,
-				5C334A1E5FA123C8B7642C71DB8A2D67 /* LGAlertView.xcconfig */,
-				62AEFAEA84C130636219882FD205D944 /* LGAlertView-dummy.m */,
-				25950F2D9EE6E0D653AA3AD8B4235901 /* LGAlertView-prefix.pch */,
-				99B6629A5C10AB82A565EDE24A319374 /* LGAlertView-umbrella.h */,
+				5DD99463E6F90422ACFE7492C920FC55 /* HGCircularSlider */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/LGAlertView";
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		4964DDD334B68564CE5F21DA57F202B0 /* Pods-EcoLightUITests */ = {
@@ -307,13 +169,41 @@
 			path = "Target Support Files/Pods-EcoLightUITests";
 			sourceTree = "<group>";
 		};
+		52FE24C46760021674EBCB4900E65744 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				23F0CAEB6C469CE87850BC2B2F6DAC50 /* HGCircularSlider.modulemap */,
+				254DF51F70C7AC32AB98CC491686C604 /* HGCircularSlider.xcconfig */,
+				E69663721F03E0FC6CEE11919ACF487D /* HGCircularSlider-dummy.m */,
+				4A7E056A77372A668E90FB412FF9ED62 /* HGCircularSlider-prefix.pch */,
+				9515F1D4635905B16C0C7AF9DB864136 /* HGCircularSlider-umbrella.h */,
+				471008D0805586845C56053A82776EBC /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/HGCircularSlider";
+			sourceTree = "<group>";
+		};
+		5DD99463E6F90422ACFE7492C920FC55 /* HGCircularSlider */ = {
+			isa = PBXGroup;
+			children = (
+				C970EF2977353005EF2E7A8664D47CB2 /* CircularSlider.swift */,
+				790A3CEA9CC9BDD1BFEF331D5EBB60E0 /* CircularSlider+Draw.swift */,
+				5A2F80D8409C9B3C5133D26EB2E17E75 /* CircularSliderHelper.swift */,
+				C2A489361CBC1A264C98912BE4BA8138 /* MidPointCircularSlider.swift */,
+				85479D1B8237FCF057B16E87609E0A33 /* RangeCircularSlider.swift */,
+				52FE24C46760021674EBCB4900E65744 /* Support Files */,
+			);
+			name = HGCircularSlider;
+			path = HGCircularSlider;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				919AC051DDE5A9EAE6C3B56D9C0969D0 /* Pods */,
-				04A51EE1965EE1BA9D1C91EF6E86FD74 /* Products */,
+				3322541322DCCC1DB9249064C30DE829 /* Pods */,
+				03A7C02087C1F2EF52400175A432CFB4 /* Products */,
 				2EB901094B33FE0237094FB31B15FCC2 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -336,40 +226,6 @@
 			path = "Target Support Files/Pods-EcoLight";
 			sourceTree = "<group>";
 		};
-		919AC051DDE5A9EAE6C3B56D9C0969D0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E9C5D60B7E3D8A12DFB957601A6BBF3D /* HGCircularSlider */,
-				97E12A65776516C9D2D8EEB580AF3D99 /* LGAlertView */,
-				DF754A0812CDDFD8DAB3145DF9517192 /* PopupDialog */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		97E12A65776516C9D2D8EEB580AF3D99 /* LGAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				58A6E3F6457551FE735F63376B3D5493 /* LGAlertView.h */,
-				079F4E75F554C4738AFB326D54A1124A /* LGAlertView.m */,
-				54E650E92068F39E454F568F0538EB2F /* LGAlertViewButtonProperties.h */,
-				D31182B3106D739061421C53893DA11A /* LGAlertViewButtonProperties.m */,
-				E44846C557C37A98F9D029BE263A5B43 /* LGAlertViewCell.h */,
-				C64CEC3C4AD74AA28E12671FD451D935 /* LGAlertViewCell.m */,
-				4812F89E82B6C162289509010A74B8DF /* LGAlertViewController.h */,
-				90D8C331DC0AC566F95862AA6E879A5E /* LGAlertViewController.m */,
-				BFF18E2466E83900EB12845DA29C811C /* LGAlertViewShared.h */,
-				58297620730A3CBCE7232E022EC3EC66 /* LGAlertViewTextField.h */,
-				26CD2AB975700B935EB7E39EB6889BAF /* LGAlertViewTextField.m */,
-				7EA7F9B14C5208078E0FBD50F37890FD /* LGAlertViewWindow.h */,
-				B33B3536018C5960B25B6CB1DFFE6B26 /* LGAlertViewWindow.m */,
-				2BCBFEF0A340587E78206EA551C4B940 /* UIWindow+LGAlertView.h */,
-				3A61ABB150A7B27632F4129510CBB754 /* UIWindow+LGAlertView.m */,
-				35AE5D70CCF1A6C6932421BF3ADDB8B2 /* Support Files */,
-			);
-			name = LGAlertView;
-			path = LGAlertView;
-			sourceTree = "<group>";
-		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,53 +234,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C9B7501614C40228D4A8EA6A4140C669 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				7D957BEC7DB70B8AA6FF96E5E787ED96 /* Info.plist */,
-				C753709A944282B148D6B74E7BDE310B /* PopupDialog.modulemap */,
-				EF90B3AF5B1D048F7B97618327D177E4 /* PopupDialog.xcconfig */,
-				32C297F6E9D926E64610275BC1F757C9 /* PopupDialog-dummy.m */,
-				23084E9CD0B7FA7B60A5DE4C398B1F5F /* PopupDialog-prefix.pch */,
-				902BB776C4EBC7698C71DEE525966F46 /* PopupDialog-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/PopupDialog";
-			sourceTree = "<group>";
-		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		DF754A0812CDDFD8DAB3145DF9517192 /* PopupDialog */ = {
-			isa = PBXGroup;
-			children = (
-				8E829007EACC7DCA1A38A6D16C29ECD1 /* FXBlurView.h */,
-				43E50216E7C78CB24B5108D22FDA7C79 /* FXBlurView.m */,
-				CFD09B2BA299D6129A4FB087F35E83B7 /* InteractiveTransition.swift */,
-				D687FE7818DF9F924C1550D5E59D9665 /* PopupDialog.swift */,
-				B5FA5154B42D9A4FDC1CBF93DE66D7D2 /* PopupDialog+Keyboard.swift */,
-				0F535A7F35A3FDA9675DC8C24C5FE680 /* PopupDialogButton.swift */,
-				B682D3D2EF6D773B72F00D0D25156E3B /* PopupDialogContainerView.swift */,
-				C96429E007A4096EADE74ADA1F5514BA /* PopupDialogDefaultButtons.swift */,
-				A9D9BDA5BB2819B68B3FCF03E6EB6D48 /* PopupDialogDefaultView.swift */,
-				7D322B93528E3B5918BB2CB7A371D59F /* PopupDialogDefaultViewController.swift */,
-				8FEBC59C6A27D236DC3F65D4E3BE687C /* PopupDialogOverlayView.swift */,
-				162E65C86C839FCB49FC454C77C95AD9 /* PresentationController.swift */,
-				B7D75EEACEFD6FE80664DCE40D66F0B8 /* PresentationManager.swift */,
-				6D0168759E2F10B5728D60DD60F91EC7 /* TransitionAnimations.swift */,
-				AA45AC8217935DCC02C7A8A6AEEE8C96 /* TransitionAnimator.swift */,
-				EE9CED7FD5DB5F15745EB1FCDB8CBCEF /* UIImageView+Calculations.swift */,
-				59F9D6705621F6B2E79908E6255B308B /* UIView+Animations.swift */,
-				E0A5CD9798D6E97B0C1206DF9F442032 /* UIViewController+Visibility.swift */,
-				C9B7501614C40228D4A8EA6A4140C669 /* Support Files */,
-			);
-			name = PopupDialog;
-			path = PopupDialog;
 			sourceTree = "<group>";
 		};
 		E0F1A5567C3E3318C793F4AAE16679A3 /* Pods-EcoLightTests */ = {
@@ -445,23 +260,17 @@
 			path = "Target Support Files/Pods-EcoLightTests";
 			sourceTree = "<group>";
 		};
-		E9C5D60B7E3D8A12DFB957601A6BBF3D /* HGCircularSlider */ = {
-			isa = PBXGroup;
-			children = (
-				5A94B6F93A15B2B03B4A69365C449735 /* CircularSlider.swift */,
-				43CD6041200FA77F847D6A8D0AE50AE6 /* CircularSlider+Draw.swift */,
-				AFD7EC5F5F40D14EA4E19E189F37A2C8 /* CircularSliderHelper.swift */,
-				05916665AB6230754CCF1EBE81D72B13 /* MidPointCircularSlider.swift */,
-				6EAC72DC3B88821771FEE0B46EB2B2DE /* RangeCircularSlider.swift */,
-				1B888C00DE88FF5536872070FB67271B /* Support Files */,
-			);
-			name = HGCircularSlider;
-			path = HGCircularSlider;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		1956B56C24866E1E55A1F03D5A6FE3DD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBD406C1B553C2DD14C59091CCC3044C /* Pods-EcoLight-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		206BA728BE3066B5835E6ABA81509921 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,44 +279,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		43F3C59953AEA93BD51B10B48577CE6F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA6DFC65CBAF9B3B2B8551FC296FC8B7 /* FXBlurView.h in Headers */,
-				62D21C62E1431A95955B4D4717427111 /* PopupDialog-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8DD0AFD8FAB11C6555B61C383FA1CC04 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5F6FD15685211854FF7B71A59017018D /* Pods-EcoLightUITests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CD5EA6799BCF623D5B787C2F77789C37 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EBBBCCF2B8AF803098D9173FB27098BE /* Pods-EcoLight-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EA814BA0020BCB3CDB2C749D8110EEA8 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9DC477E6A7EBF290D9F479CE067860DB /* LGAlertView-umbrella.h in Headers */,
-				1B90546A5D09FE6AC13EC45A670C5702 /* LGAlertView.h in Headers */,
-				4D93B291AF85EAEDDD3DCFB4754F361C /* LGAlertViewButtonProperties.h in Headers */,
-				61435528183C4D0DA2721A2A999A20AF /* LGAlertViewCell.h in Headers */,
-				CA20B72EE98B773FA29D8369A247AF26 /* LGAlertViewController.h in Headers */,
-				611BF5E28D2D7D4E5E55683749C110CF /* LGAlertViewShared.h in Headers */,
-				7748BCC0A5B3107D026E9FC1131F81B6 /* LGAlertViewTextField.h in Headers */,
-				B5DF3C396D929423E440B567FD006AFE /* LGAlertViewWindow.h in Headers */,
-				F263F843D433C47942B23CF8FD00A4F5 /* UIWindow+LGAlertView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,24 +312,25 @@
 			);
 			name = HGCircularSlider;
 			productName = HGCircularSlider;
-			productReference = 23E5D415D3B23EDB74AA4832219E88AC /* HGCircularSlider.framework */;
+			productReference = 7BE093B964545C4FD2A023B8AADD31AF /* HGCircularSlider.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		48D674E62A82365C13721DAE2917EA33 /* LGAlertView */ = {
+		69402EDC479B328CDB906707887FC806 /* Pods-EcoLight */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D9777074360740928FA40E3427BBB63 /* Build configuration list for PBXNativeTarget "LGAlertView" */;
+			buildConfigurationList = 6F5E95E112E9D64F71A0FA82C37EDF77 /* Build configuration list for PBXNativeTarget "Pods-EcoLight" */;
 			buildPhases = (
-				52E6789C8A8A030463E1C9FCD497D68A /* Sources */,
-				D49221B9694179E6CF02485AC2DA582D /* Frameworks */,
-				EA814BA0020BCB3CDB2C749D8110EEA8 /* Headers */,
+				B4A2DB3307880465237807BD98398B5B /* Sources */,
+				1E81CD8F5D2C85D71600D6AFE8AEAB0E /* Frameworks */,
+				1956B56C24866E1E55A1F03D5A6FE3DD /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D9DCFA6A61FB77A927C6311D0D303C01 /* PBXTargetDependency */,
 			);
-			name = LGAlertView;
-			productName = LGAlertView;
-			productReference = 8572B8F70E20D18334D6AF6E29F787CE /* LGAlertView.framework */;
+			name = "Pods-EcoLight";
+			productName = "Pods-EcoLight";
+			productReference = 89DD125AAD86403DA1157A9F41BE6ADF /* Pods_EcoLight.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		9F6A10E101FD91D982D77DEE107A806B /* Pods-EcoLightTests */ = {
@@ -570,27 +347,7 @@
 			);
 			name = "Pods-EcoLightTests";
 			productName = "Pods-EcoLightTests";
-			productReference = 20621EF595F98D100B1C861E349D50AF /* Pods_EcoLightTests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		AFF929382818ED14F8725059CBCB88C1 /* Pods-EcoLight */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3890816227265385D187C7211288E124 /* Build configuration list for PBXNativeTarget "Pods-EcoLight" */;
-			buildPhases = (
-				141E60C0CA1F688EFFAF3160B981AF13 /* Sources */,
-				2B9343C30F8FF316E6C26E0CB37EB515 /* Frameworks */,
-				CD5EA6799BCF623D5B787C2F77789C37 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				77FA0269DBB59F1D4B496E8CE672DFB3 /* PBXTargetDependency */,
-				0226BE9E6D1545809C947717D030B2D3 /* PBXTargetDependency */,
-				51F299DCAE487C8B6ED8A12CE47B9E1C /* PBXTargetDependency */,
-			);
-			name = "Pods-EcoLight";
-			productName = "Pods-EcoLight";
-			productReference = E5A4CA9C698C4843D943B4CB206B96C2 /* Pods_EcoLight.framework */;
+			productReference = FE180E4C1B711A32534E6243E127C03F /* Pods_EcoLightTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		CB694A37E9776568EF6C8D4EAB533706 /* Pods-EcoLightUITests */ = {
@@ -607,24 +364,7 @@
 			);
 			name = "Pods-EcoLightUITests";
 			productName = "Pods-EcoLightUITests";
-			productReference = F7890442D992078AC472F72AEEA887F6 /* Pods_EcoLightUITests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D8DE138D03EF9BD718221F0BBD4F2B9B /* PopupDialog */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 77FC41CC422E9CE34B6706B32EA30ACE /* Build configuration list for PBXNativeTarget "PopupDialog" */;
-			buildPhases = (
-				D2C469D9BA0F1844CFDBFFAADF08123B /* Sources */,
-				AA3A9F665D763D1267CAE3E2ED4C8277 /* Frameworks */,
-				43F3C59953AEA93BD51B10B48577CE6F /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PopupDialog;
-			productName = PopupDialog;
-			productReference = 191A79E67C51E8B9BC51F89FC34B7EFE /* PopupDialog.framework */;
+			productReference = 8411A35569F20ACE30F21F3B31269684 /* Pods_EcoLightUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -644,29 +384,19 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 04A51EE1965EE1BA9D1C91EF6E86FD74 /* Products */;
+			productRefGroup = 03A7C02087C1F2EF52400175A432CFB4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				01E9FE51F89215D0FFFCF2A90DD7B4B8 /* HGCircularSlider */,
-				48D674E62A82365C13721DAE2917EA33 /* LGAlertView */,
-				AFF929382818ED14F8725059CBCB88C1 /* Pods-EcoLight */,
+				69402EDC479B328CDB906707887FC806 /* Pods-EcoLight */,
 				9F6A10E101FD91D982D77DEE107A806B /* Pods-EcoLightTests */,
 				CB694A37E9776568EF6C8D4EAB533706 /* Pods-EcoLightUITests */,
-				D8DE138D03EF9BD718221F0BBD4F2B9B /* PopupDialog */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		141E60C0CA1F688EFFAF3160B981AF13 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5B87677AEB203EC9BB4B8F4DE81CCB0B /* Pods-EcoLight-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4BB4128E94E932D52B9195D1D64D511E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -675,26 +405,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52E6789C8A8A030463E1C9FCD497D68A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C745784F84BF0F4B78AD91778BCCED70 /* LGAlertView-dummy.m in Sources */,
-				1030F54E719FBB943CE0A1E32DFC95B6 /* LGAlertView.m in Sources */,
-				587B88994DCA98C37A3C42ECE73D6FB6 /* LGAlertViewButtonProperties.m in Sources */,
-				823B75EEA5A24F3F14820082CC0D592C /* LGAlertViewCell.m in Sources */,
-				919B7258DAD88CC07EC874E1C1446EE4 /* LGAlertViewController.m in Sources */,
-				5D86A3390527DE9804B1EB21B419756A /* LGAlertViewTextField.m in Sources */,
-				40500AD3864E2718C9B28C693DB38AC0 /* LGAlertViewWindow.m in Sources */,
-				A565862E8A65944B12477F8695F7BF57 /* UIWindow+LGAlertView.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		83B9035DF0E72F37BC02CC9F97FCD054 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				903F8B3E46245DDABAAB43DCC92810CB /* Pods-EcoLightUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4A2DB3307880465237807BD98398B5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73F5A7BD809CFAB63E869F4E24DD7BE8 /* Pods-EcoLight-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,51 +434,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2C469D9BA0F1844CFDBFFAADF08123B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				29ED563EE814FE9321092AD24C45CF02 /* FXBlurView.m in Sources */,
-				AEEC365701B15DA635C22EC45EFF5B92 /* InteractiveTransition.swift in Sources */,
-				3743FB755E739B3763927A0B8A251A40 /* PopupDialog+Keyboard.swift in Sources */,
-				4AE3689D4BE2F584E094D13609FCA750 /* PopupDialog-dummy.m in Sources */,
-				80553B7A7B94570CAB3F4EE891125BCA /* PopupDialog.swift in Sources */,
-				B4C0F7ACC7FDB9D5E3C281C80A0AF2D6 /* PopupDialogButton.swift in Sources */,
-				5A5339633A8C3D007EB306F3C8075397 /* PopupDialogContainerView.swift in Sources */,
-				D39ECE89A35B360AC4D2C62F83FF4B51 /* PopupDialogDefaultButtons.swift in Sources */,
-				F48BFFC9A9C1C9D385D8862FC9BBFE72 /* PopupDialogDefaultView.swift in Sources */,
-				0B2FF1B2137C40C5CFAE179DB790933D /* PopupDialogDefaultViewController.swift in Sources */,
-				E8724BE4FA66077932C52D1FB3972B38 /* PopupDialogOverlayView.swift in Sources */,
-				E6284DA4CB6F29034086E66F7CA2A8B5 /* PresentationController.swift in Sources */,
-				B30004333B1226A024FCB15014661885 /* PresentationManager.swift in Sources */,
-				12AB5254C947F809B09ACEDF3D3D3006 /* TransitionAnimations.swift in Sources */,
-				ED2C2A2B32C1E87FBAFDDABD555B52CC /* TransitionAnimator.swift in Sources */,
-				A93A2FFD97195046177482E0809732CB /* UIImageView+Calculations.swift in Sources */,
-				AF4C33AB752DEBD1073DA801D606668D /* UIView+Animations.swift in Sources */,
-				C8CC1A6EF4D6ECF7A269C52864FCA0D4 /* UIViewController+Visibility.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0226BE9E6D1545809C947717D030B2D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LGAlertView;
-			target = 48D674E62A82365C13721DAE2917EA33 /* LGAlertView */;
-			targetProxy = 50CC13B5D681AB177E2E0D47C8C1D756 /* PBXContainerItemProxy */;
-		};
-		51F299DCAE487C8B6ED8A12CE47B9E1C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PopupDialog;
-			target = D8DE138D03EF9BD718221F0BBD4F2B9B /* PopupDialog */;
-			targetProxy = 89B378E3FD065892706DC0E8CE20C39D /* PBXContainerItemProxy */;
-		};
-		77FA0269DBB59F1D4B496E8CE672DFB3 /* PBXTargetDependency */ = {
+		D9DCFA6A61FB77A927C6311D0D303C01 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HGCircularSlider;
 			target = 01E9FE51F89215D0FFFCF2A90DD7B4B8 /* HGCircularSlider */;
-			targetProxy = 405AAF50DBFB763C00656B5B78D1106E /* PBXContainerItemProxy */;
+			targetProxy = 3CE2BA9CC804AB5B26203441125FAC0B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -786,37 +472,6 @@
 				PRODUCT_NAME = Pods_EcoLightUITests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		14082493FEA4E037BF4FD768BEA32868 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C334A1E5FA123C8B7642C71DB8A2D67 /* LGAlertView.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LGAlertView/LGAlertView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LGAlertView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LGAlertView/LGAlertView.modulemap";
-				PRODUCT_NAME = LGAlertView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -911,74 +566,9 @@
 			};
 			name = Debug;
 		};
-		372373706472393CD57BA5C182F0BD81 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF90B3AF5B1D048F7B97618327D177E4 /* PopupDialog.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
-				PRODUCT_NAME = PopupDialog;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		3BE6E0F7D773A220D1655963915A6389 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7D31DA9E4D08B5927A0A2BF5DCFC2F8 /* Pods-EcoLight.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-EcoLight/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-EcoLight/Pods-EcoLight.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_EcoLight;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		4D6C83464BC78C2439708E20D1076F1B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF4F99D188E3F675049E51425C610422 /* HGCircularSlider.xcconfig */;
+			baseConfigurationReference = 254DF51F70C7AC32AB98CC491686C604 /* HGCircularSlider.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1008,9 +598,9 @@
 			};
 			name = Release;
 		};
-		5807FDF7B8E0B991EE614758A8379ED2 /* Debug */ = {
+		52F174457E05EA01C7B5520E724007A2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C334A1E5FA123C8B7642C71DB8A2D67 /* LGAlertView.xcconfig */;
+			baseConfigurationReference = 61C54CC0BED128EBA0C51521A5AB229C /* Pods-EcoLight.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1021,22 +611,26 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/LGAlertView/LGAlertView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/LGAlertView/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-EcoLight/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/LGAlertView/LGAlertView.modulemap";
-				PRODUCT_NAME = LGAlertView;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-EcoLight/Pods-EcoLight.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_EcoLight;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		5A7D9323D836BA373E2FA143E4D4F33F /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1131,6 +725,40 @@
 			};
 			name = Debug;
 		};
+		79AD57E3C0327CDD547D0D91F388F770 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7D31DA9E4D08B5927A0A2BF5DCFC2F8 /* Pods-EcoLight.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-EcoLight/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-EcoLight/Pods-EcoLight.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_EcoLight;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		A77C6582466BFA70D5D4273CAA0C3693 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5059E170A311429FF0BCDC9901C8CC48 /* Pods-EcoLightUITests.debug.xcconfig */;
@@ -1165,7 +793,7 @@
 		};
 		CEFD8E0D382A4BEE8A32928210F3B8B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF4F99D188E3F675049E51425C610422 /* HGCircularSlider.xcconfig */;
+			baseConfigurationReference = 254DF51F70C7AC32AB98CC491686C604 /* HGCircularSlider.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1194,72 +822,6 @@
 			};
 			name = Debug;
 		};
-		EA77FC94189795CC6E72FE869C7EBA51 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61C54CC0BED128EBA0C51521A5AB229C /* Pods-EcoLight.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-EcoLight/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-EcoLight/Pods-EcoLight.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_EcoLight;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F17DC96E9C14CFB6DCF34B318F975451 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF90B3AF5B1D048F7B97618327D177E4 /* PopupDialog.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
-				PRODUCT_NAME = PopupDialog;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1272,29 +834,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3890816227265385D187C7211288E124 /* Build configuration list for PBXNativeTarget "Pods-EcoLight" */ = {
+		6F5E95E112E9D64F71A0FA82C37EDF77 /* Build configuration list for PBXNativeTarget "Pods-EcoLight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3BE6E0F7D773A220D1655963915A6389 /* Debug */,
-				EA77FC94189795CC6E72FE869C7EBA51 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3D9777074360740928FA40E3427BBB63 /* Build configuration list for PBXNativeTarget "LGAlertView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5807FDF7B8E0B991EE614758A8379ED2 /* Debug */,
-				14082493FEA4E037BF4FD768BEA32868 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		77FC41CC422E9CE34B6706B32EA30ACE /* Build configuration list for PBXNativeTarget "PopupDialog" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				372373706472393CD57BA5C182F0BD81 /* Debug */,
-				F17DC96E9C14CFB6DCF34B318F975451 /* Release */,
+				79AD57E3C0327CDD547D0D91F388F770 /* Debug */,
+				52F174457E05EA01C7B5520E724007A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -8,9 +8,11 @@
 
 import UIKit
 
-class DeviceParameterModel: NSObject {
+class DeviceParameterModel: NSObject, NSCoding {
     // 设备类型编码
     var typeCode: DeviceTypeCode?
+    // 灯具类型编码
+    var lightCode: LightTypeCode?
     // UUID
     var uuid: String?
     // 命令帧头
@@ -42,9 +44,63 @@ class DeviceParameterModel: NSObject {
     var manualModeValueArray: [String]! = [String]()
     // 用户自定义数据
     var userDefinedValueArray: [String]! = [String]()
+    // profile保存的文件名称
+    var profileName = "profile.plist"
+    var modelKey: String {
+        get {
+            return typeCode!.rawValue + lightCode!.rawValue
+        }
+    }
     
+    override init() {
+        
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(typeCode?.rawValue, forKey: "typeCode")
+        aCoder.encode(lightCode?.rawValue, forKey: "lightCode")
+        aCoder.encode(uuid, forKey: "uuid")
+        aCoder.encode(commandHeader, forKey: "commandHeader")
+        aCoder.encode(commandCode, forKey: "commandCode")
+        aCoder.encode(registerAddr, forKey: "registerAddr")
+        aCoder.encode(commandDataByteCount, forKey: "commandDataByteCount")
+        aCoder.encode(channelNum, forKey: "channelNum")
+        aCoder.encode(controllerChannelNum, forKey: "controllerChannelNum")
+        aCoder.encode(runMode?.hashValue, forKey: "runMode")
+        aCoder.encode(powerState?.hashValue, forKey: "powerState")
+        aCoder.encode(dynamicMode, forKey: "dynamicMode")
+        aCoder.encode(timePointNum, forKey: "timePointNum")
+        aCoder.encode(timePointArray, forKey: "timePointArray")
+        aCoder.encode(timePointValueArray, forKey: "timePointValueArray")
+        aCoder.encode(manualModeValueArray, forKey: "manualModeValueArray")
+        aCoder.encode(userDefinedValueArray, forKey: "userDefinedValueArray")
+        aCoder.encode(profileName, forKey: "profileName")
+    }
+    
+    required init(coder aDecoder:NSCoder) {
+        self.typeCode = aDecoder.decodeObject(forKey: "typeCode") as? DeviceTypeCode
+        self.lightCode = aDecoder.decodeObject(forKey: "lightCode") as? LightTypeCode
+        self.uuid = aDecoder.decodeObject(forKey: "lightCode") as? String
+        self.commandHeader = aDecoder.decodeObject(forKey: "commandHeader") as? String
+        self.commandCode = aDecoder.decodeObject(forKey: "commandCode") as? String
+        self.registerAddr = aDecoder.decodeObject(forKey: "registerAddr") as? String
+        self.commandDataByteCount = aDecoder.decodeInteger(forKey: "commandDataByteCount")
+        self.channelNum = aDecoder.decodeInteger(forKey: "channelNum")
+        self.controllerChannelNum = aDecoder.decodeInteger(forKey: "controllerChannelNum")
+        self.runMode = aDecoder.decodeObject(forKey: "runMode") as? DeviceRunMode
+        self.powerState = aDecoder.decodeObject(forKey: "powerState") as? DeviceState
+        self.dynamicMode = aDecoder.decodeObject(forKey: "dynamicMode") as? String
+        self.timePointNum = aDecoder.decodeInteger(forKey: "timePointNum")
+        self.timePointArray = aDecoder.decodeObject(forKey: "timePointArray") as? [String]
+        self.timePointValueArray = aDecoder.decodeObject(forKey: "timePointValueArray") as? [String]
+        self.manualModeValueArray = aDecoder.decodeObject(forKey: "manualModeValueArray") as? [String]
+        self.userDefinedValueArray = aDecoder.decodeObject(forKey: "userDefinedValueArray") as? [String]
+        self.profileName = (aDecoder.decodeObject(forKey: "profileName") as? String)!
+    }
+
     func parameterModelCopy(parameterModel: DeviceParameterModel) -> Void {
         parameterModel.typeCode = self.typeCode
+        parameterModel.lightCode = self.lightCode
         parameterModel.uuid = self.uuid
         parameterModel.commandHeader = self.commandHeader
         parameterModel.commandCode = self.commandCode

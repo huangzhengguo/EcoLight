@@ -43,4 +43,12 @@ defaultGroup = "默认";
 confirmDelete = "确认删除 ";
 bluetoothError = "蓝牙错误";
 blueErrorMessage = "请打开蓝牙！";
+warning = "提示";
+maxTimePointNumWarn = "最多设置10个时间点！";
+minTimePointNumWarn = "至少设置4个时间点！";
+deleteTimePointTitle = "删除时间点";
+confirmdeleteTimePointMessage = "确认删除时间点";
+choseTimePoint="请选择时间点";
+import="导出";
+export="另存为";
 

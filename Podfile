@@ -4,10 +4,8 @@
 target 'EcoLight' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  pod 'LGAlertView', '~> 2.0.13'
   # Pods for EcoLight
   pod 'HGCircularSlider'
-  pod 'PopupDialog'
   
   target 'EcoLightTests' do
     inherit! :search_paths

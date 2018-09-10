@@ -8,18 +8,16 @@
 
 import UIKit
 import CoreData
-import LGAlertView
 
 class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var deviceTableView: UITableView!
     @IBOutlet weak var scanBarButtonItem: UIBarButtonItem!
     private var alertController: UIAlertController!
-    private var connectAlertController: LGAlertView?
-    private var connectFailedAlertController: LGAlertView?
     private var deviceDataSourceDic: [String: Array<DeviceModel>] = [String: Array<DeviceModel>]();
     private var selectDeviceModel: DeviceModel?
     private var deviceCodeInfo: DeviceCodeInfo?
+    private var connectingView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,15 +49,18 @@ class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDa
             
             // 解析数据
             let parameterModel: DeviceParameterModel = DeviceParameterModel()
+            
             parameterModel.channelNum = self.deviceCodeInfo?.channelNum
             
-            parameterModel.typeCode = self.deviceCodeInfo?.deviceTypeCode
+            parameterModel.typeCode = self.deviceCodeInfo?.controllerTypeCode
+            parameterModel.lightCode = self.deviceCodeInfo?.deviceTypeCode
             parameterModel.uuid = self.selectDeviceModel?.uuidString
+            
+            self.connectingView?.removeFromSuperview()
             
             // 解析数据
             parameterModel.parseDeviceDataFromReceiveStrToModel(receiveData: receiveDataStr!)
             
-            self.connectAlertController?.dismiss(animated: true, completionHandler: nil)
             // 解析设备数据，跳转界面
             let colorSettingViewController = ColorSettingViewController(nibName: "ColorSettingViewController", bundle: Bundle.main)
             
@@ -73,24 +74,17 @@ class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDa
         // 2.连接失败回调
         self.blueToothManager.connectFailedCallback = {
             (receiveDataStr, commandType) in
-            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.connectFailed(timer:)), userInfo: nil, repeats: false)
-
-            self.connectAlertController?.dismiss(animated: true, completionHandler: nil)
-            self.connectFailedAlertController?.show(animated: true, completionHandler: nil)
+            if self.connectingView != nil {
+                self.connectingView?.removeFromSuperview()
+            }
+            self.showMessageWithTitle(title: self.languageManager.getTextForKey(key: "connectFailed"), time: 1.5, isShow: true)
         }
-    }
-    
-    @objc func connectFailed(timer: Timer) -> Void {
-        self.connectFailedAlertController?.dismiss(animated: true, completionHandler: nil)
     }
     
     /// 创建设备操作列表
     ///
     /// - returns: 空
     func createAlertController() {
-        // 1.连接失败提示视图
-        connectFailedAlertController = LGAlertView.init(title: languageManager.getTextForKey(key: "connectFailed"), message: nil, style: .alert, buttonTitles: nil, cancelButtonTitle: nil, destructiveButtonTitle: nil)
-        
         // 2.操作弹出视图
         alertController = UIAlertController(title: self.selectDeviceModel?.name, message: nil, preferredStyle: .alert)
         
@@ -119,15 +113,14 @@ class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDa
                 
                 if self.blueToothManager.connectDeviceWithUuid(uuid: self.selectDeviceModel?.uuidString) {
                     // 这里需要重新创建连接提示视图
-                    self.connectAlertController = LGAlertView.init(activityIndicatorAndTitle: self.languageManager.getTextForKey(key: "connecting") + " " + (self.selectDeviceModel?.name)!, message: "", style: .alert, buttonTitles: nil, cancelButtonTitle: self.languageManager.getTextForKey(key: "cancel"), destructiveButtonTitle: nil)
-                    
-                    self.connectAlertController?.cancelHandler = {
-                        (alertView) in
-                        // 取消连接设备，也就是直接断开设备既可
-                        self.blueToothManager.disConnectDevice(uuid: self.selectDeviceModel?.uuidString)
+                    if self.connectingView == nil {
+                        self.connectingView = self.getConnectingDeviceView()
                     }
                     
-                    self.connectAlertController?.show(animated: true, completionHandler: nil)
+                    self.view.addSubview(self.connectingView!)
+                } else {
+                    // 蓝牙未打开
+                    self.showMessageWithTitle(title: self.languageManager.getTextForKey(key: "blueErrorMessage"), time: 1.5, isShow: true)
                 }
             }
         }
@@ -203,17 +196,47 @@ class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDa
         self.deviceTableView.register(UINib.init(nibName: "DeviceTableViewCell", bundle: nil), forCellReuseIdentifier: "DeviceTableViewCell")
     }
     
+    override func connectingBtnAction(sender: UIButton) {
+        if self.selectDeviceModel != nil && self.selectDeviceModel?.uuidString != nil {
+            self.blueToothManager.disConnectDevice(uuid: self.selectDeviceModel?.uuidString)
+        }
+        
+        if self.connectingView != nil {
+           self.connectingView?.removeFromSuperview()
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return  deviceDataSourceDic.count
+        if deviceDataSourceDic.keys.count > 0 {
+            let key = deviceDataSourceDic.keys.reversed()[0]
+            return (self.deviceDataSourceDic[key]?.count)!
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let key = deviceDataSourceDic.keys.reversed()[section]
-        return (self.deviceDataSourceDic[key]?.count)!
+        let deviceModel = getDeviceModelFromDatasource(index: section)
+        if deviceModel.name == nil {
+            deviceModel.name = "Default"
+        }
+        
+        let deviceInfo = DeviceTypeData.getDeviceInfoWithTypeCode(deviceTypeCode: DeviceTypeCode(rawValue: deviceModel.typeCode!) == nil ? DeviceTypeCode.NEW_DEVICE_CONTROLLER : DeviceTypeCode(rawValue: deviceModel.typeCode!)!)
+        
+        if deviceInfo.supportLightsArray != nil {
+            return (deviceInfo.supportLightsArray?.count)!
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return deviceDataSourceDic.keys.reversed()[section]
+        let deviceModel = getDeviceModelFromDatasource(index: section)
+        if deviceModel.name == nil {
+            deviceModel.name = "Default"
+        }
+        
+        return deviceModel.name
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -223,15 +246,16 @@ class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceTableViewCell", for: indexPath) as! DeviceTableViewCell
         
-        let deviceModel = getDeviceModelFromDatasource(section: indexPath.section, row: indexPath.row)
+        let deviceModel = getDeviceModelFromDatasource(index: indexPath.section)
         if deviceModel.name == nil {
             deviceModel.name = "Default"
         }
         
-        let deviceInfo = DeviceTypeData.getDeviceInfoWithTypeCode(deviceTypeCode: DeviceTypeCode(rawValue: deviceModel.typeCode!) == nil ? DeviceTypeCode.NEW_DEVICE_LIGHT : DeviceTypeCode(rawValue: deviceModel.typeCode!)!)
-        
-        cell.lightNameLabel.text = deviceModel.name
-        cell.lightDetailLabel.text = deviceInfo.deviceName
+        let lightInfo = getLightInfo(controllerIndex: indexPath.section, lightIndex: indexPath.row)
+        if lightInfo != nil {
+            cell.lightDetailLabel.text = lightInfo?.deviceName
+            cell.lightNameLabel.text = lightInfo?.deviceName
+        }
         
         return cell
     }
@@ -241,18 +265,33 @@ class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectDeviceModel = getDeviceModelFromDatasource(section: indexPath.section, row: indexPath.row)
-        // 获取当前数据动态信息
-        self.deviceCodeInfo = DeviceTypeData.getDeviceInfoWithTypeCode(deviceTypeCode: DeviceTypeCode(rawValue: (self.selectDeviceModel?.typeCode!)!) == nil ? DeviceTypeCode.NEW_DEVICE_LIGHT : DeviceTypeCode(rawValue: (self.selectDeviceModel?.typeCode!)!)!)
-        self.blueToothManager.currentDeviceTypeCode = self.deviceCodeInfo?.deviceTypeCode
+        self.selectDeviceModel = getDeviceModelFromDatasource(index: indexPath.section)
+        
         alertController.title = self.selectDeviceModel?.name
+        
+        // 获取控制器信息和灯具信息
+        self.deviceCodeInfo = getLightInfo(controllerIndex: indexPath.section, lightIndex: indexPath.row)
         
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func getDeviceModelFromDatasource(section: Int, row: Int) -> DeviceModel {
-        let key = deviceDataSourceDic.keys.reversed()[section]
-        let deviceModel = deviceDataSourceDic[key]?[row]
+    func getLightInfo(controllerIndex: Int, lightIndex: Int) -> DeviceCodeInfo? {
+        let deviceModel = getDeviceModelFromDatasource(index: controllerIndex)
+        if deviceModel.name == nil {
+            deviceModel.name = "Default"
+        }
+        
+        let deviceInfo = DeviceTypeData.getDeviceInfoWithTypeCode(deviceTypeCode: DeviceTypeCode(rawValue: deviceModel.typeCode!) == nil ? DeviceTypeCode.NEW_DEVICE_CONTROLLER : DeviceTypeCode(rawValue: deviceModel.typeCode!)!)
+        if lightIndex > (deviceInfo.supportLightsArray?.count)! {
+            return nil
+        }
+        
+        return deviceInfo.supportLightsArray![lightIndex]
+    }
+    
+    func getDeviceModelFromDatasource(index: Int) -> DeviceModel {
+        let key = deviceDataSourceDic.keys.reversed()[0]
+        let deviceModel = deviceDataSourceDic[key]?[index]
         
         return deviceModel!
     }

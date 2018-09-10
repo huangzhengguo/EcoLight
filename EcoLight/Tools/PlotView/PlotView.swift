@@ -10,7 +10,7 @@ import UIKit
 
 class PlotView: UIView {
     // 顶部边距
-    var topPadding: CGFloat = 20.0
+    var topPadding: CGFloat = 5.0
     // 左边距
     var leftPadding: CGFloat = 40.0
     // 底部边距
@@ -49,12 +49,20 @@ class PlotView: UIView {
     var yLabelArray: [UILabel] = [UILabel]()
     // X轴标题
     var xLabelArray: [UILabel] = [UILabel]()
+    // 预览指示器
+    let indicatorLabel: UILabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.plotWidth = self.frame.size.width - self.leftPadding - self.rightPadding
         self.plotHeight = self.frame.size.height - self.topPadding - self.bottomPadding
+        
+        self.indicatorLabel.frame = CGRect(x: 0, y: self.topPadding, width: 1, height: self.plotHeight!)
+        self.indicatorLabel.backgroundColor = UIColor.red
+        self.indicatorLabel.isHidden = true
+        
+        self.addSubview(self.indicatorLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,10 +70,13 @@ class PlotView: UIView {
     }
     
     func drawPlotView() {
+        // 添加图例
+        self.addLegend(colorArray: self.lineColorArray, colorTitleArray: self.lineColorTitleArray)
+        
         // 添加Y轴标题
         if yAxisLabelEnable == true {
             let yUnit = self.plotHeight! / self.yMaxValue;
-            for i in 0...(Int)(self.yMaxValue / self.yInterval + 1) {
+            for i in 0...(Int)(self.yMaxValue / self.yInterval) {
                 let label = UILabel(frame: CGRect(x: 0, y: yUnit * CGFloat(i) * self.yInterval + self.topPadding - 10, width: self.leftPadding, height: 20))
                 
                 label.font = UIFont.systemFont(ofSize: 10)
@@ -85,17 +96,47 @@ class PlotView: UIView {
     
     func addXLabel() {
         let xUnit = self.plotWidth! / self.xMaxValue
-        for i: CGFloat in stride(from: 0, to: self.xMaxValue, by: self.xInterval) {
+        for i: CGFloat in stride(from: 0, to: self.xMaxValue, by: self.xInterval * 2) {
             // 添加坐标
             let label = UILabel(frame: CGRect(x: self.leftPadding + i * xUnit - 10, y: self.frame.size.height - 30, width: self.frame.size.width / 5, height: 20))
             
             label.font = UIFont.boldSystemFont(ofSize: 10)
-            label.text = String.init(stringLiteral: "\(Int(i))")
+            label.text = String.init(format: "%@", String.convertMinuteToFormatTimeStr(minutes: Int(i)))
             label.textColor = UIColor.white
             
             self.addSubview(label)
             
             self.xLabelArray.append(label)
+        }
+    }
+    
+    func addLegend(colorArray: [UIColor], colorTitleArray: [String]) -> Void {
+        var colorLableWidth = self.leftPadding
+        var colorSize = CGSize(width: 300, height: 10)
+        for i in 0..<colorArray.count {
+            if i != 0 {
+                colorLableWidth = colorLableWidth + 20.0
+            }
+            
+            let label = UILabel.init(frame: CGRect(x: colorLableWidth, y: self.frame.size.height - 10.0, width: 10, height: 10))
+            
+            label.backgroundColor = colorArray[i]
+            
+            self.addSubview(label)
+            
+            let titleLabel = UILabel.init(frame: CGRect(x: 15 + colorLableWidth, y: self.frame.size.height - 10.0, width: self.frame.size.width / CGFloat(colorArray.count + 1), height: 10))
+            
+            titleLabel.font = UIFont.systemFont(ofSize: 8)
+            titleLabel.text = colorTitleArray[i]
+            titleLabel.textColor = UIColor.white
+            
+            self.addSubview(titleLabel)
+            
+            colorSize = CGSize(width: String.getStringSize(str: titleLabel.text! as NSString, font: titleLabel.font, maxSize: CGSize(width: 300, height: 10)).width, height: 10.0)
+            
+            colorLableWidth = colorLableWidth + colorSize.width
+            print("colorSize.width = \(colorSize.width)")
+            print("colorLabelWidth = \(colorLableWidth)")
         }
     }
     
@@ -107,7 +148,7 @@ class PlotView: UIView {
         let xUnit = self.plotWidth! / self.xMaxValue
         for xIndex in 0..<self.xLabelArray.count {
             let label = self.xLabelArray[xIndex]
-            label.frame = CGRect(x: self.leftPadding + CGFloat(xIndex) * self.xInterval * xUnit - 10, y: self.frame.size.height - 30, width: self.frame.size.width / 5, height: 20)
+            label.frame = CGRect(x: self.leftPadding + CGFloat(xIndex) * self.xInterval * 2 * xUnit - 10, y: self.frame.size.height - 30, width: self.frame.size.width / 5, height: 20)
         }
         
         if yAxisLabelEnable == true {
@@ -120,6 +161,14 @@ class PlotView: UIView {
         }
         
         self.setNeedsDisplay()
+    }
+    
+    func changeIndicatorLabelPositionWithIndex(xIndex: Int) -> Void {
+        self.indicatorLabel.isHidden = false
+        self.indicatorLabel.frame = CGRect(x: CGFloat(xIndex) * self.plotWidth! / self.xMaxValue + self.leftPadding, y: self.indicatorLabel.frame.origin.y, width: self.indicatorLabel.frame.size.width, height: self.indicatorLabel.frame.size.height)
+        if CGFloat(xIndex) > self.xMaxValue {
+            self.indicatorLabel.isHidden = true;
+        }
     }
     
     // Only override draw() if you perform custom drawing.
@@ -153,11 +202,12 @@ class PlotView: UIView {
         }
         
         // 绘制X轴
-        context?.beginPath()
-        context?.move(to: CGPoint(x: self.leftPadding, y: self.topPadding + self.plotHeight!))
-        context?.addLine(to: CGPoint(x: self.leftPadding + self.plotWidth!, y: self.topPadding + self.plotHeight!))
-        context?.strokePath()
-        
+        for i in 0...((Int)((self.yMaxValue + 1) / self.yInterval) + 1) {
+            context?.beginPath()
+            context?.move(to: CGPoint(x: self.leftPadding, y: self.topPadding + self.plotHeight! / 4.0 * CGFloat(i)))
+            context?.addLine(to: CGPoint(x: self.leftPadding + self.plotWidth!, y: self.topPadding + self.plotHeight! / 4.0 * CGFloat(i)))
+            context?.strokePath()
+        }
         
         // 根据给定的数据点绘制曲线
         if self.dataPointArray.count == 0 {

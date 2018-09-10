@@ -42,7 +42,7 @@ class BaseViewController: UIViewController {
     ///
     /// - returns:
     func showMessageWithTitle(title: String!, time: Double!, isShow: Bool!) -> Void {
-        let backView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 40))
+        let backView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
         backView.tag = 10000001
         if self.view.viewWithTag(10000001) != nil {
             return
@@ -51,7 +51,7 @@ class BaseViewController: UIViewController {
         let titleLabel = UILabel(frame: backView.frame)
         
         titleLabel.text = title;
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 13.0)
         titleLabel.textAlignment = .center;
         backView.addSubview(titleLabel)
         
@@ -64,6 +64,51 @@ class BaseViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             backView.removeFromSuperview()
         }
+    }
+    
+    func getConnectingDeviceView() -> UIView {
+        let backView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 120))
+        backView.tag = 10000001
+        if self.view.viewWithTag(10000001) != nil {
+            return backView
+        }
+        
+        // 添加标题
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: backView.frame.size.width, height: 30.0))
+        
+        titleLabel.text = self.languageManager.getTextForKey(key: "connecting")
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
+        titleLabel.textColor = UIColor.white
+        titleLabel.textAlignment = .center;
+        backView.addSubview(titleLabel)
+        
+        // 添加旋转按钮
+        let activity = UIActivityIndicatorView.init(frame: CGRect(x: 0, y: 50, width: backView.frame.size.width, height: 30.0))
+        
+        activity.activityIndicatorViewStyle = .white
+        activity.startAnimating()
+        
+        backView.addSubview(activity)
+        
+        // 按钮
+        let btn = UIButton.init(frame: CGRect(x: 0, y: backView.frame.size.height - 40, width: backView.frame.size.width, height: 40))
+        
+        
+        btn.setTitle(self.languageManager.getTextForKey(key: "cancel"), for: .normal)
+        btn.setTitleColor(UIColor.white, for: .normal)
+        btn.addTarget(self, action: #selector(connectingBtnAction(sender:)), for: .touchUpInside)
+        
+        backView.addSubview(btn)
+        
+        backView.layer.cornerRadius = 3;
+        backView.backgroundColor = UIColor.gray
+        backView.center = self.view.center;
+        
+        return backView
+    }
+    
+    @objc func connectingBtnAction(sender: UIButton) -> Void {
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import LGAlertView
 
 class ScanDeviceViewController: BaseViewController,BLEManagerDelegate,UITableViewDelegate,UITableViewDataSource {
 
@@ -65,6 +64,9 @@ class ScanDeviceViewController: BaseViewController,BLEManagerDelegate,UITableVie
         }
     }
     
+    /// 初始化数据
+    ///
+    /// - returns:
     override func prepareData() {
         super.prepareData()
         
@@ -73,9 +75,13 @@ class ScanDeviceViewController: BaseViewController,BLEManagerDelegate,UITableVie
         
         // 检测手机蓝牙的状态
         if self.bleManager.centralManager.state != .poweredOn {
-            let bluetoothAlert = LGAlertView.init(title: self.languageManager.getTextForKey(key: "bluetoothError"), message: self.languageManager.getTextForKey(key: "blueErrorMessage"), style: .alert, buttonTitles: nil, cancelButtonTitle: self.languageManager.getTextForKey(key: "confirm"), destructiveButtonTitle: nil, delegate: nil)
+            let bluetoothAlert = UIAlertController.init(title: self.languageManager.getTextForKey(key: "bluetoothError"), message: self.languageManager.getTextForKey(key: "blueErrorMessage"), preferredStyle: .alert)
             
-            bluetoothAlert?.show(animated: true, completionHandler: nil)
+            let confirmAction = UIAlertAction.init(title: self.languageManager.getTextForKey(key: "confirm"), style: .default, handler: nil)
+            
+            bluetoothAlert.addAction(confirmAction)
+            
+            self.present(bluetoothAlert, animated: true, completion: nil)
             
             return
         }
@@ -147,9 +153,7 @@ class ScanDeviceViewController: BaseViewController,BLEManagerDelegate,UITableVie
                 continue
             }
             
-            // 打印扫描到的信息
-            // printDeviceInfo(deviceInfo: deviceInfo)
-            // 打印扫描到的信息
+            // 保存扫描到的模型
             let scanDeviceModel = DeviceModel()
             
             scanDeviceModel.name = deviceInfo.name

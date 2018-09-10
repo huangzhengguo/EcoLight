@@ -107,7 +107,7 @@ class ManualCircleView: UIView {
     }
     
     @objc func colorValueChanged(view: UIView) -> Void {
-        let progressView: CircularSlider! = view as! CircularSlider;
+        let progressView: CircularSlider! = view as! CircularSlider
     
         percentLabel.text = String(format: "%.0f%%", progressView.endPointValue / 250 * 100)
         if passColorValueCallback != nil {
