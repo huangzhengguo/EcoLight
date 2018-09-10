@@ -66,6 +66,11 @@ class BaseViewController: UIViewController {
         }
     }
     
+    /// 正在连接设备提示
+    /// - parameter one:
+    /// - parameter two:
+    ///
+    /// - returns:
     func getConnectingDeviceView() -> UIView {
         let backView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 120))
         backView.tag = 10000001

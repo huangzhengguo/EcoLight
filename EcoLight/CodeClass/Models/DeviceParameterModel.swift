@@ -36,6 +36,8 @@ class DeviceParameterModel: NSObject, NSCoding {
     // 自动模式数据
     // 时间点个数
     var timePointNum: Int! = 4
+    // 用户爆出的名称
+    var fileName = ""
     // 时间点数组
     var timePointArray: [String]! = [String]()
     // 自动模式时间点对应值：应该使用数组保存自动模式数据
@@ -44,8 +46,6 @@ class DeviceParameterModel: NSObject, NSCoding {
     var manualModeValueArray: [String]! = [String]()
     // 用户自定义数据
     var userDefinedValueArray: [String]! = [String]()
-    // profile保存的文件名称
-    var profileName = "profile.plist"
     var modelKey: String {
         get {
             return typeCode!.rawValue + lightCode!.rawValue
@@ -70,32 +70,32 @@ class DeviceParameterModel: NSObject, NSCoding {
         aCoder.encode(powerState?.hashValue, forKey: "powerState")
         aCoder.encode(dynamicMode, forKey: "dynamicMode")
         aCoder.encode(timePointNum, forKey: "timePointNum")
+        aCoder.encode(fileName, forKey: "fileName")
         aCoder.encode(timePointArray, forKey: "timePointArray")
         aCoder.encode(timePointValueArray, forKey: "timePointValueArray")
         aCoder.encode(manualModeValueArray, forKey: "manualModeValueArray")
         aCoder.encode(userDefinedValueArray, forKey: "userDefinedValueArray")
-        aCoder.encode(profileName, forKey: "profileName")
     }
     
     required init(coder aDecoder:NSCoder) {
         self.typeCode = aDecoder.decodeObject(forKey: "typeCode") as? DeviceTypeCode
         self.lightCode = aDecoder.decodeObject(forKey: "lightCode") as? LightTypeCode
-        self.uuid = aDecoder.decodeObject(forKey: "lightCode") as? String
+        self.uuid = aDecoder.decodeObject(forKey: "uuid") as? String
         self.commandHeader = aDecoder.decodeObject(forKey: "commandHeader") as? String
         self.commandCode = aDecoder.decodeObject(forKey: "commandCode") as? String
         self.registerAddr = aDecoder.decodeObject(forKey: "registerAddr") as? String
-        self.commandDataByteCount = aDecoder.decodeInteger(forKey: "commandDataByteCount")
-        self.channelNum = aDecoder.decodeInteger(forKey: "channelNum")
-        self.controllerChannelNum = aDecoder.decodeInteger(forKey: "controllerChannelNum")
+        self.commandDataByteCount = aDecoder.decodeObject(forKey: "commandDataByteCount") as! Int
+        self.channelNum = aDecoder.decodeObject(forKey: "channelNum") as? Int
+        self.controllerChannelNum = aDecoder.decodeObject(forKey: "controllerChannelNum") as? Int
         self.runMode = aDecoder.decodeObject(forKey: "runMode") as? DeviceRunMode
         self.powerState = aDecoder.decodeObject(forKey: "powerState") as? DeviceState
         self.dynamicMode = aDecoder.decodeObject(forKey: "dynamicMode") as? String
-        self.timePointNum = aDecoder.decodeInteger(forKey: "timePointNum")
+        self.timePointNum = aDecoder.decodeObject(forKey: "timePointNum") as! Int
+        self.fileName = aDecoder.decodeObject(forKey: "fileName") as! String
         self.timePointArray = aDecoder.decodeObject(forKey: "timePointArray") as? [String]
         self.timePointValueArray = aDecoder.decodeObject(forKey: "timePointValueArray") as? [String]
         self.manualModeValueArray = aDecoder.decodeObject(forKey: "manualModeValueArray") as? [String]
         self.userDefinedValueArray = aDecoder.decodeObject(forKey: "userDefinedValueArray") as? [String]
-        self.profileName = (aDecoder.decodeObject(forKey: "profileName") as? String)!
     }
 
     func parameterModelCopy(parameterModel: DeviceParameterModel) -> Void {
@@ -112,6 +112,7 @@ class DeviceParameterModel: NSObject, NSCoding {
         parameterModel.powerState = self.powerState
         parameterModel.dynamicMode = self.dynamicMode
         parameterModel.timePointNum = self.timePointNum
+        parameterModel.fileName = self.fileName
         
         parameterModel.timePointArray.removeAll()
         for timePoint in self.timePointArray {

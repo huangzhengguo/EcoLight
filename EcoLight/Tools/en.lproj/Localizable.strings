@@ -51,6 +51,7 @@ confirmdeleteTimePointMessage = "Confirm deletion time point";
 choseTimePoint="Please select a time point";
 import="Import";
 export="Export";
+remove="Remove";
 
 
 

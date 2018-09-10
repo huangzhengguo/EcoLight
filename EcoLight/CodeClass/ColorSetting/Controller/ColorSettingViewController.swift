@@ -64,6 +64,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             (receivedDataStr, commandType) in
             // 收到完整数据后重新解析数据
             self.parameterModel?.parseDeviceDataFromReceiveStrToModel(receiveData: receivedDataStr!)
+            self.parameterModel?.parameterModelCopy(parameterModel: self.editParameterModel!)
             
             if commandType == CommandType.SETTINGUSERDEFINED_COMMAND {
                 // 把当前设置保存到设备
@@ -472,25 +473,40 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             let bottomView = LayoutToolsView(viewNum: 4, viewWidth: 70, viewHeight: 40, viewInterval: 10, viewTitleArray: [self.languageManager.getTextForKey(key: "import"), self.languageManager.getTextForKey(key: "export"), self.languageManager.getTextForKey(key: "preview"), self.languageManager.getTextForKey(key: "edit")], frame: bottomViewFrame)
             
             // 添加观察者
-            previewButton = bottomView.viewWithTag(1001) as? UIButton
+            previewButton = bottomView.viewWithTag(1003) as? UIButton
             
             bottomView.buttonActionCallback = {
                 (button, index) -> Void in
                     if (index == 0) {
                         // 导入
+                        let profileViewController = ProfileViewController.init(nibName: "ProfileViewController", bundle: nil)
+                        
+                        profileViewController.parameterModel = self.parameterModel
+                        profileViewController.confirmBlock = {
+                            (deviceModel) in
+                            
+                            self.settingAutoMode(deviceModel: deviceModel)
+                        }
+                        
+                        self.present(profileViewController, animated: true, completion: nil)
                     } else if (index == 1) {
                         // 导出:保存模型到文件中
                         let alertController = UIAlertController.init(title: "导出文件", message: "导出到", preferredStyle: .alert)
                         
                         alertController.addTextField(configurationHandler: { (textField) in
-                            print(textField.text ?? "没有值")
+                            
                         })
                         
                         let cancelAction = UIAlertAction.init(title: "取消", style: .default, handler: nil)
                         let confirmAction = UIAlertAction.init(title: "确认", style: .default, handler: { (alertAction) in
                             let fileName = alertController.textFields![0].text
                             
-                            print(ProfileHelper.saveProfile(model: self.parameterModel, fileName: (self.parameterModel?.profileName)!, modelKey:(self.parameterModel?.modelKey)!))
+                            self.parameterModel?.fileName = fileName!
+                            if ArchiveHelper.archiveProfile(model: self.parameterModel,profile: ArchiveHelper.profileName, modelKey:(self.parameterModel?.modelKey)!) == ArchiveHelper.SaveProfileErrorCode.SUCCESS_ERROR {
+                                print("保存成功！")
+                            } else {
+                                print("保存失败！")
+                            }
                         })
                         
                         alertController.addAction(cancelAction)
@@ -627,14 +643,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
                         editAutoModeView.saveBlock = {
                             () in
                             
-                            // 发送设置自动模式数据
-                            var commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appending("20").appendingFormat("%02x", ((self.parameterModel?.controllerChannelNum)! + 2) * (self.editParameterModel?.timePointNum)!).appendingFormat("%02x", (self.editParameterModel?.timePointNum)!);
-                            for i in 0..<(self.editParameterModel?.timePointNum)! {
-                                commandStr = commandStr.appending((self.editParameterModel?.timePointArray[i])!)
-                                commandStr = commandStr.appending((self.editParameterModel?.timePointValueArray[i])!)
-                            }
-
-                            self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGUSERDEFINED_COMMAND, isXORCommand: true, commandInterval: 2.0)
+                            self.settingAutoMode(deviceModel: self.editParameterModel!)
                         }
                         
                         UIView.beginAnimations(nil, context: nil)
@@ -650,6 +659,8 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         } else {
             // 更新自动模式视图
             autoModeView?.isHidden = false
+            self.plotView?.dataPointArray = (self.editParameterModel?.generateLinePoint())!
+            self.plotView?.refreshPlot()
             self.timePointTableView.reloadData()
         }
     }
@@ -684,6 +695,17 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         }
         
         return cell!
+    }
+    
+    func settingAutoMode(deviceModel: DeviceParameterModel) -> Void {
+        // 发送设置自动模式数据
+        var commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appending("20").appendingFormat("%02x", ((deviceModel.controllerChannelNum)! + 2) * (deviceModel.timePointNum)!).appendingFormat("%02x", (deviceModel.timePointNum)!);
+        for i in 0..<(deviceModel.timePointNum)! {
+            commandStr = commandStr.appending((deviceModel.timePointArray[i]))
+            commandStr = commandStr.appending((deviceModel.timePointValueArray[i]))
+        }
+        
+        self.blueToothManager.sendCommandToDevice(uuid: (deviceModel.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGAUTOMODE_COMMAND, isXORCommand: true, commandInterval: 2.0)
     }
     
     /// 开始预览功能
@@ -798,9 +820,8 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             }
             
             let colorValue = previewColorDoubleArray[j] - ((previewColorDoubleArray[j] - nextColorDoubleArray[j])) * percent
-            // print("colorValue = \(colorValue)")
             
-            colorValueStr = colorValueStr.appendingFormat("%04x", Int(colorValue))
+            colorValueStr = colorValueStr.appendingFormat("%02x", Int(colorValue))
         }
         
         return colorValueStr
