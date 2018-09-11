@@ -36,7 +36,7 @@ class DeviceParameterModel: NSObject, NSCoding {
     // 自动模式数据
     // 时间点个数
     var timePointNum: Int! = 4
-    // 用户爆出的名称
+    // 用户保存的名称
     var fileName = ""
     // 时间点数组
     var timePointArray: [String]! = [String]()

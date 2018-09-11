@@ -35,15 +35,35 @@ class ProfileViewController: BaseViewController,UITableViewDelegate,UITableViewD
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
         // 布局三个按钮:移除，取消，加载
-        let bottomViewFrame = CGRect(x: 0, y: (self.view.frame.size.height) - 50, width: self.view.frame.size.width, height: 70)
+        let bottomViewFrame = CGRect(x: 0, y: SystemInfoTools.screenHeight - 50, width: SystemInfoTools.screenWidth, height: 70)
         let bottomView = LayoutToolsView(viewNum: 3, viewWidth: 70, viewHeight: 40, viewInterval: 10, viewTitleArray: [self.languageManager.getTextForKey(key: "remove"), self.languageManager.getTextForKey(key: "cancel"), self.languageManager.getTextForKey(key: "confirm")], frame: bottomViewFrame)
         
         bottomView.buttonActionCallback = {
             (button, index) -> Void in
             switch index {
             case 0:
+                if self.datasource?.count == 0 {
+                    return
+                }
+                
+                let model = self.datasource![self.currentProfileIndex]
+                
                 // 移除选择的配置
-                let alertController = UIAlertController.init(title: "title", message: "message", preferredStyle: .alert)
+                let alertController = UIAlertController.init(title: self.languageManager.getTextForKey(key: "removeProfileTitle"), message: self.languageManager.getTextForKey(key: "removeProfileMessage") + model.fileName + " ?", preferredStyle: .alert)
+                
+                let cancelAction = UIAlertAction.init(title: self.languageManager.getTextForKey(key: "cancel"), style: .default, handler: nil)
+                let confirmAction = UIAlertAction.init(title: self.languageManager.getTextForKey(key: "confirm"), style: .default, handler: { (alertAction) in
+                    // 删除选中的pfofile
+                    self.datasource?.remove(at: self.currentProfileIndex)
+                    self.currentProfileIndex = 0
+                    
+                    if ArchiveHelper.writeData(documentPath: ArchiveHelper.getUserDocumentPath(profile: ArchiveHelper.profileName), modelArray: self.datasource!, modelKey: (self.parameterModel?.modelKey)!) == ArchiveHelper.SaveProfileErrorCode.SUCCESS_ERROR {
+                        self.tableView.reloadData()
+                    }
+                })
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(confirmAction)
                 
                 self.present(alertController, animated: true, completion: nil)
             case 1:

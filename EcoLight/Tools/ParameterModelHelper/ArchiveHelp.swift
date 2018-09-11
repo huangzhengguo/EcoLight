@@ -38,15 +38,17 @@ class ArchiveHelper {
         
         modelArray.append(model)
         
+        return writeData(documentPath: documentPath!, modelArray: modelArray, modelKey: modelKey)
+    }
+    
+    static func writeData<T>(documentPath: String, modelArray: [T], modelKey: String) -> SaveProfileErrorCode {
         let archiverData = NSMutableData.init()
         let archiver = NSKeyedArchiver.init(forWritingWith: archiverData)
         
         archiver.encode(modelArray, forKey: modelKey)
         archiver.finishEncoding()
         
-        if archiverData.write(toFile: documentPath!, atomically: true) == true {
-            
-            
+        if archiverData.write(toFile: documentPath, atomically: true) == true {
             return SaveProfileErrorCode.SUCCESS_ERROR
         } else {
             return SaveProfileErrorCode.WRITEDATA_ERROR

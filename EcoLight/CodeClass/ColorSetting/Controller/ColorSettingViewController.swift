@@ -126,7 +126,6 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         
         manualAutoSwitchView?.manualModeAction = {
             self.cancelPreview()
-            self.editParameterModel = nil
             self.blueToothManager.sendManualModeCommand(uuid: (self.parameterModel?.uuid)!)
         }
         

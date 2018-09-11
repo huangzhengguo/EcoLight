@@ -5,7 +5,6 @@
   Created by huang zhengguo on 2017/10/12.
   Copyright © 2017年 huang zhengguo. All rights reserved.
 */
-homeTitle = "My Tank";
 home = "Home";
 scanTitle = "Scan Device";
 settingTitle = "Settings";
@@ -28,7 +27,6 @@ add = "Add";
 save = "Save";
 giveUpSave = "Give Up Save?";
 confirm = "Confirm";
-timePoint24 = "Time Points-24H";
 preview = "Preview";
 run = "Run";
 edit = "Edit";
@@ -43,7 +41,7 @@ defaultGroup = "Default Group";
 confirmDelete = "Confirm delete ";
 bluetoothError = "BlueTooth Error";
 blueErrorMessage = "Please open the bluetooth!";
-warning = "warning";
+warning = "Warning";
 maxTimePointNumWarn = "Up to 10 time points!";
 minTimePointNumWarn = "At least 4 time points!";
 deleteTimePointTitle = "Delete point";
@@ -52,15 +50,5 @@ choseTimePoint="Please select a time point";
 import="Import";
 export="Export";
 remove="Remove";
-
-
-
-
-
-
-
-
-
-
-
-
+removeProfileTitle="Remove";
+removeProfileMessage="Confirm remove: ";
