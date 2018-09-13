@@ -120,6 +120,7 @@ extension String {
     static func convertDateToFormatStr(date: Date, formatStr: String) -> String {
         let formatter = DateFormatter.init()
         
+        formatter.locale = Locale.init(identifier: "NL")
         formatter.dateFormat = formatStr;
         
         return formatter.string(from: date)

@@ -78,10 +78,11 @@ class EditAutoModeView: BaseView, UITableViewDelegate, UITableViewDataSource {
         
         self.addSubview(self.deleteTimePointBtn)
         
-        // 时间点
-        self.dateFormatter.dateFormat = "HH:mm"
-        
         let locale = Locale.init(identifier: "NL")
+        
+        // 时间点
+        self.dateFormatter.locale = locale
+        self.dateFormatter.dateFormat = "HH:mm"
         
         let xCenter = self.timePointTableView.frame.origin.x + self.timePointTableView.frame.size.width + (self.frame.size.width - self.timePointTableView.frame.origin.x - self.timePointTableView.frame.size.width) / 2.0
         self.timePointDatePicker.frame = CGRect(x: xCenter, y: 0, width: self.frame.size.width - self.timePointTableView.frame.size.width - 20.0, height: 100.0)

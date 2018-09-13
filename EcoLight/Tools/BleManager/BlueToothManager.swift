@@ -166,7 +166,8 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
         
         // 获取当前时间
         let currentDate: Date! = Date()
-        let calendar: Calendar! = Calendar.current
+        // 一定要使用公历日历gregorian
+        let calendar: Calendar! = Calendar.init(identifier: .gregorian)
         let weekComps: DateComponents! = calendar.dateComponents([.year, .month, .day, .weekday, .hour, .minute, .second], from: currentDate)
         
         // 构建同步时间命令

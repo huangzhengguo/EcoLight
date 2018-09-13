@@ -40,6 +40,7 @@ class DateTimePickerView: BaseView {
         // 时间选择
         datePicker = UIDatePicker.init(frame: CGRect(x: 0, y: 30, width: centerView.frame.size.width, height: 160))
         
+        datePicker?.locale = Locale.init(identifier: "NL")
         datePicker?.datePickerMode = .countDownTimer
         
         centerView.addSubview(datePicker!)

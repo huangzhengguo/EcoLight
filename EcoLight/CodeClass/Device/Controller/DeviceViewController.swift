@@ -176,7 +176,11 @@ class DeviceViewController: BaseViewController,UITableViewDelegate,UITableViewDa
                 deviceArray.append(deviceModel)
             }
             
-            SortManager<DeviceModel>.bubbleSort(models: &deviceArray, compareAction: DeviceModel.sortByName)
+            // 处理为空时出错
+            if deviceArray.count > 0 {
+                SortManager<DeviceModel>.bubbleSort(models: &deviceArray, compareAction: DeviceModel.sortByName)
+            }
+            
             self.deviceDataSourceDic[group.name!] = deviceArray
         }
         
