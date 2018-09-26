@@ -18,6 +18,7 @@
 		8F66B5FF1F7DEE990086E350 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F66B5FE1F7DEE990086E350 /* CoreBluetooth.framework */; };
 		8F6C77331F8DDF3100E0A22D /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C77311F8DDF3100E0A22D /* DeviceTableViewCell.swift */; };
 		8F6C77341F8DDF3100E0A22D /* DeviceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F6C77321F8DDF3100E0A22D /* DeviceTableViewCell.xib */; };
+		8F6FCCCE215B61760034E2DD /* GlobalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6FCCCD215B61760034E2DD /* GlobalInfo.swift */; };
 		8F71F7AA2140E52000F9C726 /* DrawImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71F7A92140E52000F9C726 /* DrawImage.swift */; };
 		8F71F7AC214125AB00F9C726 /* DateTimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F71F7AB214125AB00F9C726 /* DateTimePickerView.swift */; };
 		8F74C8A21F91AAAC00032C06 /* BlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F74C8A11F91AAAC00032C06 /* BlueToothManager.swift */; };
@@ -113,6 +114,7 @@
 		8F66B5FE1F7DEE990086E350 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		8F6C77311F8DDF3100E0A22D /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		8F6C77321F8DDF3100E0A22D /* DeviceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceTableViewCell.xib; sourceTree = "<group>"; };
+		8F6FCCCD215B61760034E2DD /* GlobalInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalInfo.swift; sourceTree = "<group>"; };
 		8F71F7A92140E52000F9C726 /* DrawImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawImage.swift; sourceTree = "<group>"; };
 		8F71F7AB214125AB00F9C726 /* DateTimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickerView.swift; sourceTree = "<group>"; };
 		8F74C8A11F91AAAC00032C06 /* BlueToothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueToothManager.swift; sourceTree = "<group>"; };
@@ -308,6 +310,14 @@
 				8F7B78121F95B04300DF4048 /* DeviceParameterModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8F6FCCCC215B61540034E2DD /* GlobalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				8F6FCCCD215B61760034E2DD /* GlobalInfo.swift */,
+			);
+			path = GlobalInfo;
 			sourceTree = "<group>";
 		};
 		8F71F7A82140E4EE00F9C726 /* DrawImage */ = {
@@ -671,6 +681,7 @@
 		8FE76F421F2EB1CB00FC9634 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				8F6FCCCC215B61540034E2DD /* GlobalInfo */,
 				8F71F7A82140E4EE00F9C726 /* DrawImage */,
 				8FC2A3C11F8B686500BEAE90 /* EcoLight-Bridging-Header.h */,
 				8F82BDB1213E5DD40037DC2D /* PlotView */,
@@ -1041,6 +1052,7 @@
 				8F7F6001213D30F7003BD634 /* EditAutoModeView.swift in Sources */,
 				8FEB5BC72143BAD1007AB740 /* ArchiveHelp.swift in Sources */,
 				8F7B78101F95AEA600DF4048 /* ColorSettingViewController.swift in Sources */,
+				8F6FCCCE215B61760034E2DD /* GlobalInfo.swift in Sources */,
 				8FE41ADD1F7F75BF00825501 /* DeviceModel.xcdatamodeld in Sources */,
 				8F9F8B4D1FA33CE3006E562D /* LayoutTools.swift in Sources */,
 				8FB994EB1F8CC14E008C6ACF /* BleDevice+CoreDataProperties.swift in Sources */,

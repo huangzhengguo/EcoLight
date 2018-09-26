@@ -80,7 +80,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
                 self.updateCircleSlider(colorIndex: self.colorSegment.selectedSegmentIndex)
                 
                 // 更新中间百分比
-                self.currentColorPercentLable.text = String.init(format: "%.2f%%", (self.singleCircleSlider?.endPointValue)! / 250.0 * 100.0)
+                self.currentColorPercentLable.text = String.init(format: "%.2f%%", (self.singleCircleSlider?.endPointValue)! / CGFloat(GlobalInfo.maxColorValue) * 100.0)
                 
                 // 更新微调器值
                 self.stepper.value = Double((self.singleCircleSlider?.endPointValue)!)
@@ -218,7 +218,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             singleCircleSlider?.center = CGPoint(x: (manualModeView?.center.x)!, y: (singleCircleSlider?.center.y)!)
             singleCircleSlider?.backgroundColor = UIColor.clear
             singleCircleSlider?.minimumValue = 0
-            singleCircleSlider?.maximumValue = 250.0
+            singleCircleSlider?.maximumValue = CGFloat(GlobalInfo.maxColorValue)
             singleCircleSlider?.lineWidth = 30.0
             self.updateCircleSlider(colorIndex: 0)
             
@@ -256,7 +256,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             self.currentColorPercentLable.backgroundColor = UIColor.lightGray
             self.currentColorPercentLable.textColor = UIColor.white
             self.currentColorPercentLable.textAlignment = .center
-            self.currentColorPercentLable.text = String.init(format: "%.2f%%", (singleCircleSlider?.endPointValue)! / 250.0 * 100)
+            self.currentColorPercentLable.text = String.init(format: "%.2f%%", (singleCircleSlider?.endPointValue)! / CGFloat(GlobalInfo.maxColorValue) * 100)
             
             manualModeView?.addSubview(self.currentColorPercentLable)
             
@@ -265,7 +265,12 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             let userDefineView = LayoutToolsView(viewNum: 3, viewWidth: 80, viewHeight: 40, viewInterval: 8, viewTitleArray: ["M1", "M2", "M3"], frame: userDefineViewFrame)
             userDefineView.buttonActionCallback = {
                 (button, index) in
-                let commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02).appendingFormat("%02x", (self.parameterModel?.controllerChannelNum)!).appending((self.parameterModel?.userDefinedValueArray[index])!)
+                var commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02).appendingFormat("%02x", (self.parameterModel?.controllerChannelNum)! * 2)
+                
+                let userDefineStr:NSString = (self.parameterModel?.userDefinedValueArray[index])! as NSString
+                for i in 0..<(self.parameterModel?.controllerChannelNum)! {
+                    commandStr = commandStr.appending(String.invertColorValueToHexStr(colorValue: userDefineStr.substring(with: NSRange.init(location: i * 2, length: 2)).hexaToDecimal))
+                }
                 
                 self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: .SENDUSERDEFINED_COMMAND, isXORCommand: true)
             }
@@ -339,7 +344,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         var manualPercentArray = [Float]()
         
         for colorValue in (parameterModel?.manualModeValueArray)! {
-            manualPercentArray.append(Float(colorValue.hexaToDecimal) / 250.0 * 100.0)
+            manualPercentArray.append(Float(colorValue.hexaToDecimal) / GlobalInfo.maxColorValue * 100.0)
         }
         
         return manualPercentArray
@@ -378,7 +383,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         self.currentColorPercentLable.text = currentColorPercentStr
         
         // 设置微调当前值
-        self.stepper.value = Double(manualPercentArray[sender.selectedSegmentIndex]) * 250.0 / 100.0
+        self.stepper.value = Double(manualPercentArray[sender.selectedSegmentIndex]) * Double(GlobalInfo.maxColorValue) / 100.0
     }
     
     /// 圆环滑动
@@ -387,7 +392,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
     ///
     /// - returns:
     @objc func colorValueChanged(view: UIView) -> Void {
-        let progressView: CircularSlider! = view as! CircularSlider
+        let progressView: CircularSlider! = view as? CircularSlider
 
         self.sendColorValueToDevice(colorIndex: self.self.colorSegment.selectedSegmentIndex, colorValue: Int(progressView.endPointValue))
         
@@ -407,8 +412,8 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         }
         
         self.isReceiveRespon = false
-        
-        let commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02 + self.colorSegment.selectedSegmentIndex).appending("01").appendingFormat("%02x", colorValue)
+    
+        let commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x02 + colorIndex * 2).appending("02").appending(String.invertColorValueToHexStr(colorValue: colorValue))
         
         self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.MANUALSETTING_COMMAND, isXORCommand: true)
     }
@@ -426,8 +431,8 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         
         let manualPercentArray = getManualColorPercentArray(parameterModel: self.parameterModel)
         
-        self.singleCircleSlider?.endPointValue = CGFloat(manualPercentArray[colorIndex]) * 250.0 / 100.0 + 3.0
-        self.singleCircleSlider?.endPointValue = CGFloat(manualPercentArray[colorIndex]) * 250.0 / 100.0
+        self.singleCircleSlider?.endPointValue = CGFloat(manualPercentArray[colorIndex]) * CGFloat(GlobalInfo.maxColorValue) / 100.0 + 3.0
+        self.singleCircleSlider?.endPointValue = CGFloat(manualPercentArray[colorIndex]) * CGFloat(GlobalInfo.maxColorValue) / 100.0
     }
     
     func setAutoModeViews() -> Void {
@@ -689,7 +694,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         // 显示时间点及百分比
         cell?.textLabel?.text = String.init(format: "%ld   %@", indexPath.row + 1, String.convertHexTimeToFormatTime(hexTimeStr: (self.editParameterModel?.timePointArray[indexPath.row])!))
         for i in 0..<(self.editParameterModel?.channelNum)! {
-            let percent = Float(((self.editParameterModel?.timePointValueArray[indexPath.row])! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexaToDecimal) / 250.0 * 100.0
+            let percent = Float(((self.editParameterModel?.timePointValueArray[indexPath.row])! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexaToDecimal)
             cell?.textLabel?.text = String.init(format: "%10@ %5.0f%%", (cell?.textLabel?.text)!, percent)
         }
         
@@ -726,7 +731,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             }
         }
         
-        quickPreviewTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(sendQuickPreviewCommand(timer:)), userInfo: nil, repeats: true)
+        quickPreviewTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(sendQuickPreviewCommand(timer:)), userInfo: nil, repeats: true)
     }
     
     /// 取消预览功能
@@ -806,8 +811,8 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         }
         
         // 计算值
-        var previewColorDoubleArray = previewColorValueStr.convertColorStrToDoubleValue()
-        var nextColorDoubleArray = nextColorValueStr.convertColorStrToDoubleValue()
+        var previewColorDoubleArray = previewColorValueStr.convertColorPercentStrToDoubleValue()
+        var nextColorDoubleArray = nextColorValueStr.convertColorPercentStrToDoubleValue()
         for j in 0 ..< (self.editParameterModel?.channelNum)! {
             var percent = 0.0
             if isInFirst == true {
@@ -819,8 +824,8 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             }
             
             let colorValue = previewColorDoubleArray[j] - ((previewColorDoubleArray[j] - nextColorDoubleArray[j])) * percent
-            
-            colorValueStr = colorValueStr.appendingFormat("%02x", Int(colorValue))
+
+            colorValueStr = colorValueStr.appending(String.invertColorValueToHexStr(colorValue: Int(colorValue)))
         }
         
         return colorValueStr

@@ -198,7 +198,7 @@ class EditAutoModeView: BaseView, UITableViewDelegate, UITableViewDataSource {
                 self.deleteTimePointBlock!(self.currentTimePointIndex)
             }
         } else if btnIndex == 3 {
-            // 取消
+            // 保存
             if self.saveBlock != nil {
                 self.saveBlock!()
             }

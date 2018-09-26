@@ -187,6 +187,27 @@ extension String {
         return colorDoubleArray
     }
     
+    /// 转换16进制颜色值百分比字符串为Double数组
+    ///
+    /// - returns: 16进制对应的double数组
+    func convertColorPercentStrToDoubleValue() -> [Double] {
+        var colorDoubleArray: [Double] = [Double]()
+        
+        var hexStr: String = ""
+        var cIndex: Int = 0
+        for c in self {
+            hexStr.append(c)
+            if cIndex % 2 != 0 {
+                colorDoubleArray.append(Double(hexStr.hexToInt16()) / 100.0 * Double(GlobalInfo.maxColorValue))
+                hexStr = ""
+            }
+            
+            cIndex = cIndex + 1
+        }
+        
+        return colorDoubleArray
+    }
+    
     /// 转换用户自定义数据(百分比表示)为颜色值字符串(16进制整型表示): 32643232 -> 0.5 * 1000 1.0 * 1000 0.5 * 1000 0.5 * 1000 -> 01F403E801F401F4
     ///
     /// - returns:
@@ -202,6 +223,16 @@ extension String {
         }
 
         return hexColorStr
+    }
+    
+    /// 转换颜色值高地位
+    /// - parameter colorValue: 要转换的颜色值
+    ///
+    /// - returns:
+    static func invertColorValueToHexStr(colorValue: Int) -> String {
+        let colorValueStr: NSString = String.init(format:"%04x", colorValue) as NSString
+        
+        return String.init(colorValueStr.substring(with: NSRange.init(location: 2, length: 2))).appending(colorValueStr.substring(with: NSRange.init(location: 0, length: 2)))
     }
     
     static func getStringSize(str: NSString, font: UIFont, maxSize: CGSize) -> CGSize {

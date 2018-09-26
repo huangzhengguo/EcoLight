@@ -48,7 +48,7 @@ class ManualSliderView: UIView {
             colorSlider.tintColor = colorArray[i]
             colorSlider.thumbTintColor = colorArray[i]
             colorSlider.minimumValue = 0.0
-            colorSlider.maximumValue = 250.0
+            colorSlider.maximumValue = GlobalInfo.maxColorValue
             colorSlider.addTarget(self, action: #selector(colorSliderValueChanged(sender:)), for: .valueChanged)
             colorSliderArray.append(colorSlider)
             
@@ -61,7 +61,7 @@ class ManualSliderView: UIView {
     }
     
     @objc func colorSliderValueChanged(sender: UISlider) -> Void {
-        colorColorPercentLabelArray![sender.tag - 2000].text = String.init(format: "%.0f%%", sender.value / 250.0 * 100.0)
+        colorColorPercentLabelArray![sender.tag - 2000].text = String.init(format: "%.0f%%", Float(sender.value) / GlobalInfo.maxColorValue * 100.0)
         
         if passSliderValueCallback != nil {
             passSliderValueCallback!(sender.tag - 2000, sender.value)
@@ -70,8 +70,8 @@ class ManualSliderView: UIView {
     
     func updateManualSliderView(colorPercentArray: [Double]) -> Void {
         for i in 0 ..< colorPercentArray.count {
-            colorSliderArray![i].value = Float(colorPercentArray[i])
-            colorColorPercentLabelArray![i].text = String.init(format: "%.0f%%", colorPercentArray[i] / 250.0 * 100.0)
+            colorSliderArray![i].value = Float(Float(colorPercentArray[i]) / 100.0 * GlobalInfo.maxColorValue)
+            colorColorPercentLabelArray![i].text = String.init(format: "%.0f%%", Float(colorPercentArray[i]))
         }
     }
     

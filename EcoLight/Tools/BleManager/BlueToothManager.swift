@@ -172,8 +172,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
         
         // 构建同步时间命令
         var commandStr: String? = ""
-        
-        commandStr = String(format: "6801%02x%02x%02x%02x%02x%02x%02x", weekComps.year! % 2000, weekComps.month!, weekComps.day!, weekComps.weekday!, weekComps.hour!, weekComps.minute!, weekComps.second!)
+        commandStr = String(format: "6801%02x%02x%02x%02x%02x%02x%02x", weekComps.year! % 2000, weekComps.month!, weekComps.day!, weekComps.weekday! - 1, weekComps.hour!, weekComps.minute!, weekComps.second!)
         self.bleManager.sendData(toDevice1: commandStr! + (commandStr?.calculateXor()!)!, device: device)
     }
     
@@ -317,7 +316,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
         
         // 拼接接收到的数据
         self.receivedData.append(String.dataToHexString(data: data)!)
-        if self.receivedData.count <= 0 {
+        if self.receivedData.count < 10 {
             return
         }
         
@@ -338,7 +337,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
             print("收到完整数据: " + self.receivedData)
             
             // 根据命令类型，处理返回的数据
-            switch self.currentCommandType {
+            switch self.currentCommandType! {
             case .POWERON_COMMAND,
                  .POWEROFF_COMMAND:
                     break

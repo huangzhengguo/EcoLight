@@ -74,18 +74,20 @@ extension DeviceParameterModel {
                 return
             }
             
-            // 解析手动模式下，所有通道的数据，按照键值1,2,3,4,5...存储到字典中
+            // 解析手动模式
             index = index + 2
             var colorStr: String?
             for _ in 0..<self.controllerChannelNum! {
                 colorStr = ""
                 // 由于高位在后，需要先添加高位
+                colorStr?.append(commandCharacters[index + 2])
+                colorStr?.append(commandCharacters[index + 3])
                 colorStr?.append(commandCharacters[index])
                 colorStr?.append(commandCharacters[index + 1])
                 
                 self.manualModeValueArray.append(colorStr!)
 
-                index = index + 2
+                index = index + 4
             }
 
             // 解析用户自定义数据
@@ -182,7 +184,7 @@ extension DeviceParameterModel {
             if cIndex != 2 * colorIndex && cIndex != (2 * colorIndex + 1) {
                 newColorStr.append(c)
             } else if cIndex == 2 * colorIndex {
-                newColorStr = newColorStr.appendingFormat("%02x", Int(colorValue))
+                newColorStr = newColorStr.appendingFormat("%02x", Int(colorValue / GlobalInfo.maxColorValue * 100))
             }
             
             cIndex = cIndex + 1
@@ -258,8 +260,8 @@ extension DeviceParameterModel {
             xAxis = 0
             firstColorStr = timePointValueArray?[0]
             lastColorStr = timePointValueArray?[timePointValueArray!.count - 1]
-            yFisrtAxis = CGFloat((firstColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 250.0
-            yLastAxis = CGFloat((lastColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 250.0
+            yFisrtAxis = CGFloat((firstColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
+            yLastAxis = CGFloat((lastColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
             
             let firstTimePoint = timePointArray![0]
             let lastTimePoint = timePointArray![(timePointArray?.count)! - 1]
@@ -277,7 +279,7 @@ extension DeviceParameterModel {
                 
                 colorStr = timePointValueArray?[index]
                 
-                yAxis = CGFloat((colorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 250.0
+                yAxis = CGFloat((colorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
                 
                 value = CGPoint(x: xAxis, y: yAxis!)
                 
