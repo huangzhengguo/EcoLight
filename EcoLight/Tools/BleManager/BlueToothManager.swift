@@ -134,7 +134,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
     ///
     /// - returns: 空
     @objc private func connectTimeCount(timer: Timer) -> Void {
-        print("第\(self.connectTimeCount)次连接！")
+        // print("第\(self.connectTimeCount)次连接！")
         // 连接设备
         self.connectTimeCount = self.connectTimeCount + 1
 
@@ -174,6 +174,7 @@ class BlueToothManager: NSObject, BLEManagerDelegate {
         var commandStr: String? = ""
         commandStr = String(format: "6801%02x%02x%02x%02x%02x%02x%02x", weekComps.year! % 2000, weekComps.month!, weekComps.day!, weekComps.weekday! - 1, weekComps.hour!, weekComps.minute!, weekComps.second!)
         self.bleManager.sendData(toDevice1: commandStr! + (commandStr?.calculateXor()!)!, device: device)
+        print("同步时间:" + commandStr!)
     }
     
     /// 发送打开开关命令

@@ -27,10 +27,11 @@ class ProfileViewController: BaseViewController,UITableViewDelegate,UITableViewD
     override func setViews() -> Void {
         super.setViews()
         
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.clear
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor.clear
         self.tableView.register(UINib.init(nibName: "ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "ProfileTableViewCell")
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         
@@ -105,6 +106,8 @@ class ProfileViewController: BaseViewController,UITableViewDelegate,UITableViewD
         
         let model = self.datasource![indexPath.row]
         
+        cell.backgroundColor = UIColor.clear
+        cell.contentView.backgroundColor = UIColor.clear
         cell.nameLabel.text = model.fileName
         
         return cell

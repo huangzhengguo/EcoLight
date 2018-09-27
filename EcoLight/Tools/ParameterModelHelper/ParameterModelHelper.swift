@@ -95,9 +95,10 @@ extension DeviceParameterModel {
             for i in 0..<4 {
                 userDefineColor.removeAll()
                 for j in 0..<self.controllerChannelNum! {
-                    userDefineColor.append(commandCharacters[index + i * self.controllerChannelNum! + j * 2])
-                    userDefineColor.append(commandCharacters[index + i * self.controllerChannelNum! + j * 2 + 1])
+                    userDefineColor.append(commandCharacters[index + i * self.controllerChannelNum! * 2 + j * 2])
+                    userDefineColor.append(commandCharacters[index + i * self.controllerChannelNum! * 2 + j * 2 + 1])
                 }
+                print("userDefineColor = " + userDefineColor)
                 self.userDefinedValueArray.append(userDefineColor)
             }
         } else if runModeStr == "01" {

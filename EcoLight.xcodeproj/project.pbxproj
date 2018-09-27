@@ -1269,7 +1269,7 @@
 					"$(PROJECT_DIR)/EcoLight/Tools/BleSDK",
 					"$(PROJECT_DIR)/EcoLight/Tools/BleSdk",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.inledco.eco;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inledco.inledco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "EcoLight/Tools/EcoLight-Bridging-Header.h";
@@ -1296,7 +1296,7 @@
 					"$(PROJECT_DIR)/EcoLight/Tools/BleSDK",
 					"$(PROJECT_DIR)/EcoLight/Tools/BleSdk",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.inledco.eco;
+				PRODUCT_BUNDLE_IDENTIFIER = com.inledco.inledco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "EcoLight/Tools/EcoLight-Bridging-Header.h";

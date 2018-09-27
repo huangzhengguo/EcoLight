@@ -103,20 +103,20 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
     override func setViews() {
         super.setViews()
         self.title = self.devcieName!
-        // 1.查找和重命名
-        let findButton = UIButton(frame: CGRect(x: 0, y: 2, width: 40, height: 40))
-        findButton.setImage(UIImage.init(named: "findDevice"), for: .normal)
-        findButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        findButton.addTarget(self, action: #selector(findDeviceAction(sender:)), for: .touchUpInside)
-        let findItem = UIBarButtonItem.init(customView: findButton)
+//        // 1.查找和重命名
+//        let findButton = UIButton(frame: CGRect(x: 0, y: 2, width: 40, height: 40))
+//        findButton.setImage(UIImage.init(named: "findDevice"), for: .normal)
+//        findButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//        findButton.addTarget(self, action: #selector(findDeviceAction(sender:)), for: .touchUpInside)
+//        let findItem = UIBarButtonItem.init(customView: findButton)
+//
+//        let renameButton = UIButton(frame: CGRect(x: 0, y: 2, width: 40, height: 40))
+//        renameButton.setImage(UIImage.init(named: "rename"), for: .normal)
+//        renameButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//        renameButton.addTarget(self, action: #selector(renameDeviceAction(sender:)), for: .touchUpInside)
+//        let renameItem = UIBarButtonItem.init(customView: renameButton)
         
-        let renameButton = UIButton(frame: CGRect(x: 0, y: 2, width: 40, height: 40))
-        renameButton.setImage(UIImage.init(named: "rename"), for: .normal)
-        renameButton.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        renameButton.addTarget(self, action: #selector(renameDeviceAction(sender:)), for: .touchUpInside)
-        let renameItem = UIBarButtonItem.init(customView: renameButton)
-        
-        self.navigationItem.rightBarButtonItems = [findItem,renameItem];
+        // self.navigationItem.rightBarButtonItems = [findItem,renameItem];
         
         // 2.手动自动切换按钮
         let manualAutoSwitchViewFrame = CGRect(x: 0, y: 72, width: 100, height: 50)
@@ -269,7 +269,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
                 
                 let userDefineStr:NSString = (self.parameterModel?.userDefinedValueArray[index])! as NSString
                 for i in 0..<(self.parameterModel?.controllerChannelNum)! {
-                    commandStr = commandStr.appending(String.invertColorValueToHexStr(colorValue: userDefineStr.substring(with: NSRange.init(location: i * 2, length: 2)).hexaToDecimal))
+                    commandStr = commandStr.appending(String.invertColorValueToHexStr(colorValue: userDefineStr.substring(with: NSRange.init(location: i * 2, length: 2)).hexaToDecimal * Int(GlobalInfo.maxColorValue) / 100))
                 }
                 
                 self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: .SENDUSERDEFINED_COMMAND, isXORCommand: true)
@@ -277,10 +277,10 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             
             userDefineView.buttonLongPressCallback = {
                 (index) in
-                var commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x07 + index * (self.parameterModel?.controllerChannelNum)!).appendingFormat("%02x", (self.parameterModel?.controllerChannelNum)!)
+                var commandStr = CommandHeader.COMMANDHEAD_SIX.rawValue.appendingFormat("%02x", 0x0c + index * (self.parameterModel?.controllerChannelNum)!).appendingFormat("%02x", (self.parameterModel?.controllerChannelNum)!)
                 
                 for i in 0..<(self.parameterModel?.controllerChannelNum)! {
-                    commandStr = commandStr.appending((self.parameterModel?.manualModeValueArray[i])!)
+                    commandStr = commandStr.appendingFormat("%02x", (Int16)(Float((self.parameterModel?.manualModeValueArray[i])!.hexToInt16()) / GlobalInfo.maxColorValue * 100.0))
                 }
                 
                 self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGUSERDEFINED_COMMAND, isXORCommand: true)
@@ -695,7 +695,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         cell?.textLabel?.text = String.init(format: "%ld   %@", indexPath.row + 1, String.convertHexTimeToFormatTime(hexTimeStr: (self.editParameterModel?.timePointArray[indexPath.row])!))
         for i in 0..<(self.editParameterModel?.channelNum)! {
             let percent = Float(((self.editParameterModel?.timePointValueArray[indexPath.row])! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexaToDecimal)
-            cell?.textLabel?.text = String.init(format: "%10@ %5.0f%%", (cell?.textLabel?.text)!, percent)
+            cell?.textLabel?.text = String.init(format: "%10@ %5.2f%%", (cell?.textLabel?.text)!, percent)
         }
         
         return cell!
