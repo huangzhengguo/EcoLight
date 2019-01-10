@@ -456,8 +456,8 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             plotView?.lineColorArray = (deviceInfo?.channelColorArray)!
             plotView?.lineColorTitleArray = (deviceInfo?.channelColorTitleArray)!
             plotView?.dataPointArray = (self.editParameterModel?.generateLinePoint())!
-            plotView?.yMaxValue = 1.0
-            plotView?.yInterval = 0.25
+            plotView?.yMaxValue = 100.0
+            plotView?.yInterval = 25.0
             plotView?.drawPlotView()
             
             // 添加时间点列表
@@ -692,7 +692,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
         cell?.selectionStyle = .none
         
         // 显示时间点及百分比
-        cell?.textLabel?.text = String.init(format: "%ld   %@", indexPath.row + 1, String.convertHexTimeToFormatTime(hexTimeStr: (self.editParameterModel?.timePointArray[indexPath.row])!))
+        cell?.textLabel?.text = String.init(format: "%ld %@", indexPath.row + 1, String.convertHexTimeToFormatTime(hexTimeStr: (self.editParameterModel?.timePointArray[indexPath.row])!))
         for i in 0..<(self.editParameterModel?.channelNum)! {
             let percent = Float(((self.editParameterModel?.timePointValueArray[indexPath.row])! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexaToDecimal)
             cell?.textLabel?.text = String.init(format: "%10@ %5.2f%%", (cell?.textLabel?.text)!, percent)
@@ -709,7 +709,7 @@ class ColorSettingViewController: BaseViewController, UITableViewDelegate, UITab
             commandStr = commandStr.appending((deviceModel.timePointValueArray[i]))
         }
         
-        self.blueToothManager.sendCommandToDevice(uuid: (deviceModel.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGAUTOMODE_COMMAND, isXORCommand: true, commandInterval: 2.0)
+        self.blueToothManager.sendCommandToDevice(uuid: (self.parameterModel?.uuid)!, commandStr: commandStr, commandType: CommandType.SETTINGAUTOMODE_COMMAND, isXORCommand: true, commandInterval: 2.0)
     }
     
     /// 开始预览功能

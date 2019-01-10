@@ -14,7 +14,6 @@ class ProfileTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
         self.selectBtn.setImage(UIImage.init(named: "circle_select"), for: .selected)
         self.selectBtn.setImage(UIImage.init(named: "circle_unselect"), for: .normal)
         self.selectBtn.isUserInteractionEnabled = false

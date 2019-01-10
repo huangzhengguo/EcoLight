@@ -261,8 +261,8 @@ extension DeviceParameterModel {
             xAxis = 0
             firstColorStr = timePointValueArray?[0]
             lastColorStr = timePointValueArray?[timePointValueArray!.count - 1]
-            yFisrtAxis = CGFloat((firstColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
-            yLastAxis = CGFloat((lastColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
+            yFisrtAxis = CGFloat((firstColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16())
+            yLastAxis = CGFloat((lastColorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16())
             
             let firstTimePoint = timePointArray![0]
             let lastTimePoint = timePointArray![(timePointArray?.count)! - 1]
@@ -280,7 +280,7 @@ extension DeviceParameterModel {
                 
                 colorStr = timePointValueArray?[index]
                 
-                yAxis = CGFloat((colorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16()) / 100.0
+                yAxis = CGFloat((colorStr! as NSString).substring(with: NSRange.init(location: i * 2, length: 2)).hexToInt16())
                 
                 value = CGPoint(x: xAxis, y: yAxis!)
                 
